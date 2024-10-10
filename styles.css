@@ -1,0 +1,338 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #313a49;
+    flex-direction: column;
+}
+
+#footer-logo {
+    width: 15%;
+    height: auto;
+}
+
+#logo {
+    width: 15%;
+    height: auto;
+    border-radius: 10%;
+}
+
+section img {
+    width: 50%;
+    height: auto;
+    border-radius: 10%;
+}
+
+#projects p {
+    font-size: 1.5em;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #313a49;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    border-bottom: 1px solid #d8e1d2;
+    box-shadow: 0 0 10px #d8e1d2;
+}
+
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#navbar li {
+    margin-right: 20px;
+}
+
+#navbar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#navbar a:hover {
+    color: #ccc;
+}
+
+#welcome-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./images/Desk\ 5.jpg);
+    padding: 2em;
+}
+
+section:first-child {
+    width: 100%;
+    padding: 5px; 
+}
+
+section:nth-child(2) {
+    display: flex;
+    justify-content: space-around;
+    flex: 1; 
+}
+
+#welcome-section h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+main {
+    flex-wrap: wrap;
+}
+
+
+#projects {
+    padding: 2em;
+    color: #fff;
+    background:  linear-gradient(to bottom, #e5ebea, #313a49);
+    background-size: cover;
+    background-position: center;
+}
+
+.project-intro {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 50%;
+    background-color: #313a49;
+}
+
+.project-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    background-color: #313a49;
+}
+
+.welcome {
+    background-color: #313a49;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 50%;
+}
+
+.project-tile img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.project-tile h3 {
+    margin-top: 10px;
+    color: #fff;
+}
+
+.project-tile p {
+    margin-bottom: 20px;
+}
+
+.project-tile a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.project-tile a:hover {
+    color: #23527c;
+}
+
+
+#welcome-section p {
+    font-size: 24px;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #fff;
+    width: 70%;
+}
+
+footer {
+    display: flex;
+    width: 100%;
+    height: auto;
+    background: #313a49;
+    padding: 20px;
+    box-shadow: 0 0 10px #d8e1d2;
+    text-align: center;
+}
+
+footer p {
+    color: #fff;
+    text-align: center;
+}
+
+footer div {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
+    #welcome-section .welcome {
+        width: 100vw;
+        padding: 20px;
+        margin: 0;
+        box-sizing: border-box;
+        border: none;
+        box-shadow: none;
+        max-width: 100vw;
+    }
+
+    .project-intro {
+        width: 100vw;
+        max-width: 100vw;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .welcome {
+        border-radius: 0;
+    }
+    .project-tile {
+        border-radius: 0;
+    }
+    .project-tile img {
+        border-radius: 0;
+    }
+
+    #welcome-section {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    #welcome-section {
+        height: auto;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        width: 100vw;
+        border: none;
+        box-sizing: border-box;
+        box-shadow: none;
+    }
+    #welcome-section p {
+        text-align: center;
+        height: auto;
+        padding: 0;
+        width: 100vw;
+    }
+    #logo {
+        width: 40%;
+    }
+    footer #footer-logo {
+        display: block;
+        margin: 0 auto;
+    }
+
+    #navbar {
+        padding: 0.5em;
+        flex-direction: column; /* added for mobile responsiveness */
+        position: relative;
+    }
+    #navbar li {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    #projects {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: #313a49; /* added background color */
+        padding: 0;
+    }
+    .project-tile {
+        flex-direction: column;
+        width: 100vw; /* take up entire width of viewport */
+        margin: 0; /* remove margin */
+        padding: 20px; /* add padding */
+        box-sizing: border-box;
+        background-color: #313a49; /* added background color */
+        border: none; /* removed border */
+        box-shadow: none; /* removed box shadow */
+    }
+    .project-tile img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+    .project-tile h3 {
+        margin-top: 10px;
+        color: #fff;
+    }
+    .project-tile p {
+        margin-bottom: 20px;
+    }
+    .project-tile a {
+        text-decoration: none;
+        color: #fff;
+    }
+    .project-tile a:hover {
+        color: #23527c;
+    }
+    footer {
+        flex-direction: column; /* added for mobile responsiveness */
+    }
+    footer div {
+        flex-direction: column; /* added for mobile responsiveness */
+    }
+    #welcome-section {
+        padding: 0;
+    }
+    #welcome-section p {
+        padding: 0;
+    }
+}
