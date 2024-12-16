@@ -43,6 +43,7 @@ section img {
     text-align: center;
     border-bottom: 1px solid #d8e1d2;
     box-shadow: 0 0 10px #d8e1d2;
+    z-index: 1;
 }
 
 #navbar ul {
@@ -200,6 +201,52 @@ footer div {
     flex: 1;
     display: flex;
     justify-content: space-evenly;
+}
+
+#blog {
+    padding: 2em;
+    color: #fff;
+    background-image: url(./images/Desk\ 3.jpg);
+    background-size: cover;
+    background-position: center;   
+}
+
+.blog {
+    background-color: #313a49;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    max-width: 100%;   
+}
+
+.blog h2 {
+    color: white;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#blog p {
+    font-size: 22px;
+}
+
+
+
+.blog-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    background-color: #313a49;
+    opacity: 80%;
 }
 
 /* Media query for mobile devices */
