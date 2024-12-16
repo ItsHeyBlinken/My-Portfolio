@@ -341,11 +341,16 @@ footer div {
         background-color: #313a49; /* added background color */
         padding: 0;
     }
+    
     #blog {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        height: auto;
         padding: 0;
+        margin: 0;
+        text-align: center;
+        width: 100vw;
+        border: none;
+        box-sizing: border-box;
+        box-shadow: none;
     }
 
     .blog {
