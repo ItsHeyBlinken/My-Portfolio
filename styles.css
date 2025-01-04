@@ -10,6 +10,13 @@ body {
     flex-direction: column;
 }
 
+button {
+    background-color:  #313a49;
+    color: #333;
+    border: 2px solid #d8e1d2;
+    border-radius: 5px;
+}
+
 #footer-logo {
     width: 15%;
     height: auto;
