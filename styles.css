@@ -10,11 +10,13 @@ body {
     flex-direction: column;
 }
 
+
+
 button {
-    background-color:  #313a49;
+    background-color:  #c5cbd6;
     color: #333;
     border: 2px solid #d8e1d2;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 #footer-logo {
@@ -216,6 +218,14 @@ footer div {
     background-image: url(./images/Desk\ 3.jpg);
     background-size: cover;
     background-position: center;   
+}
+
+#past-blog-posts {
+    padding: 2em;
+    color: #fff;
+    background-color: #313a49;
+    background-size: cover;
+    background-position: center;
 }
 
 .blog {
