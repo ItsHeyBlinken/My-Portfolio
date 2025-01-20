@@ -6,12 +6,23 @@
     <title>Unity Web Player | My project</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <style>
+      .center-text {
+        text-align: center;
+        color: black;
+        font-family: Arial, sans-serif;
+      }
+      .center-text p {
+        color: black;
+        font-size: 18px;
+      }
+    </style>
   </head>
   <body>
 
-    <h1 style="text-align: center; color: #4CAF50; font-family: Arial, sans-serif;">Unity Web Player | My project</h1>
-    <p style="text-align: center; color: #555; font-family: Arial, sans-serif; font-size: 18px;">Use WASD to move around.</p>
-    <p style="text-align: center; color: #555; font-family: Arial, sans-serif; font-size: 18px;">Refresh Page to play Again</p>
+    <h1 class="center-text">Unity Web Player | My project</h1>
+    <p class="center-text">Use WASD to move around.</p>
+    <p class="center-text">Refresh Page to play Again</p>
 
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
