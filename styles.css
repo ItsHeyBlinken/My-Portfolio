@@ -226,7 +226,11 @@ footer div {
     background-color: #313a49;
     background-size: cover;
     background-position: center;
+    display: flex;
+    flex-direction: column;
 }
+
+
 
 .blog {
     background-color: #313a49;
