@@ -110,9 +110,13 @@ main {
 
 
 #projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     padding: 2em;
     color: #fff;
-    background:  linear-gradient(to bottom, #e5ebea, #313a49);
+    background: linear-gradient(to bottom, #e5ebea, #313a49);
     background-size: cover;
     background-position: center;
 }
@@ -140,8 +144,10 @@ main {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+    margin: 0;
     background-color: #313a49;
+    width: calc(33.33% - 20px);
+    min-width: 300px;
 }
 
 .welcome {
@@ -448,5 +454,12 @@ footer div {
     }
     #blog p {
         padding: 0;
+    }
+    .project-tile {
+        width: 100vw;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
     }
 }
