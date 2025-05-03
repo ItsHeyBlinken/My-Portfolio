@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about our team of wedding planners at Stress Free Events and Weddings in the DFW area.">
+    <meta name="keywords" content="wedding planner DFW, wedding planner team, event planning team, wedding planners near me">
+    <title>About Us - Stress Free Events and Weddings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* Additional styles specific to about page */
+        .about-hero {
+            height: 60vh;
+            min-height: 400px;
+            background-image: url('./Current Docs/Assets/ss5.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin-top: 90px;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+        
+        .about-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .team-section {
+            background-color: var(--white);
+            padding: 100px 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 25px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .team-bio {
+            margin-top: 15px;
+        }
+        
+        .mission-section {
+            background-color: var(--secondary-color);
+            padding: 100px 0;
+        }
+        
+        .mission-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .mission-text {
+            flex: 1;
+        }
+        
+        .mission-image {
+            flex: 0 0 45%;
+        }
+        
+        .values-section {
+            background-color: var(--white);
+            padding: 100px 0;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            background-color: var(--light-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 992px) {
+            .mission-content {
+                flex-direction: column;
+            }
+            
+            .mission-image {
+                order: -1;
+                flex: 0 0 100%;
+            }
+            
+            .mission-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html"><img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- About Hero Section -->
+        <section class="about-hero">
+            <div class="about-hero-content" data-aos="fade-up">
+                <h1>About Stress Free Events & Weddings</h1>
+                <p class="lead">Meet the team dedicated to making your special day truly stress-free</p>
+            </div>
+        </section>
+
+        <!-- Our Story Section -->
+        <section class="mission-section">
+            <div class="container">
+                <div class="mission-content">
+                    <div class="mission-text" data-aos="fade-right">
+                        <div class="section-header" style="text-align: left;">
+                            <h2>Our Story</h2>
+                            <div class="divider" style="margin-left: 0;"><span></span></div>
+                        </div>
+                        <p>Stress Free Events and Weddings was founded with a simple yet powerful mission: to allow couples to be guests at their own wedding. After witnessing countless couples overwhelmed by the planning process and unable to fully enjoy their special day, we knew there had to be a better way.</p>
+                        <p>With over two decades of combined experience in event planning, our team has developed a streamlined approach that takes the stress out of wedding planning while ensuring that every detail reflects the unique personality and vision of each couple we work with.</p>
+                        <p>Based in the Dallas-Fort Worth area, we've had the privilege of helping hundreds of couples create unforgettable celebrations that they could fully enjoy without the behind-the-scenes stress.</p>
+                    </div>
+                    <div class="mission-image" data-aos="fade-left">
+                        <img src="./Current Docs/Assets/ss3.jpg" alt="Wedding celebration" class="rounded-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values Section -->
+        <section class="values-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Our Core Values</h2>
+                    <div class="divider"><span></span></div>
+                    <p>The principles that guide everything we do</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Client-Centered Approach</h3>
+                        <p>Your vision is our priority. We listen carefully to understand your unique style and preferences, ensuring that every detail reflects who you are as a couple.</p>
+                    </div>
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="value-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Attention to Detail</h3>
+                        <p>We believe that the magic is in the details. Our meticulous planning and execution ensure that nothing is overlooked, from the grandest elements to the smallest touches.</p>
+                    </div>
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="value-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Clear Communication</h3>
+                        <p>We maintain open, transparent communication throughout the planning process, keeping you informed and involved at every step.</p>
+                    </div>
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="value-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <h3>Stress-Free Experience</h3>
+                        <p>Our name says it all. We handle the logistics, coordination, and potential challenges so you can focus on enjoying your engagement and wedding day.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Meet Our Team</h2>
+                    <div class="divider"><span></span></div>
+                    <p>The passionate professionals dedicated to making your wedding dreams come true</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-image">
+                            <img src="./Current Docs/Assets/lisa.jpg" alt="Lisa Johnson">
+                        </div>
+                        <h3>Lisa Johnson</h3>
+                        <p>Lead Wedding Planner & Founder</p>
+                        <div class="team-bio">
+                            <p>With over 15 years of experience in wedding and event planning, Lisa founded Stress Free Events and Weddings with a vision to transform the wedding planning experience. Her attention to detail, creative vision, and calm demeanor have made her a favorite among couples seeking a truly stress-free wedding day.</p>
+                        </div>
+                    </div>
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+                        <div class="team-image">
+                            <img src="./Current Docs/Assets/natalie.jpg" alt="Natalie Smith">
+                        </div>
+                        <h3>Natalie Smith</h3>
+                        <p>Senior Event Coordinator</p>
+                        <div class="team-bio">
+                            <p>Natalie brings creativity and precision to every event she coordinates. With a background in interior design and hospitality management, she has a unique talent for transforming spaces and creating seamless guest experiences. Her warm personality and organizational skills ensure that every wedding runs smoothly from start to finish.</p>
+                        </div>
+                    </div>
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+                        <div class="team-image">
+                            <img src="./Current Docs/Assets/planner.jpg" alt="Emily Davis">
+                        </div>
+                        <h3>Emily Davis</h3>
+                        <p>Design Specialist</p>
+                        <div class="team-bio">
+                            <p>Emily's eye for design and aesthetics helps bring wedding visions to life. She specializes in creating cohesive, beautiful wedding designs that reflect each couple's unique style. From color palettes to floral arrangements, Emily ensures that every visual element works together to create a stunning overall look.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>What Our Couples Say</h2>
+                    <div class="divider"><span></span></div>
+                </div>
+                <div class="testimonial-slider">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <blockquote>
+                            Lisa and her team were unbelievably remarkable at making our wedding day perfect! She helped us coordinate with every single vendor, joined us on tastings, set up meetings, and helped us coordinate every single detail you could imagine. She and her team truly went above and beyond for us and have become a second family. They absolutely create a stress free experience allowing you to embrace every beautiful moment of your special day! I did not have a worry in mind the day of my wedding because I knew Lisa was handling everything. I cannot recommend Stress Free Events and Weddings enough!
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Jennifer & Matt</h4>
+                                <p>Married June 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Ready to Start Planning Your Dream Wedding?</h2>
+                    <p>Let our team of experienced wedding planners help you create a truly stress-free celebration.</p>
+                    <a href="contact.html" class="btn btn-light">Book Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo">
+                    <p>Making your special day truly stress-free</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dallas-Fort Worth Area</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@stressfree-events.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stress-Free Events and Weddings. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

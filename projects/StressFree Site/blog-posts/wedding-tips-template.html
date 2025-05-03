@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[BLOG POST DESCRIPTION - 150-160 characters]">
+    <meta name="keywords" content="wedding planning, wedding tips, [ADD RELEVANT KEYWORDS]">
+    <title>[BLOG POST TITLE] - Stress Free Events and Weddings</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* Blog post specific styles */
+        .blog-hero {
+            height: 50vh;
+            min-height: 400px;
+            background-image: url('[HERO IMAGE URL]');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin-top: 90px;
+        }
+        
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+        
+        .blog-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-family: var(--body-font);
+            font-size: 0.9rem;
+            color: var(--white);
+        }
+        
+        .blog-meta span {
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-meta i {
+            margin-right: 5px;
+        }
+        
+        .blog-content {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .blog-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-container h2 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-family: var(--heading-font);
+            color: var(--text-color);
+        }
+        
+        .blog-container h3 {
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-family: var(--heading-font);
+            color: var(--text-color);
+        }
+        
+        .blog-container p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        .blog-container ul,
+        .blog-container ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .blog-container li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .blog-container blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .blog-tags {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .blog-tags a {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #f5f5f5;
+            border-radius: 30px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-tags a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .blog-share {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-share span {
+            margin-right: 15px;
+            font-weight: 500;
+        }
+        
+        .blog-share a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            margin-right: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-share a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .blog-navigation {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .blog-navigation a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .blog-navigation a:hover {
+            color: var(--primary-color);
+        }
+        
+        .blog-navigation .prev i {
+            margin-right: 8px;
+        }
+        
+        .blog-navigation .next i {
+            margin-left: 8px;
+        }
+        
+        .related-posts {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .related-posts-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .related-posts-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .related-post-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .related-post-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .related-post-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .related-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .related-post-card:hover .related-post-image img {
+            transform: scale(1.05);
+        }
+        
+        .related-post-content {
+            padding: 20px;
+        }
+        
+        .related-post-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .related-post-content p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .related-post-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .related-post-content a i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .related-post-content a:hover i {
+            transform: translateX(3px);
+        }
+        
+        @media (max-width: 768px) {
+            .blog-navigation {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="../index.html"><img src="../Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../gallery.html">Gallery</a></li>
+                    <li><a href="../blog.html" class="active">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="../contact.html" class="btn btn-primary">Book Consultation</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Blog Hero Section -->
+        <section class="blog-hero">
+            <div class="blog-hero-content" data-aos="fade-up">
+                <h1>[BLOG POST TITLE]</h1>
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar"></i> [PUBLISH DATE]</span>
+                    <span><i class="far fa-user"></i> [AUTHOR NAME]</span>
+                    <span><i class="far fa-folder"></i> [CATEGORY]</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Content Section -->
+        <section class="blog-content">
+            <div class="blog-container">
+                <!-- Introduction -->
+                <p>[INTRODUCTION PARAGRAPH - Briefly introduce the topic and why it's important for couples planning their wedding]</p>
+
+                <!-- Main Content -->
+                <h2>[TIP #1 HEADING]</h2>
+                <p>[DETAILED EXPLANATION OF TIP #1]</p>
+                
+                <!-- Add an image -->
+                <img src="[IMAGE URL]" alt="[IMAGE DESCRIPTION]">
+                
+                <h2>[TIP #2 HEADING]</h2>
+                <p>[DETAILED EXPLANATION OF TIP #2]</p>
+                
+                <h3>[SUB-HEADING FOR TIP #2]</h3>
+                <p>[ADDITIONAL INFORMATION ABOUT TIP #2]</p>
+                
+                <!-- Example of a list -->
+                <ul>
+                    <li>[LIST ITEM 1]</li>
+                    <li>[LIST ITEM 2]</li>
+                    <li>[LIST ITEM 3]</li>
+                    <li>[LIST ITEM 4]</li>
+                </ul>
+                
+                <h2>[TIP #3 HEADING]</h2>
+                <p>[DETAILED EXPLANATION OF TIP #3]</p>
+                
+                <!-- Example of a blockquote -->
+                <blockquote>
+                    [QUOTE FROM A WEDDING EXPERT OR SATISFIED COUPLE]
+                </blockquote>
+                
+                <h2>[TIP #4 HEADING]</h2>
+                <p>[DETAILED EXPLANATION OF TIP #4]</p>
+                
+                <h2>[TIP #5 HEADING]</h2>
+                <p>[DETAILED EXPLANATION OF TIP #5]</p>
+                
+                <p>[CONCLUDING PARAGRAPH - Summarize the tips and offer encouragement]</p>
+                
+                <!-- Tags -->
+                <div class="blog-tags">
+                    <a href="#">[TAG 1]</a>
+                    <a href="#">[TAG 2]</a>
+                    <a href="#">[TAG 3]</a>
+                    <a href="#">[TAG 4]</a>
+                </div>
+                
+                <!-- Share Buttons -->
+                <div class="blog-share">
+                    <span>Share:</span>
+                    <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" aria-label="Share via Email"><i class="far fa-envelope"></i></a>
+                </div>
+                
+                <!-- Post Navigation -->
+                <div class="blog-navigation">
+                    <a href="#" class="prev"><i class="fas fa-arrow-left"></i> [PREVIOUS POST TITLE]</a>
+                    <a href="#" class="next">[NEXT POST TITLE] <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Related Posts Section -->
+        <section class="related-posts">
+            <div class="related-posts-container">
+                <h2 class="related-posts-title">Related Posts</h2>
+                <div class="related-posts-grid">
+                    <!-- Related Post 1 -->
+                    <div class="related-post-card" data-aos="fade-up">
+                        <div class="related-post-image">
+                            <img src="[RELATED POST IMAGE URL]" alt="[RELATED POST TITLE]">
+                        </div>
+                        <div class="related-post-content">
+                            <h3>[RELATED POST TITLE]</h3>
+                            <p>[RELATED POST EXCERPT]</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Post 2 -->
+                    <div class="related-post-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="related-post-image">
+                            <img src="[RELATED POST IMAGE URL]" alt="[RELATED POST TITLE]">
+                        </div>
+                        <div class="related-post-content">
+                            <h3>[RELATED POST TITLE]</h3>
+                            <p>[RELATED POST EXCERPT]</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Post 3 -->
+                    <div class="related-post-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="related-post-image">
+                            <img src="[RELATED POST IMAGE URL]" alt="[RELATED POST TITLE]">
+                        </div>
+                        <div class="related-post-content">
+                            <h3>[RELATED POST TITLE]</h3>
+                            <p>[RELATED POST EXCERPT]</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Ready to Create Your Dream Wedding?</h2>
+                    <p>Contact us today to schedule a complimentary consultation and learn how we can help make your wedding day truly stress-free.</p>
+                    <a href="../contact.html" class="btn btn-light">Book Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo">
+                    <p>Making your special day truly stress-free</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                        <li><a href="../gallery.html">Gallery</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dallas-Fort Worth Area</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@stressfree-events.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Stress-Free Events and Weddings. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease',
+            once: true
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover the top 10 wedding trends for 2024 that will make your special day memorable and unique. From sustainable celebrations to personalized experiences.">
+    <meta name="keywords" content="wedding planning, wedding trends 2024, wedding ideas, sustainable weddings, personalized weddings">
+    <title>Top 10 Wedding Trends for 2024 - Stress Free Events and Weddings</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        /* Additional styles specific to blog posts */
+        .blog-post-hero {
+            height: 50vh;
+            min-height: 350px;
+            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin-top: 90px;
+        }
+
+        .blog-post-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+
+        .blog-post-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-family: var(--body-font);
+            font-size: 0.9rem;
+            color: var(--white);
+        }
+
+        .blog-post-meta span {
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-post-meta i {
+            margin-right: 5px;
+        }
+
+        .blog-post-content {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .blog-post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .blog-post-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post-container h2 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-family: var(--heading-font);
+            color: var(--text-color);
+        }
+
+        .blog-post-container h3 {
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-family: var(--heading-font);
+            color: var(--text-color);
+        }
+
+        .blog-post-container p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        .blog-post-container ul,
+        .blog-post-container ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .blog-post-container li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .blog-post-container blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .blog-post-tags {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .blog-post-tags a {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #f5f5f5;
+            border-radius: 30px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .blog-post-tags a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .blog-post-share {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-post-share span {
+            margin-right: 15px;
+            font-weight: 500;
+        }
+
+        .blog-post-share a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            margin-right: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .blog-post-share a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .blog-post-navigation {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .blog-post-navigation a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .blog-post-navigation a:hover {
+            color: var(--primary-color);
+        }
+
+        .blog-post-navigation .prev i {
+            margin-right: 8px;
+        }
+
+        .blog-post-navigation .next i {
+            margin-left: 8px;
+        }
+
+        .related-posts {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+
+        .related-posts-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .related-posts-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .related-post-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .related-post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .related-post-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .related-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .related-post-card:hover .related-post-image img {
+            transform: scale(1.05);
+        }
+
+        .related-post-content {
+            padding: 20px;
+        }
+
+        .related-post-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .related-post-content p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .related-post-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .related-post-content a i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .related-post-content a:hover i {
+            transform: translateX(3px);
+        }
+
+        @media (max-width: 768px) {
+            .blog-post-navigation {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="../index.html"><img src="../Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../gallery.html">Gallery</a></li>
+                    <li><a href="../blog.html" class="active">Blog</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="../contact.html" class="btn btn-primary">Book Consultation</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Blog Post Hero Section -->
+        <section class="blog-post-hero">
+            <div class="blog-post-hero-content" data-aos="fade-up">
+                <h1>Top 10 Wedding Trends for 2024</h1>
+                <div class="blog-post-meta">
+                    <span><i class="far fa-calendar"></i> April 15, 2024</span>
+                    <span><i class="far fa-user"></i> Sarah Johnson</span>
+                    <span><i class="far fa-folder"></i> Wedding Planning</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Post Content Section -->
+        <section class="blog-post-content">
+            <div class="blog-post-container">
+                <!-- Introduction -->
+                <p>As we move further into 2024, wedding trends continue to evolve, reflecting changing values, aesthetics, and priorities of modern couples. From sustainable celebrations to personalized experiences, this year's wedding trends focus on creating meaningful, authentic, and unforgettable moments. In this article, we'll explore the top 10 wedding trends that are shaping celebrations across the Dallas-Fort Worth area and beyond.</p>
+
+                <!-- Main Content -->
+                <h2>1. Sustainable and Eco-Conscious Celebrations</h2>
+                <p>Sustainability is no longer just a buzzword—it's becoming a core value for many couples planning their weddings. In 2024, we're seeing a significant rise in eco-conscious celebrations that minimize environmental impact without sacrificing style or elegance.</p>
+                
+                <p>Couples are opting for locally-sourced flowers, biodegradable confetti, digital invitations, and repurposed decor. Many are also choosing venues with strong environmental credentials or outdoor settings that require minimal additional decoration.</p>
+                
+                <!-- Add an image -->
+                <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Sustainable wedding decor with potted plants and natural elements">
+                
+                <h2>2. Intimate Micro-Weddings</h2>
+                <p>The micro-wedding trend that gained popularity during the pandemic is here to stay. Many couples are intentionally choosing smaller, more intimate celebrations with their closest friends and family. These smaller gatherings allow for more personalized experiences, higher-quality details, and meaningful interactions with each guest.</p>
+                
+                <p>With fewer guests to accommodate, couples can splurge on premium experiences like gourmet multi-course meals, top-shelf beverages, or luxury welcome gifts that might be cost-prohibitive with a larger guest list.</p>
+                
+                <h2>3. Bold Color Palettes</h2>
+                <p>While soft pastels and neutrals will always have their place in wedding design, 2024 is seeing a shift toward bolder, more vibrant color palettes. Rich jewel tones, unexpected color combinations, and even color-blocking are making appearances in everything from floral arrangements to bridesmaid dresses.</p>
+                
+                <p>These bold choices reflect couples' desires to create visually striking events that showcase their personalities and make a statement. Don't be surprised to see deep burgundies paired with bright teals, or sunset-inspired palettes with oranges, pinks, and purples working together harmoniously.</p>
+                
+                <h2>4. Personalized Guest Experiences</h2>
+                <p>Today's couples are focusing more than ever on creating memorable experiences for their guests. This trend goes beyond traditional entertainment to include interactive elements throughout the wedding day.</p>
+                
+                <h3>Popular Interactive Elements Include:</h3>
+                <ul>
+                    <li>Customized cocktail stations where guests can create their own signature drinks</li>
+                    <li>Live food stations with chefs preparing dishes to order</li>
+                    <li>Interactive photo experiences beyond the traditional photo booth</li>
+                    <li>Personalized welcome bags with local goodies and a weekend itinerary</li>
+                    <li>Activity stations like cigar rolling, wine tasting, or craft workshops</li>
+                </ul>
+                
+                <h2>5. Statement Floral Installations</h2>
+                <p>Floral design is going vertical and architectural in 2024. Instead of traditional centerpieces, couples are investing in dramatic floral installations that transform their venues and create unforgettable backdrops for photos.</p>
+                
+                <p>Suspended floral chandeliers, living walls of greenery and blooms, and oversized arches or installations are becoming focal points at ceremonies and receptions. These statement pieces create a wow factor and can actually be more economical than numerous smaller arrangements.</p>
+                
+                <!-- Example of a blockquote -->
+                <blockquote>
+                    "In 2024, we're seeing couples invest in one or two incredible floral moments rather than spreading their budget across many smaller arrangements. These statement pieces become the backdrop for countless photos and create a truly immersive environment for guests."
+                </blockquote>
+                
+                <h2>6. Weekday Weddings</h2>
+                <p>With many popular venues booked years in advance for weekend dates, more couples are embracing weekday weddings. Thursday and Friday celebrations are becoming particularly popular, offering more availability, potential cost savings, and a unique experience for guests.</p>
+                
+                <p>This trend also allows couples to book their dream vendors who might be unavailable on peak weekend dates. Many guests appreciate the opportunity to extend their stay into the weekend, turning the wedding into a mini vacation.</p>
+                
+                <h2>7. Elevated Food Experiences</h2>
+                <p>Food is taking center stage at 2024 weddings, with couples moving beyond traditional three-course meals to create memorable culinary experiences. Family-style dining continues to grow in popularity, encouraging conversation and connection among guests.</p>
+                
+                <p>We're also seeing more couples incorporating their cultural backgrounds or favorite cuisines into their menus, telling their story through food. Late-night snacks, food trucks, and breakfast-for-dinner concepts are all trending this year.</p>
+                
+                <h2>8. Technology Integration</h2>
+                <p>Technology is enhancing the wedding experience in new and creative ways. From custom wedding apps and digital RSVPs to livestreaming for guests who can't attend in person, technology is making weddings more accessible and interactive.</p>
+                
+                <p>Some couples are incorporating augmented reality elements into their celebrations, creating custom filters for social media or interactive digital guest books. Drones for aerial photography and video are also becoming more common, capturing unique perspectives of the venue and celebration.</p>
+                
+                <h2>9. Nostalgic Elements</h2>
+                <p>Many couples are incorporating nostalgic elements into their weddings, drawing inspiration from different decades or their own childhoods. This might include vinyl record guest books, disposable cameras on tables, or reception playlists featuring throwback hits.</p>
+                
+                <p>This trend is all about creating moments of joy and connection through shared memories and experiences. It's a way to infuse personality and meaning into the celebration while giving guests something familiar to connect with.</p>
+                
+                <h2>10. After-Party Experiences</h2>
+                <p>The celebration doesn't end when the reception does. More couples are planning official after-parties as part of their wedding experience. These range from intimate gatherings at a favorite local bar to fully produced events with different entertainment, food, and decor from the main reception.</p>
+                
+                <p>After-parties allow the celebration to continue in a more relaxed atmosphere, often with a completely different vibe from the formal reception. They're also a great opportunity to incorporate elements that might not fit with the main event's aesthetic.</p>
+                
+                <p>As you plan your 2024 wedding, remember that the most important trend is authenticity. Choose elements that reflect your personality as a couple and create the experience you want to share with your loved ones. Whether you embrace all of these trends or none of them, your wedding should be a true celebration of your unique love story.</p>
+                
+                <!-- Tags -->
+                <div class="blog-post-tags">
+                    <a href="#">Wedding Trends</a>
+                    <a href="#">2024 Weddings</a>
+                    <a href="#">Wedding Planning</a>
+                    <a href="#">Sustainable Weddings</a>
+                    <a href="#">Wedding Ideas</a>
+                </div>
+                
+                <!-- Share Buttons -->
+                <div class="blog-post-share">
+                    <span>Share:</span>
+                    <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" aria-label="Share via Email"><i class="far fa-envelope"></i></a>
+                </div>
+                
+                <!-- Post Navigation -->
+                <div class="blog-post-navigation">
+                    <a href="#" class="prev"><i class="fas fa-arrow-left"></i> How to Choose the Perfect Wedding Venue</a>
+                    <a href="#" class="next">Wedding Day Timeline: A Complete Guide <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Related Posts Section -->
+        <section class="related-posts">
+            <div class="related-posts-container">
+                <h2 class="related-posts-title">Related Posts</h2>
+                <div class="related-posts-grid">
+                    <!-- Related Post 1 -->
+                    <div class="related-post-card" data-aos="fade-up">
+                        <div class="related-post-image">
+                            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Budget Tips">
+                        </div>
+                        <div class="related-post-content">
+                            <h3>10 Ways to Save on Your Wedding Budget Without Sacrificing Style</h3>
+                            <p>Discover smart strategies to reduce wedding costs while maintaining a beautiful, memorable celebration.</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Post 2 -->
+                    <div class="related-post-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="related-post-image">
+                            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Dress Shopping">
+                        </div>
+                        <div class="related-post-content">
+                            <h3>The Ultimate Guide to Wedding Dress Shopping</h3>
+                            <p>Everything you need to know about finding your perfect wedding dress, from styles to shopping tips.</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Post 3 -->
+                    <div class="related-post-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="related-post-image">
+                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Flowers">
+                        </div>
+                        <div class="related-post-content">
+                            <h3>Seasonal Wedding Flowers: Choosing the Best Blooms for Your Date</h3>
+                            <p>Learn which flowers are in season for your wedding date and how to create stunning arrangements.</p>
+                            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Ready to Create Your Dream Wedding?</h2>
+                    <p>Contact us today to schedule a complimentary consultation and learn how we can help make your wedding day truly stress-free.</p>
+                    <a href="../contact.html" class="btn btn-light">Book Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo">
+                    <p>Making your special day truly stress-free</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                        <li><a href="../gallery.html">Gallery</a></li>
+                        <li><a href="../blog.html">Blog</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dallas-Fort Worth Area</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@stressfree-events.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Stress-Free Events and Weddings. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease',
+            once: true
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

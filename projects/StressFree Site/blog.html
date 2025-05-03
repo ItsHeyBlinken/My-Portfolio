@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wedding planning tips, advice, and inspiration from Stress Free Events and Weddings in the DFW area.">
+    <meta name="keywords" content="wedding blog, wedding planning tips, DFW wedding advice, wedding inspiration">
+    <title>Blog - Stress Free Events and Weddings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* Additional styles specific to blog page */
+        .blog-hero {
+            height: 50vh;
+            min-height: 350px;
+            background-image: url('./Current Docs/Assets/ss10.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin-top: 90px;
+        }
+        
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+        
+        .blog-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .blog-section {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+        }
+        
+        .blog-posts {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .blog-post {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-post-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .blog-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-post:hover .blog-post-image img {
+            transform: scale(1.05);
+        }
+        
+        .blog-post-content {
+            padding: 30px;
+        }
+        
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .blog-post-meta span {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .blog-post-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .blog-post-title {
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .blog-post-excerpt {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        .blog-sidebar {
+            position: sticky;
+            top: 120px;
+        }
+        
+        .sidebar-widget {
+            background-color: var(--light-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .sidebar-widget h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .sidebar-widget h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .search-form {
+            display: flex;
+        }
+        
+        .search-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .search-form button {
+            padding: 0 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-form button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 10px;
+        }
+        
+        .categories-list li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .categories-list a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .categories-list a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+        
+        .categories-list .count {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .recent-posts-list {
+            list-style: none;
+        }
+        
+        .recent-post {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .recent-post:last-child {
+            margin-bottom: 0;
+        }
+        
+        .recent-post-image {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .recent-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recent-post-content h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .recent-post-content a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .recent-post-content a:hover {
+            color: var(--primary-color);
+        }
+        
+        .recent-post-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .pagination a:hover,
+        .pagination a.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        @media (max-width: 992px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .blog-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html"><img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Blog Hero Section -->
+        <section class="blog-hero">
+            <div class="blog-hero-content" data-aos="fade-up">
+                <h1>Wedding Planning Blog</h1>
+                <p class="lead">Tips, advice, and inspiration for your perfect day</p>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="blog-section">
+            <div class="container">
+                <div class="blog-container">
+                    <div class="blog-posts">
+                        <!-- Blog Post 1 -->
+                        <article class="blog-post" data-aos="fade-up">
+                            <div class="blog-post-image">
+                                <img src="./Current Docs/Assets/ss1.jpg" alt="Wedding Planning Timeline">
+                            </div>
+                            <div class="blog-post-content">
+                                <div class="blog-post-meta">
+                                    <span><i class="far fa-calendar"></i> April 15, 2025</span>
+                                    <span><i class="far fa-user"></i> Lisa Johnson</span>
+                                    <span><i class="far fa-folder"></i> Planning Tips</span>
+                                </div>
+                                <h2 class="blog-post-title">The Ultimate Wedding Planning Timeline: What to Do and When</h2>
+                                <div class="blog-post-excerpt">
+                                    <p>Planning a wedding involves numerous tasks that need to be completed at specific times. From booking vendors to sending invitations, this comprehensive timeline will help you stay organized and stress-free throughout your wedding planning journey.</p>
+                                </div>
+                                <a href="#" class="btn btn-outline">Read More</a>
+                            </div>
+                        </article>
+
+                        <!-- Blog Post 2 -->
+                        <article class="blog-post" data-aos="fade-up" data-aos-delay="100">
+                            <div class="blog-post-image">
+                                <img src="./Current Docs/Assets/ss3.jpg" alt="Wedding Budget Tips">
+                            </div>
+                            <div class="blog-post-content">
+                                <div class="blog-post-meta">
+                                    <span><i class="far fa-calendar"></i> April 8, 2025</span>
+                                    <span><i class="far fa-user"></i> Natalie Smith</span>
+                                    <span><i class="far fa-folder"></i> Budget Tips</span>
+                                </div>
+                                <h2 class="blog-post-title">10 Smart Ways to Save Money on Your Wedding Without Sacrificing Style</h2>
+                                <div class="blog-post-excerpt">
+                                    <p>Creating a beautiful wedding doesn't have to break the bank. In this post, we share our top tips for cutting costs while still creating a stylish and memorable celebration. From strategic vendor negotiations to DIY decor ideas, these budget-friendly strategies will help you make the most of your wedding budget.</p>
+                                </div>
+                                <a href="#" class="btn btn-outline">Read More</a>
+                            </div>
+                        </article>
+
+                        <!-- Blog Post 3 -->
+                        <article class="blog-post" data-aos="fade-up" data-aos-delay="200">
+                            <div class="blog-post-image">
+                                <img src="./Current Docs/Assets/ss5.jpg" alt="Wedding Venue Selection">
+                            </div>
+                            <div class="blog-post-content">
+                                <div class="blog-post-meta">
+                                    <span><i class="far fa-calendar"></i> April 1, 2025</span>
+                                    <span><i class="far fa-user"></i> Lisa Johnson</span>
+                                    <span><i class="far fa-folder"></i> Venues</span>
+                                </div>
+                                <h2 class="blog-post-title">How to Choose the Perfect Wedding Venue: A Comprehensive Guide</h2>
+                                <div class="blog-post-excerpt">
+                                    <p>Your wedding venue sets the tone for your entire celebration. From capacity and location to style and budget, there are many factors to consider when selecting the perfect space. This guide walks you through the essential questions to ask and considerations to keep in mind during your venue search.</p>
+                                </div>
+                                <a href="#" class="btn btn-outline">Read More</a>
+                            </div>
+                        </article>
+
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#"><i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <aside class="blog-sidebar">
+                        <!-- Search Widget -->
+                        <div class="sidebar-widget" data-aos="fade-left">
+                            <h3>Search</h3>
+                            <form class="search-form">
+                                <input type="text" placeholder="Search...">
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+
+                        <!-- Categories Widget -->
+                        <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="100">
+                            <h3>Categories</h3>
+                            <ul class="categories-list">
+                                <li><a href="#">Planning Tips <span class="count">8</span></a></li>
+                                <li><a href="#">Budget Tips <span class="count">5</span></a></li>
+                                <li><a href="#">Venues <span class="count">4</span></a></li>
+                                <li><a href="#">Decor Inspiration <span class="count">7</span></a></li>
+                                <li><a href="#">Vendor Selection <span class="count">3</span></a></li>
+                                <li><a href="#">Real Weddings <span class="count">6</span></a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Recent Posts Widget -->
+                        <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="200">
+                            <h3>Recent Posts</h3>
+                            <div class="recent-posts-list">
+                                <div class="recent-post">
+                                    <div class="recent-post-image">
+                                        <img src="./Current Docs/Assets/ss1.jpg" alt="Wedding Planning Timeline">
+                                    </div>
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">The Ultimate Wedding Planning Timeline</a></h4>
+                                        <div class="recent-post-date">April 15, 2025</div>
+                                    </div>
+                                </div>
+                                <div class="recent-post">
+                                    <div class="recent-post-image">
+                                        <img src="./Current Docs/Assets/ss3.jpg" alt="Wedding Budget Tips">
+                                    </div>
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">10 Smart Ways to Save Money on Your Wedding</a></h4>
+                                        <div class="recent-post-date">April 8, 2025</div>
+                                    </div>
+                                </div>
+                                <div class="recent-post">
+                                    <div class="recent-post-image">
+                                        <img src="./Current Docs/Assets/ss5.jpg" alt="Wedding Venue Selection">
+                                    </div>
+                                    <div class="recent-post-content">
+                                        <h4><a href="#">How to Choose the Perfect Wedding Venue</a></h4>
+                                        <div class="recent-post-date">April 1, 2025</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subscribe Widget -->
+                        <div class="sidebar-widget" data-aos="fade-left" data-aos-delay="300">
+                            <h3>Subscribe</h3>
+                            <p>Subscribe to our newsletter for the latest wedding planning tips and inspiration.</p>
+                            <form class="search-form" style="margin-top: 20px;">
+                                <input type="email" placeholder="Your Email">
+                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Ready to Start Planning Your Dream Wedding?</h2>
+                    <p>Contact us today to schedule a complimentary consultation and learn how we can help make your wedding day truly stress-free.</p>
+                    <a href="contact.html" class="btn btn-light">Book Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo">
+                    <p>Making your special day truly stress-free</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dallas-Fort Worth Area</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@stressfree-events.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stress-Free Events and Weddings. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

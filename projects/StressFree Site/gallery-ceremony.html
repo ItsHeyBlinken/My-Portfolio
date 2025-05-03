@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View our wedding ceremony gallery from Stress Free Events and Weddings in the DFW area.">
+    <meta name="keywords" content="wedding ceremony, ceremony photos, DFW wedding portfolio, wedding inspiration">
+    <title>Ceremony Gallery - Stress Free Events and Weddings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <style>
+        /* Additional styles specific to gallery detail page */
+        .gallery-hero {
+            height: 50vh;
+            min-height: 350px;
+            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin-top: 90px;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+
+        .gallery-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .gallery-detail-section {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .gallery-categories-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .gallery-categories-nav .category-link {
+            display: inline-block;
+            padding: 10px 25px;
+            margin: 0 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-categories-nav .category-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .gallery-categories-nav .category-link:hover::after,
+        .gallery-categories-nav .category-link.active::after {
+            width: 100%;
+        }
+
+        .gallery-categories-nav .category-link.active {
+            color: var(--primary-color);
+        }
+
+        .gallery-slider-container {
+            position: relative;
+            padding: 0 50px;
+            margin-bottom: 50px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 600px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-slide {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-slide:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-slide-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            color: var(--white);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-slide:hover .gallery-slide-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-slide-info h3 {
+            margin: 0 0 5px;
+            font-size: 1.5rem;
+        }
+
+        .gallery-slide-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            opacity: 0.5;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background-color: var(--primary-color);
+        }
+
+        .gallery-thumbnails {
+            margin-top: 20px;
+            padding: 0 50px;
+        }
+
+        .thumbnail-swiper {
+            height: 100px;
+        }
+
+        .thumbnail-swiper .swiper-slide {
+            opacity: 0.5;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .thumbnail-swiper .swiper-slide-thumb-active {
+            opacity: 1;
+            border: 2px solid var(--primary-color);
+        }
+
+        .back-to-gallery {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-gallery i {
+            margin-right: 8px;
+        }
+
+        .back-to-gallery:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 992px) {
+            .swiper {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-categories-nav {
+                flex-wrap: wrap;
+            }
+
+            .gallery-categories-nav .category-link {
+                margin: 5px;
+            }
+
+            .swiper {
+                height: 400px;
+            }
+
+            .gallery-slider-container {
+                padding: 0 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .swiper {
+                height: 300px;
+            }
+
+            .gallery-slider-container {
+                padding: 0 20px;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 40px;
+                height: 40px;
+            }
+
+            .thumbnail-swiper {
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html"><img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Gallery Hero Section -->
+        <section class="gallery-hero">
+            <div class="gallery-hero-content" data-aos="fade-up">
+                <h1>Wedding Ceremonies</h1>
+                <p class="lead">Browse through our beautiful collection of wedding ceremonies</p>
+            </div>
+        </section>
+
+        <!-- Gallery Detail Section -->
+        <section class="gallery-detail-section">
+            <div class="container">
+                <a href="gallery.html" class="back-to-gallery" data-aos="fade-up">
+                    <i class="fas fa-arrow-left"></i> Back to Gallery
+                </a>
+
+                <div class="gallery-categories-nav" data-aos="fade-up">
+                    <a href="gallery-ceremony.html" class="category-link active">Ceremonies</a>
+                    <a href="gallery-reception.html" class="category-link">Receptions</a>
+                    <a href="gallery-decor.html" class="category-link">Decor</a>
+                    <a href="gallery-details.html" class="category-link">Details</a>
+                </div>
+
+                <div class="gallery-slider-container" data-aos="fade-up">
+                    <!-- Main Swiper -->
+                    <div class="swiper main-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Slide 1 -->
+                            <div class="swiper-slide">
+                                <div class="gallery-slide">
+                                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Wedding Ceremony">
+                                    <div class="gallery-slide-info">
+                                        <h3>Elegant Outdoor Ceremony</h3>
+                                        <p>A beautiful garden wedding ceremony with stunning floral arrangements</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="swiper-slide">
+                                <div class="gallery-slide">
+                                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Wedding Ceremony">
+                                    <div class="gallery-slide-info">
+                                        <h3>Romantic Indoor Ceremony</h3>
+                                        <p>An intimate indoor ceremony with elegant decor and lighting</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="swiper-slide">
+                                <div class="gallery-slide">
+                                    <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Wedding Ceremony">
+                                    <div class="gallery-slide-info">
+                                        <h3>Beachside Ceremony</h3>
+                                        <p>A breathtaking ceremony by the ocean with natural beauty</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="swiper-slide">
+                                <div class="gallery-slide">
+                                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Wedding Ceremony">
+                                    <div class="gallery-slide-info">
+                                        <h3>Rustic Barn Ceremony</h3>
+                                        <p>A charming ceremony in a beautifully decorated rustic barn</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navigation buttons -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <!-- Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <!-- Thumbnails -->
+                <div class="gallery-thumbnails" data-aos="fade-up">
+                    <div class="swiper thumbnail-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Wedding Ceremony Thumbnail">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Wedding Ceremony Thumbnail">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Wedding Ceremony Thumbnail">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Wedding Ceremony Thumbnail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center" data-aos="fade-up">
+                    <a href="gallery.html" class="btn btn-primary">View All Galleries</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Ready to Create Your Own Beautiful Wedding?</h2>
+                    <p>Contact us today to schedule a complimentary consultation and learn how we can help make your wedding day truly stress-free.</p>
+                    <a href="contact.html" class="btn btn-light">Book Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo">
+                    <p>Making your special day truly stress-free</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dallas-Fort Worth Area</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@stressfree-events.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stress-Free Events and Weddings. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease',
+            once: true
+        });
+
+        // Initialize Swiper
+        const thumbsSwiper = new Swiper('.thumbnail-swiper', {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+            breakpoints: {
+                320: {
+                    slidesPerView: 3,
+                },
+                576: {
+                    slidesPerView: 4,
+                },
+                768: {
+                    slidesPerView: 5,
+                },
+                992: {
+                    slidesPerView: 6,
+                }
+            }
+        });
+
+        const mainSwiper = new Swiper('.main-swiper', {
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            thumbs: {
+                swiper: thumbsSwiper,
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View our wedding and event gallery from Stress Free Events and Weddings in the DFW area.">
+    <meta name="keywords" content="wedding gallery, event photos, DFW wedding portfolio, wedding inspiration">
+    <title>Gallery - Stress Free Events and Weddings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <style>
+        /* Additional styles specific to gallery page */
+        .gallery-hero {
+            height: 50vh;
+            min-height: 350px;
+            background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin-top: 90px;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+
+        .gallery-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .gallery-section {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .gallery-categories {
+            margin-bottom: 40px;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .category-tab {
+            background-color: transparent;
+            border: none;
+            color: var(--text-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-tab:hover::before,
+        .category-tab.active::before {
+            opacity: 1;
+        }
+
+        .category-tab:hover,
+        .category-tab.active {
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(216, 180, 226, 0.3);
+        }
+
+        .modern-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--white);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-card a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
+        }
+
+        .card-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .view-btn {
+            background-color: var(--white);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-card:hover .view-btn {
+            transform: translateY(0);
+        }
+
+        .card-info {
+            padding: 20px;
+        }
+
+        .card-info h3 {
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .card-category {
+            display: inline-block;
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .testimonial-section {
+            background-color: var(--secondary-color);
+            padding: 100px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .modern-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-tabs {
+                gap: 5px;
+            }
+
+            .category-tab {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .modern-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .card-image {
+                height: 220px;
+            }
+
+            .category-tabs {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                justify-content: flex-start;
+                white-space: nowrap;
+            }
+
+            .category-tab {
+                flex: 0 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html"><img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Gallery Hero Section -->
+        <section class="gallery-hero">
+            <div class="gallery-hero-content" data-aos="fade-up">
+                <h1>Our Wedding Gallery</h1>
+                <p class="lead">Explore our portfolio of beautiful weddings and events</p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Wedding Portfolio</h2>
+                    <div class="divider"><span></span></div>
+                    <p>Browse through our collection of stunning weddings and events we've had the privilege to plan and coordinate.</p>
+                </div>
+
+                <div class="gallery-categories" data-aos="fade-up">
+                    <div class="category-tabs">
+                        <button class="category-tab active" data-filter="all">All Photos</button>
+                        <button class="category-tab" data-filter="ceremony">Ceremonies</button>
+                        <button class="category-tab" data-filter="reception">Receptions</button>
+                        <button class="category-tab" data-filter="decor">Decor</button>
+                        <button class="category-tab" data-filter="details">Details</button>
+                    </div>
+                </div>
+
+                <div class="modern-gallery" id="gallery">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-card" data-category="ceremony" data-aos="fade-up" data-aos-delay="100">
+                        <a href="gallery-ceremony.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Ceremony">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Ceremonies</h3>
+                                <span class="card-category">Ceremony</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-card" data-category="reception" data-aos="fade-up" data-aos-delay="150">
+                        <a href="gallery-reception.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Reception">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Receptions</h3>
+                                <span class="card-category">Reception</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-card" data-category="decor" data-aos="fade-up" data-aos-delay="200">
+                        <a href="gallery-decor.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Decor">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Decor</h3>
+                                <span class="card-category">Decor</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-card" data-category="details" data-aos="fade-up" data-aos-delay="250">
+                        <a href="gallery-details.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Details">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Details</h3>
+                                <span class="card-category">Details</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 5 -->
+                    <div class="gallery-card" data-category="ceremony" data-aos="fade-up" data-aos-delay="300">
+                        <a href="gallery-ceremony.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Ceremony">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Ceremony</h3>
+                                <span class="card-category">Ceremony</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 6 -->
+                    <div class="gallery-card" data-category="reception" data-aos="fade-up" data-aos-delay="350">
+                        <a href="gallery-reception.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Reception">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Reception</h3>
+                                <span class="card-category">Reception</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 7 -->
+                    <div class="gallery-card" data-category="decor" data-aos="fade-up" data-aos-delay="400">
+                        <a href="gallery-decor.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Decor">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Decor</h3>
+                                <span class="card-category">Decor</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 8 -->
+                    <div class="gallery-card" data-category="details" data-aos="fade-up" data-aos-delay="450">
+                        <a href="gallery-details.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1482482097755-0b595893ba63?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Details">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Details</h3>
+                                <span class="card-category">Details</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 9 -->
+                    <div class="gallery-card" data-category="ceremony" data-aos="fade-up" data-aos-delay="500">
+                        <a href="gallery-ceremony.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Ceremony">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Ceremony</h3>
+                                <span class="card-category">Ceremony</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 10 -->
+                    <div class="gallery-card" data-category="details" data-aos="fade-up" data-aos-delay="550">
+                        <a href="gallery-details.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1509927083803-4bd519298ac4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Details">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Details</h3>
+                                <span class="card-category">Details</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 11 -->
+                    <div class="gallery-card" data-category="reception" data-aos="fade-up" data-aos-delay="600">
+                        <a href="gallery-reception.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Reception">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Reception</h3>
+                                <span class="card-category">Reception</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Gallery Item 12 -->
+                    <div class="gallery-card" data-category="decor" data-aos="fade-up" data-aos-delay="650">
+                        <a href="gallery-decor.html">
+                            <div class="card-image">
+                                <img src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Wedding Decor">
+                                <div class="card-overlay">
+                                    <span class="view-btn"><i class="fas fa-images"></i> View Gallery</span>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h3>Wedding Decor</h3>
+                                <span class="card-category">Decor</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>What Our Couples Say</h2>
+                    <div class="divider"><span></span></div>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <blockquote>
+                            Lisa and her team were unbelievably remarkable at making our wedding day perfect! She helped us coordinate with every single vendor, joined us on tastings, set up meetings, and helped us coordinate every single detail you could imagine. She and her team truly went above and beyond for us and have become a second family.
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Jennifer & Matt</h4>
+                                <p>Married June 2023</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <blockquote>
+                            Working with Stress Free Events was the best decision we made for our wedding. From the initial consultation to the final send-off, they handled everything with professionalism and care. Our wedding day was absolutely perfect, and we were able to enjoy every moment without worrying about the details.
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Sarah & Michael</h4>
+                                <p>Married September 2023</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <blockquote>
+                            I cannot express how grateful we are for the incredible work Stress Free Events did for our wedding. They took our vision and brought it to life in ways we couldn't have imagined. Their attention to detail, creativity, and organization made our day absolutely perfect. We truly felt like guests at our own wedding!
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Emily & David</h4>
+                                <p>Married May 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Ready to Create Your Own Beautiful Wedding?</h2>
+                    <p>Contact us today to schedule a complimentary consultation and learn how we can help make your wedding day truly stress-free.</p>
+                    <a href="contact.html" class="btn btn-light">Book Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo">
+                    <p>Making your special day truly stress-free</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dallas-Fort Worth Area</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@stressfree-events.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stress-Free Events and Weddings. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Gallery functionality is now handled by individual gallery pages with Swiper
+
+        // Gallery Filter
+        const filterButtons = document.querySelectorAll('.category-tab');
+        const galleryItems = document.querySelectorAll('.gallery-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Get filter value
+                const filterValue = this.getAttribute('data-filter');
+
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

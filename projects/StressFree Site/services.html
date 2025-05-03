@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore our wedding planning and event coordination services at Stress Free Events and Weddings in the DFW area.">
+    <meta name="keywords" content="wedding planning services, event coordination, wedding packages, DFW wedding planner">
+    <title>Our Services - Stress Free Events and Weddings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* Additional styles specific to services page */
+        .services-hero {
+            height: 60vh;
+            min-height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            margin-top: 90px;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+
+        .services-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .service-detail-section {
+            padding: 100px 0;
+        }
+
+        .service-detail-section:nth-child(odd) {
+            background-color: var(--white);
+        }
+
+        .service-detail-section:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .service-detail {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .service-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-detail-image {
+            flex: 0 0 45%;
+        }
+
+        .service-detail-text {
+            flex: 1;
+        }
+
+        .service-detail-text h3 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .service-features {
+            margin-top: 20px;
+        }
+
+        .service-features ul {
+            list-style: none;
+        }
+
+        .service-features li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .service-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .service-price {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            display: inline-block;
+        }
+
+        .service-price h4 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .service-price p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .packages-section {
+            background-color: var(--white);
+            padding: 100px 0;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .package-card {
+            background-color: var(--light-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .package-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .package-header h3 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 15px 0 5px;
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .package-content {
+            padding: 30px;
+        }
+
+        .package-features {
+            margin-bottom: 30px;
+        }
+
+        .package-features ul {
+            list-style: none;
+        }
+
+        .package-features li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .package-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .faq-section {
+            background-color: var(--secondary-color);
+            padding: 100px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-question::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 1000px;
+        }
+
+        @media (max-width: 992px) {
+            .service-detail {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .service-detail-image {
+                flex: 0 0 100%;
+                order: -1;
+            }
+
+            .service-detail-text {
+                text-align: center;
+            }
+
+            .service-features li {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html"><img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Services Hero Section -->
+        <section class="services-hero">
+            <div class="services-hero-content" data-aos="fade-up">
+                <h1>Our Wedding Planning Services</h1>
+                <p class="lead">Customized packages to make your special day truly stress-free</p>
+            </div>
+        </section>
+
+        <!-- Services Introduction -->
+        <section class="service-detail-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>How We Can Help</h2>
+                    <div class="divider"><span></span></div>
+                    <p>At Stress Free Events and Weddings, we offer a range of customizable services designed to meet your specific needs and budget. Whether you're looking for comprehensive planning from start to finish or day-of coordination to ensure everything runs smoothly, our team is here to help make your wedding day perfect.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Services Section -->
+        <section class="service-detail-section">
+            <div class="container">
+                <div class="service-detail">
+                    <div class="service-detail-text" data-aos="fade-right">
+                        <h3>Full-Service Wedding Planning</h3>
+                        <p>Our comprehensive planning package is perfect for couples who want expert guidance throughout the entire wedding planning process. From venue selection to day-of coordination, we handle every detail so you can enjoy your engagement and wedding day without stress.</p>
+                        <div class="service-features">
+                            <ul>
+                                <li>Unlimited consultations with your dedicated wedding planner</li>
+                                <li>Venue selection and vendor recommendations</li>
+                                <li>Budget development and management</li>
+                                <li>Design concept and styling</li>
+                                <li>Detailed timeline creation and management</li>
+                                <li>Attendance at vendor meetings</li>
+                                <li>Comprehensive day-of coordination</li>
+                                <li>Rehearsal direction</li>
+                            </ul>
+                        </div>
+                        <div class="service-price">
+                            <h4>Starting at</h4>
+                            <p>$3,500</p>
+                        </div>
+                    </div>
+                    <div class="service-detail-image" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Full-Service Wedding Planning" class="rounded-image">
+                    </div>
+                </div>
+
+                <div class="service-detail">
+                    <div class="service-detail-image" data-aos="fade-right">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Partial Planning" class="rounded-image">
+                    </div>
+                    <div class="service-detail-text" data-aos="fade-left">
+                        <h3>Partial Planning</h3>
+                        <p>Our partial planning package is ideal for couples who have already started planning but need professional assistance to bring everything together. We'll step in wherever you need us most, providing expert guidance and coordination.</p>
+                        <div class="service-features">
+                            <ul>
+                                <li>Up to 8 consultations with your wedding planner</li>
+                                <li>Vendor recommendations and coordination</li>
+                                <li>Design advice and styling assistance</li>
+                                <li>Timeline creation and management</li>
+                                <li>Month-of coordination</li>
+                                <li>Rehearsal direction</li>
+                                <li>Day-of coordination (up to 10 hours)</li>
+                            </ul>
+                        </div>
+                        <div class="service-price">
+                            <h4>Starting at</h4>
+                            <p>$2,200</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-detail">
+                    <div class="service-detail-text" data-aos="fade-right">
+                        <h3>Month-of Coordination</h3>
+                        <p>For couples who have planned their wedding but want a professional to ensure everything runs smoothly on the day itself. Our month-of coordination service provides peace of mind, allowing you to fully enjoy your wedding day.</p>
+                        <div class="service-features">
+                            <ul>
+                                <li>Initial consultation and planning session</li>
+                                <li>Vendor confirmation and coordination</li>
+                                <li>Detailed timeline creation</li>
+                                <li>Final venue walkthrough</li>
+                                <li>Rehearsal direction</li>
+                                <li>Day-of coordination (up to 8 hours)</li>
+                                <li>Setup and breakdown supervision</li>
+                                <li>Emergency kit on hand</li>
+                            </ul>
+                        </div>
+                        <div class="service-price">
+                            <h4>Starting at</h4>
+                            <p>$1,500</p>
+                        </div>
+                    </div>
+                    <div class="service-detail-image" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Month-of Coordination" class="rounded-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Services Section -->
+        <section class="service-detail-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Additional Services</h2>
+                    <div class="divider"><span></span></div>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-icon">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                        <h3>Proposal Planning</h3>
+                        <p>Let us help you create a memorable and romantic proposal that reflects your unique love story.</p>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <h3>Rehearsal Dinner Planning</h3>
+                        <p>Comprehensive planning and coordination for your rehearsal dinner, ensuring a perfect prelude to your wedding day.</p>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Bridal Shower Coordination</h3>
+                        <p>Expert planning and coordination for a beautiful and memorable bridal shower celebration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="divider"><span></span></div>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">How far in advance should I book your services?</div>
+                        <div class="faq-answer">
+                            <p>We recommend booking our services as soon as possible after your engagement, especially if you're planning a wedding during peak season (May-October). For full-service planning, 9-12 months in advance is ideal. For month-of coordination, we suggest booking at least 6 months before your wedding date to ensure availability.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+                        <div class="faq-question">Do you work with a specific vendor list?</div>
+                        <div class="faq-answer">
+                            <p>While we have established relationships with many trusted vendors in the DFW area, we don't limit our clients to a specific vendor list. We provide recommendations based on your style, budget, and preferences, but you're always free to choose your own vendors. If you bring in vendors we haven't worked with before, we'll coordinate with them to ensure everything runs smoothly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">How many weddings do you take on each month?</div>
+                        <div class="faq-answer">
+                            <p>To ensure each couple receives the attention and service they deserve, we limit ourselves to a maximum of four weddings per month. This allows us to provide personalized service and dedicated attention to each of our clients.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
+                        <div class="faq-question">Can you work within my budget?</div>
+                        <div class="faq-answer">
+                            <p>Absolutely! We work with a wide range of budgets and can customize our services to meet your specific needs. During our initial consultation, we'll discuss your budget constraints and help you prioritize what's most important to you, ensuring you get the most value for your investment.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-question">What happens if you're unavailable on my wedding date?</div>
+                        <div class="faq-answer">
+                            <p>If we're already booked for your wedding date, we'll be happy to recommend other reputable wedding planners in the area who may be available. We maintain relationships with several trusted colleagues and can help you find someone who matches your style and needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Ready to Start Planning Your Dream Wedding?</h2>
+                    <p>Contact us today to schedule a complimentary consultation and learn how we can help make your wedding day truly stress-free.</p>
+                    <a href="contact.html" class="btn btn-light">Book Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="./Current Docs/Assets/newlogo.png" alt="Stress Free Logo" class="logo">
+                    <p>Making your special day truly stress-free</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dallas-Fort Worth Area</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@stressfree-events.com</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stress-Free Events and Weddings. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
