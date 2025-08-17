@@ -124,7 +124,7 @@
     
     <script>
         // Configuration
-        const API_BASE_URL = 'https://api.bytesbyblinken.com/api';
+        const API_BASE_URL = 'http://168.231.66.214:3000/api';
         
         // Theme Management System
         function initThemeSystem() {
@@ -207,7 +207,7 @@
             });
             
             showAllBtn.addEventListener('click', () => {
-                loadBlogPosts();
+                filterPostsByMonth('all');
                 monthButtons.forEach(b => b.classList.remove('active'));
             });
             
@@ -280,20 +280,49 @@
         async function loadBlogPosts() {
             try {
                 const response = await fetch(`${API_BASE_URL}/posts`);
-                const posts = await response.json();
                 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const posts = await response.json();
                 displayBlogPosts(posts);
             } catch (error) {
                 console.error('Error loading posts:', error);
+                console.log('Falling back to static posts...');
                 // Fallback to static posts if API is unavailable
                 displayStaticPosts();
             }
         }
         
         function filterPostsByMonth(month) {
-            // This would filter posts by month when the API is working
-            // For now, we'll show all posts and highlight the selected month
-            loadBlogPosts();
+            // Filter posts by month
+            const container = document.getElementById('blog-posts-container');
+            const allPosts = container.querySelectorAll('.blog-tile');
+            
+            let visibleCount = 0;
+            allPosts.forEach(post => {
+                const postDate = post.querySelector('.post-date').textContent;
+                const postMonth = postDate.match(/(\w+)\s+\d{1,2},\s+\d{4}/);
+                
+                if (postMonth) {
+                    const postMonthYear = postMonth[1] + ' ' + postMonth[3];
+                    const filterMonthYear = month.substring(0, 4) + '-' + month.substring(5);
+                    
+                    if (month === 'all' || postMonthYear.toLowerCase().includes(filterMonthYear.toLowerCase())) {
+                        post.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        post.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Show/hide no posts message
+            const noPostsMessage = document.querySelector('.no-posts');
+            if (noPostsMessage) {
+                noPostsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
         }
         
         async function handleNewPost(e) {
@@ -344,8 +373,9 @@
                 return;
             }
             
-            posts.forEach(post => {
+            posts.forEach((post, index) => {
                 const postElement = createBlogPostElement(post);
+                postElement.style.animationDelay = `${index * 0.1}s`;
                 container.appendChild(postElement);
             });
         }
