@@ -3,258 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
+    <title>My Blog - BytesByBlinken</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="./images/Logo.png">
 </head>
 <body>
     <header>
         <nav id="navbar">
             <ul>
-                <li><a id="home" href="./index.html" target="_blank">Home</a></li>
+                <li><a id="home" href="./index.html">Home</a></li>
                 <li><a id="profile-link" href="https://github.com/ItsHeyBlinken" target="_blank">GitHub</a></li>
                 <li><a id="profile-link" href="https://www.linkedin.com/in/christopher-hall-65907b291/" target="_blank">LinkedIn</a></li>
-                <li><a id="profile-link" href="./blog.html" target="_blank">Blog</a></li>
+                <li><a id="profile-link" href="./blog.html">Blog</a></li>
+                <li class="theme-toggle-container">
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </li>
             </ul>
         </nav>
     </header>
+    
     <main>
         <section id="blog" class="blog">
-            <div class="blog-tile">
-                <h2>July Update:  Crunch Time Before Launch</h2>
-                <p style="font-style: italic; font-size: 16px">By: Chris (BytesByBlinken)</p>
-                <p style="font-size: 16px;" >Published on: <time datetime="06-03-2025">July 7, 2025</time></p>   
-                        <p>We’re officially less than a month away from the soft launch of Online Card Show — and I’m feeling a mix of excitement and nerves as the big day approaches.</p>
-                        
-                        <p>The last few weeks have been all about getting everything production-ready. Moving from a dev environment to a live app is no joke. I’ve been fine-tuning the database, 
-                            setting up secure deployments, double-checking API endpoints, and working through all the behind-the-scenes details that most users will never see — but are critical 
-                            to a smooth launch. If all goes to plan, we’re aiming to go live on August 1st!</p>
-
-                        <p>At the same time, I’m starting a new chapter at my day job. I just got promoted into a new role that comes with fresh challenges and responsibilities. While it’s not a 
-                            dev position, I’m excited about the growth it’ll bring — and I’ve made sure I’ll still have time carved out to work on Online Card Show in the evenings and weekends</p>
-
-                        <p>Right now, it’s crunch time. The final stretch. I’m focused on squashing the last of the bugs and making sure the experience is smooth for our early users. The soft launch 
-                            is just the beginning, but it’s a huge milestone and one I’ve been working toward for a long time.</p>
-
-                        <h2>Closing Thoughts</h2>
-                        <p>It’s been a long road getting to this point, but the finish line is in sight. I’m proud of how far this project has come and grateful for everyone who's followed the journey
-                             — here’s to a strong launch and an even stronger future!</p>
-
-                        
-                        <h2>What's Next?</h2>
-                        <p>After launch, I’ll be focused on gathering user feedback, rolling out new features, growing our social presence, and dialing in a solid customer acquisition strategy.</p>
-
-                        <p>Thanks for following along — next month is going to be a big one!</p>
-                        
+            <div class="blog-header">
+                <h1>My Blog</h1>
+                <p>Thoughts, updates, and insights from my development journey</p>
+                
+                <!-- Admin Panel (Hidden by default) -->
+                <div id="admin-panel" class="blog-admin-panel" style="display: none;">
+                    <button id="new-post-btn" class="admin-btn">+ New Blog Post</button>
+                    <button id="edit-mode-btn" class="admin-btn">Edit Mode</button>
+                    <button id="logout-btn" class="admin-btn">Logout</button>
+                </div>
+                
+                <!-- Login Form (Visible by default) -->
+                <div id="login-form" class="login-form">
+                    <h3>Admin Access</h3>
+                    <form id="admin-login-form">
+                        <div class="form-group">
+                            <input type="text" id="username" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="login-btn">Login</button>
+                    </form>
+                </div>
             </div>
             
-        </section>
-        <section class="blog" id="past-blog-posts">
-            <h2>Past Blog Posts</h2>
-            <div class="blog-tile">
-                <h2>May 2025 Blog: Project Progress and Updates</h2>
-                <p style="font-style: italic; font-size: 16px">By: Chris (BytesByBlinken)</p>
-                <p style="font-size: 16px;" >Published on: <time datetime="06-03-2025">June 3, 2025</time></p>   
-                        <p>Catching up on May's update as we dive into June!</p>
-                        <p>May was a busy month for Online Card Show and for me personally as a developer. Here's everything that moved forward:</p>
-                        <ul>
-                            <li>
-                                <h3>Beta Launch and Early Feedback</h3>
-                                <p>I officially opened the beta program and welcomed my first group of testers. Getting real people using the app was huge — 
-                                    the feedback has been super helpful for finding bugs and understanding how people actually want to use the platform. 
-                                    I’m making changes and improvements every day based on what testers say.</p>
-                            </li>
-                            <li>
-                                <h3>Improving User Experience</h3>
-                                <p>Based on beta feedback, I focused on polishing the user dashboards and smoothing out the subscription signup and management flows. 
-                                    I also added a new “Make an Offer” button, so buyers can negotiate prices directly—this should make trading way more flexible and fun.</p>
-                            </li>
-                            <li>
-                                <h3>Backend Stability and Performance</h3>
-                                <p>I spent a lot of time tuning the database (PostgreSQL) and Redis cache to improve speed and reliability. This part can feel tricky, but 
-                                    it’s important to keep the app running fast as more people join.</p>
-                            </li>
-                            <li>
-                                <h3>Marketing Efforts</h3>
-                                <p>I’ve been working on growing my social media presence to help spread the word about Online Card Show. 
-                                    I’ve also been reaching out to potential beta testers through my network.</p>
-                            </li>
-                            <li>
-                                <h3>Learning Server Management</h3>
-                                <p>I started diving into VPS management and server maintenance to get ready for hosting the app live. This is all new territory for me, but 
-                                    I’m making progress step by step, learning how to keep the server secure and stable.</p>
-                                <p>I have only had to restore the server once, but it was a good reminder of how important it is to have a backup plan. 
-                                    I’m also learning how to monitor the server’s health and performance to ensure it’s running smoothly.  So, I call that a win!</p>
-                            </li>
-                            <li>
-                                <h3> Business and Legal Progress and Other Next Steps</h3>
-                                <p>I opened a bank account for the project (not a full business account yet, but a start). I’m planning to set up the LLC soon. The Privacy 
-                                    Policy and Terms of Service are in progress, aiming to have them ready by July.</p>
-                            </li>    
-                        </ul>
-
-                        <h2>Closing Thoughts</h2>
-                        <p>May was a big month, and I’m excited to see what June brings. I’m looking forward to continuing to build Online Card Show and 
-                            to keep pushing towards my goal of launching a fully operational platform.</p>
-
-                        
-                        <h2>What's Next?</h2>
-                        <p>June’s all about refining what’s built so far—polishing features, improving performance, and getting closer to a smooth, stable beta experience. 
-                            I’ll also be diving deeper into hosting setup and making sure the business side catches up with the tech.</p>
-                        <p>I’m excited to keep building and to see where this journey takes me. Thanks for being along for the ride!</p>
-                        
+            <!-- Archive Navigation -->
+            <div class="archive-navigation">
+                <h3>Browse by Month</h3>
+                <div class="archive-years">
+                    <div class="year-section">
+                        <h4>2025</h4>
+                        <div class="month-links">
+                            <button class="month-btn" data-month="2025-07">July</button>
+                            <button class="month-btn" data-month="2025-06">June</button>
+                            <button class="month-btn" data-month="2025-05">May</button>
+                            <button class="month-btn" data-month="2025-04">April</button>
+                            <button class="month-btn" data-month="2025-03">March</button>
+                            <button class="month-btn" data-month="2025-02">February</button>
+                            <button class="month-btn" data-month="2025-01">January</button>
+                        </div>
+                    </div>
+                    <div class="year-section">
+                        <h4>2024</h4>
+                        <div class="month-links">
+                            <button class="month-btn" data-month="2024-12">December</button>
+                        </div>
+                    </div>
+                </div>
+                <button id="show-all-posts" class="show-all-btn">Show All Posts</button>
             </div>
-            <div class="blog-tile">
-                <h2>April Progress Update - Gearing Up for Beta</h2>
-                <p style="font-style: italic; font-size: 16px">By: Chris (BytesByBlinken)</p>
-                <p style="font-size: 16px;" >Published on: <time datetime="04-30-2025">April 30, 2025</time></p>   
-                        <p>April was a big month for Online Card Show and for me personally as a developer. Here's everything that moved forward:</p>
-                        <ul>
-                            <li>
-                                <h3>Built Out the Subscription System</h3>
-                                <p>I finalized the pricing tiers and built the actual subscription sections into the site. Each tier (Free, Starter, Pro, Premium) 
-                                    now has its own features and listing limits, and it's all wired up so I can test user access and permissions soon.</p>
-                            </li>
-                            <li>
-                                <h3>Beta Tester Perks Locked In</h3>
-                                <p>I created a reward system for early supporters that gives discounted subscriptions for the first 6 months and a special Founding Member Badge. 
-                                    These will only be available before launch. I'm excited to offer something real in return for helping me test the platform early.</p>
-                            </li>
-                            <li>
-                                <h3>Backend Stack Locked In</h3>
-                                <p>After weighing my options, I decided to use PostgreSQL for the database, Redis for caching/session management, and AWS S3 for image uploads. 
-                                    It's a lot to learn, but I feel good about having a solid tech foundation that can scale.</p>
-                            </li>
-                            <li>
-                                <h3>Business Side Progress</h3>
-                                <p>I decided to go with HOST to handle all the sales tax calculations and filings—makes things easier as the app grows. I also mapped out the steps 
-                                    to officially form my LLC, open a business bank account, and get set up with USPS for shipping tools via API.</p>
-                            </li>
-                            <li>
-                                <h3>Preparing for Beta Launch</h3>
-                                <p>Right now, I'm finishing up backend logic, cleaning up the codebase, and testing everything locally. Once that's done, I'll launch the beta version 
-                                    for up to 20 testers. My main goal is to collect feedback and polish the user experience before going fully live.</p>
-                            </li>
-                        </ul>
-                                
+            
+            <!-- New Post Form (Hidden by default) -->
+            <div id="new-post-form" class="new-post-form" style="display: none;">
+                <h2>Create New Blog Post</h2>
+                <form id="blog-form">
+                    <div class="form-group">
+                        <label for="post-title">Title:</label>
+                        <input type="text" id="post-title" name="title" required>
+                    </div>
                     
-                        <h2>Closing Thoughts</h2>                                
-                                <p>It's been a learning-heavy month, but every step forward makes this thing feel more real. Appreciate everyone who's been keeping up with the journey—May 
-                                    is going to be even bigger!</p>
+                    <div class="form-group">
+                        <label for="post-content">Content:</label>
+                        <textarea id="post-content" name="content" rows="15" required placeholder="Write your blog post content here..."></textarea>
+                    </div>
                     
+                    <div class="form-group">
+                        <label for="post-tags">Tags (comma-separated):</label>
+                        <input type="text" id="post-tags" name="tags" placeholder="web development, portfolio, updates">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Publish Post</button>
+                        <button type="button" id="cancel-post" class="cancel-btn">Cancel</button>
+                    </div>
+                </form>
             </div>
-            <div class="blog-tile">
-                <h2>March 2025 Blog: Project Progress and Updates</h2>
-                <p style="font-style: italic; font-size: 16px">By: Chris (BytesByBlinken)</p>
-                <p style="font-size: 16px;" >Published on: <time datetime="03-28-2025">March 28, 2025</time></p>   
-                        <p>March has been a busy and productive month for my coding journey. This month, I dedicated countless hours to refining the 
-                            Online Card Show project, addressing both frontend and backend improvements. My focus has been on ensuring that the platform is 
-                            not only functional but also scalable, user-friendly, and efficient. From enhancing the seller dashboard to optimizing the payment 
-                            system, every update has brought me one step closer to launching a fully operational platform.</p>
-                        <p>One of the biggest challenges I tackled this month was fine-tuning the infrastructure for hosting and deployment. After thorough 
-                                research and testing, I settled on a Hostinger VPS with Coolify, giving me more control over my server while keeping costs 
-                                manageable. Additionally, I’ve been working on streamlining shipping integration by switching to the USPS Web Tools API, which 
-                                will allow for seamless shipping calculations and label generation.</p>
-                        <h2>Key Updates</h2>
-                        <ul style="font-size: 20px;">
-                            <li>Improved the seller dashboard with order management and storefront customization.</li>
-                            <li>Started building a basic admin panel for user and issue management.</li>
-                            <li>Worked on integrating Stripe for handling payments and subscriptions.</li>
-                            <li>Finalized hosting with a Hostinger VPS using Coolify for deployment.</li>
-                            <li>Decided to use the USPS Web Tools API for shipping instead of Shippo.</li>
-                            <li>Continued growing Online Card Show’s Instagram and refining marketing efforts.</li>
-                        </ul>  
-                        <h2>Next Steps</h2>
-                        <p>April’s focus will be on completing the checkout system, refining storefront features, and testing everything before launch. 
-                                This means finalizing the payment flow to ensure buyers can seamlessly purchase items while sellers receive payments without issues. 
-                                I will also refine the storefront customization options, ensuring sellers can personalize their store pages to align with their brand.</p>
-                        <p>Additionally, extensive testing will be conducted across various user scenarios, including mobile and desktop experiences, to identify and 
-                        resolve any bugs or usability concerns. The goal is to create a smooth and professional user experience before officially launching the platform.</p>
-                    <section>
-                        <p>Thank you for following along on my journey!  More Updates to come!</p>
-                    </section>
-            </div>
-            <div class="blog-tile">
-                <h2>Progress Update: My Journey as a Self-Taught Developer</h2>
-                <p style="font-style: italic; font-size: 16px">By: Chris (BytesByBlinken)</p>
-                <p style="font-size: 16px;" >Published on: <time datetime="02-15-2025">February 15, 2025</time></p>
-                        <section>
-                            <p>As I continue on my journey as a self-taught developer, I’ve made some exciting progress on my project. Over the past few weeks, 
-                                I’ve been working on setting up my app locally, transitioning away from Supabase and Vercel, and preparing for self-hosting PostgreSQL. 
-                                It’s been a learning experience, but I’m getting closer to having a fully functional application.</p>
-                        </section>
-                        <section>
-                            <p>One of the biggest steps I took recently was setting up PostgreSQL on my local machine and starting to structure my database. 
-                                This involved learning how to create tables, adding relationships, and writing queries to retrieve and update data. 
-                                I also worked on refining my API endpoints, making sure they align with how I want my app to function. 
-                                This hands-on experience has given me a much better understanding of backend development, database management, and server configuration. 
-                                While I still have a lot to learn, I feel more confident in my ability to tackle these technical challenges.</p>
-                        </section>
-                        <section>
-                            <p>In addition to my development work, I’m continuing to document my journey through my YouTube channel. 
-                                I recently uploaded a video about setting up my app and plan to dive into how AI tools can assist with web development in my next upload. 
-                                Creating content has been a great way to reflect on my progress while also sharing insights that might help others who are learning to code.</p>
-                        </section>
-                        <section>
-                            <p>Balancing development, content creation, and my daily responsibilities hasn’t been easy, but I’m staying consistent. Every step forward, 
-                                no matter how small, is progress. I’m excited to keep building, learning, and sharing my experiences. Stay tuned for more updates!</p>
-                        </section>
-                        <section>
-                            <p>Thank you for following along on my journey!</p>
-                        </section>   
-            </div>
-            <div class="blog-tile">
-                <h2>Big Moments in My Coding Journey: January Update</h2>
-                <p style="font-style: italic; font-size: 16px">By: Chris (BytesByBlinken)</p>
-                <p style="font-size: 16px;" >Published on: <time datetime="01-11-2025">January 12, 2025</time></p>
-                <h2>My First Developer Interview</h2>                
-                <p>This month, I had the incredible opportunity to interview for a Developer I position at the company I currently work for. 
-                    The role is primarily focused on Front-End Development, which aligns perfectly with the skills I’ve been building over the past 15 months. Surprisingly, I wasn’t nervous going into the 
-                    interview. Instead, I felt prepared and excited to showcase what I’ve learned. I spent a lot of time reviewing 
-                    potential interview questions and brushing up on technical topics, especially in C#, .NET, and front-end concepts.  While I thought the interview went well overall, I got the impression 
-                    they’re looking for someone with a bit more experience. Still, this was an invaluable learning experience for me—it showed me how far I’ve come, what I need to focus on, and how to navigate 
-                    the job search process moving forward.</p>
-                <h2>Launching my YouTube Channel</h2>
-                <p>Another major highlight was launching my very own YouTube channel to chronicle my journey as a self-taught developer! I’ve been inspired by watching other coding vlogs, and I felt 
-                    like sharing my own story could motivate others while keeping me accountable.  I’ll admit, I was nervous to put my first vlog out there. But after editing the video and sharing it 
-                    with close friends and family, their positive feedback gave me the confidence to post it. 
-                    The channel is all about the struggles and triumphs of learning to code, and for now, I’m aiming to release a new video every two weeks.   I added a link below to my channel if you want to check it out.</p>
-                <button><a href="https://www.youtube.com/channel/UCEMmnQ_onFGCsTLh-CIw1jg" target="_blank">Check Out My YouTube</a></button>
-                <h2>What's Next in my Journey?</h2>
-                <p>Looking ahead, there are a few key areas I'm focusing on:</p>
-                <ol>
-                    <li style="font-size: 1.5em;">Keeping up with Vlogging - <br> <p style="font-size: 16px;">I want to continue sharing my journey on YouTube by sticking to my upload schedule and improving the quality of my videos.</p>  </li>
-                    <li style="font-size: 1.5em;">Learning and Growing as a Developer - <br> <p style="font-size: 16px;">My focus remains on learning C# and ASP.NET, as these are the critical skills for the types of roles I'm pursuing.</p>  </li>
-                    <li style="font-size: 1.5em;">The Job Search Continues - <br> <p style="font-size: 16px;">While I probably won't walk away with the job this time, I see every interview as a step forward.  I'm determined to keep improving,
-                        applying for new opportunities, and keep pushing towards my goal of landing a developer role.
-                    </p>  </li>
-                </ol>
-                <h2>Final Thoughts</h2>
-                <p>This past month has shown me just how far I’ve come since I started learning to code. From stepping into my first developer interview to sharing my story publicly on YouTube, it’s been a month of growth and firsts. 
-                    I’m excited to see what’s next and to keep building on the momentum I’ve gained so far. Whether it’s through vlogging, learning, or interviewing, I’m determined to keep moving forward in my journey as a self-taught developer. </p>
-                <p>Thank for listening!</p>
-            </div>
-            <div class="blog-tile">
-
-                <h2>My First Blog Post: A New Adventure Begins</h2>
-                <p style="font-style: italic; font-size: 16px">By: Chris (BytesByBlinken)</p>
-                <p style="font-size: 16px;" >Published on: <time datetime="12-15-2024">December 15, 2024</time></p>
-                <p>This is my very first blog post, and I couldn’t be more excited to start this journey of sharing my experiences. 
-                    My name is Chris, and after years of doing things that didn’t fully satisfy me, I’ve decided to make a major change in my career. 
-                    I’m diving into the world of coding and web development, learning languages like HTML, CSS, JavaScript, and even C#. 
-                    While it hasn’t always been easy, it’s been a thrilling adventure that has pushed me out of my comfort zone.</p>
-                <p>Learning to code later in life wasn’t something I expected to do, but sometimes life takes you down unexpected paths. 
-                    After realizing that I wanted more flexibility and growth opportunities, I decided to invest in myself and make this change. 
-                    The beauty of coding is that it’s a lifelong learning process. Every new project, every new concept, and every bug I fix reminds 
-                    me that it’s never too late to learn something new and pursue a career that excites me.</p>
-                <p>What keeps me going on this new adventure is the thrill of progress. Every time I master a new concept or build something from scratch,
-                     I feel like I’m one step closer to my goal. But it’s not just about the end result—it’s about the journey. 
-                     There’s a sense of satisfaction in knowing I’m learning and growing, even if it’s challenging at times. 
-                     My family and my desire to provide a better future for them also play a huge role in motivating me to push through tough days. 
-                     It’s all worth it in the end, and I’m looking forward to seeing where this journey will take me.</p>
-                <p>Thank for listening!</p>
+            
+            <!-- Blog Posts Container -->
+            <div id="blog-posts-container">
+                <!-- Blog posts will be loaded here dynamically -->
             </div>
         </section>
     </main>
+    
     <footer>
         <div>
             <p><strong>Copyright &copy; 2025 - <strong>BytesByBlinken</strong></p>
@@ -266,5 +125,348 @@
             <p>Contact Me @ BytesByBlinken@gmail.com</p>
         </div>
     </footer>
+    
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://168.231.66.214:3000/api';
+        
+        // Theme Management System
+        function initThemeSystem() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            // Check for saved theme preference or default to dark
+            const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+            
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                // Apply new theme
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('portfolio-theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+        }
+        
+        function updateThemeIcon(theme) {
+            const themeIcon = document.querySelector('.theme-icon');
+            if (theme === 'light') {
+                themeIcon.textContent = '☀️';
+            } else {
+                themeIcon.textContent = '🌙';
+            }
+        }
+        
+        // Blog Management System
+        function initBlogSystem() {
+            const loginForm = document.getElementById('admin-login-form');
+            const newPostBtn = document.getElementById('new-post-btn');
+            const editModeBtn = document.getElementById('edit-mode-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+            const newPostForm = document.getElementById('new-post-form');
+            const blogForm = document.getElementById('blog-form');
+            const cancelPostBtn = document.getElementById('cancel-post');
+            
+            // Archive navigation
+            const monthButtons = document.querySelectorAll('.month-btn');
+            const showAllBtn = document.getElementById('show-all-posts');
+            
+            // Load blog posts on page load
+            loadBlogPosts();
+            
+            // Login form submission
+            loginForm.addEventListener('submit', handleLogin);
+            
+            // Admin panel buttons
+            newPostBtn.addEventListener('click', () => {
+                newPostForm.style.display = 'block';
+                newPostBtn.style.display = 'none';
+            });
+            
+            cancelPostBtn.addEventListener('click', () => {
+                newPostForm.style.display = 'none';
+                newPostBtn.style.display = 'block';
+                blogForm.reset();
+            });
+            
+            logoutBtn.addEventListener('click', handleLogout);
+            
+            // Blog form submission
+            blogForm.addEventListener('submit', handleNewPost);
+            
+            // Archive navigation
+            monthButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const month = btn.getAttribute('data-month');
+                    filterPostsByMonth(month);
+                    
+                    // Update active state
+                    monthButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+            
+            showAllBtn.addEventListener('click', () => {
+                loadBlogPosts();
+                monthButtons.forEach(b => b.classList.remove('active'));
+            });
+            
+            // Check if user is already logged in
+            checkAuthStatus();
+        }
+        
+        // Authentication functions
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Store token
+                    localStorage.setItem('blog-admin-token', data.token);
+                    localStorage.setItem('blog-admin-user', JSON.stringify(data.user));
+                    
+                    // Show admin panel
+                    showAdminPanel();
+                    
+                    // Reload posts
+                    loadBlogPosts();
+                } else {
+                    alert('Login failed: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Login failed. Please try again.');
+            }
+        }
+        
+        function handleLogout() {
+            localStorage.removeItem('blog-admin-token');
+            localStorage.removeItem('blog-admin-user');
+            hideAdminPanel();
+            loadBlogPosts(); // Reload without admin features
+        }
+        
+        function checkAuthStatus() {
+            const token = localStorage.getItem('blog-admin-token');
+            if (token) {
+                showAdminPanel();
+            }
+        }
+        
+        function showAdminPanel() {
+            document.getElementById('admin-panel').style.display = 'flex';
+            document.getElementById('login-form').style.display = 'none';
+        }
+        
+        function hideAdminPanel() {
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+        
+        // Blog post functions
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/posts`);
+                const posts = await response.json();
+                
+                displayBlogPosts(posts);
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                // Fallback to static posts if API is unavailable
+                displayStaticPosts();
+            }
+        }
+        
+        function filterPostsByMonth(month) {
+            // This would filter posts by month when the API is working
+            // For now, we'll show all posts and highlight the selected month
+            loadBlogPosts();
+        }
+        
+        async function handleNewPost(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(blogForm);
+            const postData = {
+                title: formData.get('title'),
+                content: formData.get('content'),
+                tags: formData.get('tags').split(',').map(tag => tag.trim()).filter(tag => tag),
+                author: 'Chris (BytesByBlinken)',
+                published_date: new Date().toISOString().split('T')[0]
+            };
+            
+            try {
+                const token = localStorage.getItem('blog-admin-token');
+                const response = await fetch(`${API_BASE_URL}/posts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(postData)
+                });
+                
+                if (response.ok) {
+                    alert('Post created successfully!');
+                    newPostForm.style.display = 'none';
+                    document.getElementById('new-post-btn').style.display = 'block';
+                    blogForm.reset();
+                    loadBlogPosts(); // Reload posts
+                } else {
+                    const error = await response.json();
+                    alert('Failed to create post: ' + error.error);
+                }
+            } catch (error) {
+                console.error('Error creating post:', error);
+                alert('Failed to create post. Please try again.');
+            }
+        }
+        
+        function displayBlogPosts(posts) {
+            const container = document.getElementById('blog-posts-container');
+            container.innerHTML = '';
+            
+            if (posts.length === 0) {
+                container.innerHTML = '<div class="no-posts"><h3>No blog posts found</h3><p>Check back soon for new content!</p></div>';
+                return;
+            }
+            
+            posts.forEach(post => {
+                const postElement = createBlogPostElement(post);
+                container.appendChild(postElement);
+            });
+        }
+        
+        function displayStaticPosts() {
+            // Fallback to static posts if API is unavailable
+            const staticPosts = [
+                {
+                    id: 1,
+                    title: "July Update: Crunch Time Before Launch",
+                    content: `We're officially less than a month away from the soft launch of Online Card Show — and I'm feeling a mix of excitement and nerves as the big day approaches.
+
+The last few weeks have been all about getting everything production-ready. Moving from a dev environment to a live app is no joke. I've been fine-tuning the database, setting up secure deployments, double-checking API endpoints, and working through all the behind-the-scenes details that most users will never see — but are critical to a smooth launch. If all goes to plan, we're aiming to go live on August 1st!
+
+At the same time, I'm starting a new chapter at my day job. I just got promoted into a new role that comes with fresh challenges and responsibilities. While it's not a dev position, I'm excited about the growth it'll bring — and I've made sure I'll still have time carved out to work on Online Card Show in the evenings and weekends.
+
+Right now, it's crunch time. The final stretch. I'm focused on squashing the last of the bugs and making sure the experience is smooth for our early users. The soft launch is just the beginning, but it's a huge milestone and one I've been working toward for a long time.
+
+**Closing Thoughts**
+
+It's been a long road getting to this point, but the finish line is in sight. I'm proud of how far this project has come and grateful for everyone who's followed the journey — here's to a strong launch and an even stronger future!
+
+**What's Next?**
+
+After launch, I'll be focused on gathering user feedback, rolling out new features, growing our social presence, and dialing in a solid customer acquisition strategy.
+
+Thanks for following along — next month is going to be a big one!`,
+                    author: "Chris (BytesByBlinken)",
+                    date: "July 7, 2025",
+                    tags: ["launch", "updates", "development", "online-card-show"]
+                },
+                {
+                    id: 2,
+                    title: "May 2025 Blog: Project Progress and Updates",
+                    content: `May was a busy month for Online Card Show and for me personally as a developer. Here's everything that moved forward:
+
+**Beta Launch and Early Feedback**
+
+I officially opened the beta program and welcomed my first group of testers. Getting real people using the app was huge — the feedback has been super helpful for finding bugs and understanding how people actually want to use the platform. I'm making changes and improvements every day based on what testers say.
+
+**Improving User Experience**
+
+Based on beta feedback, I focused on polishing the user dashboards and smoothing out the subscription signup and management flows. I also added a new "Make an Offer" button, so buyers can negotiate prices directly—this should make trading way more flexible and fun.
+
+**Backend Stability and Performance**
+
+I spent a lot of time tuning the database (PostgreSQL) and Redis cache to improve speed and reliability. This part can feel tricky, but it's important to keep the app running fast as more people join.
+
+**Marketing Efforts**
+
+I've been working on growing my social media presence to help spread the word about Online Card Show. I've also been reaching out to potential beta testers through my network.
+
+**Learning Server Management**
+
+I started diving into VPS management and server maintenance to get ready for hosting the app live. This is all new territory for me, but I'm making progress step by step, learning how to keep the server secure and stable.
+
+I have only had to restore the server once, but it was a good reminder of how important it is to have a backup plan. I'm also learning how to monitor the server's health and performance to ensure it's running smoothly. So, I call that a win!
+
+**Business and Legal Progress and Other Next Steps**
+
+I opened a bank account for the project (not a full business account yet, but a start). I'm planning to set up the LLC soon. The Privacy Policy and Terms of Service are in progress, aiming to have them ready by July.
+
+**Closing Thoughts**
+
+May was a big month, and I'm excited to see what June brings. I'm looking forward to continuing to build Online Card Show and to keep pushing towards my goal of launching a fully operational platform.
+
+**What's Next?**
+
+June's all about refining what's built so far—polishing features, improving performance, and getting closer to a smooth, stable beta experience. I'll also be diving deeper into hosting setup and making sure the business side catches up with the tech.
+
+I'm excited to keep building and to see where this journey takes me. Thanks for being along for the ride!`,
+                    author: "Chris (BytesByBlinken)",
+                    date: "June 3, 2025",
+                    tags: ["progress", "updates", "development", "beta-launch", "online-card-show"]
+                }
+            ];
+            
+            displayBlogPosts(staticPosts);
+        }
+        
+        function createBlogPostElement(post) {
+            const article = document.createElement('article');
+            article.className = 'blog-tile';
+            
+            // Format content with line breaks
+            const formattedContent = post.content.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+            
+            article.innerHTML = `
+                <h2>${post.title}</h2>
+                <div class="post-meta">
+                    <p class="post-author">By: ${post.author}</p>
+                    <p class="post-date">Published on: ${post.date}</p>
+                </div>
+                <div class="post-content">
+                    <p>${formattedContent}</p>
+                </div>
+                <div class="post-tags">
+                    ${post.tags ? post.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+                </div>
+                <div class="post-actions" style="display: ${isAdmin() ? 'flex' : 'none'}">
+                    <button class="edit-post-btn" data-post-id="${post.id}">Edit</button>
+                    <button class="delete-post-btn" data-post-id="${post.id}">Delete</button>
+                </div>
+            `;
+            
+            return article;
+        }
+        
+        function isAdmin() {
+            return localStorage.getItem('blog-admin-token') !== null;
+        }
+        
+        // Initialize all systems when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initThemeSystem();
+            initBlogSystem();
+        });
+    </script>
 </body>
 </html>
