@@ -18,6 +18,23 @@
                 <li><a id="profile-link" href="https://github.com/ItsHeyBlinken" target="_blank">GitHub</a></li>
                 <li><a id="profile-link" href="https://www.linkedin.com/in/christopher-hall-65907b291/" target="_blank">LinkedIn</a></li>
                 <li><a id="profile-link" href="./blog.html">Blog</a></li>
+                
+                <!-- Admin Login Form (Hidden when logged in) -->
+                <li id="admin-login-nav" class="admin-login-nav">
+                    <form id="admin-login-form" class="admin-login-form">
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <button type="submit" class="admin-login-btn">Login</button>
+                    </form>
+                </li>
+                
+                <!-- Admin Panel (Hidden when not logged in) -->
+                <li id="admin-panel-nav" class="admin-panel-nav" style="display: none;">
+                    <button id="new-post-btn" class="admin-btn">+ New Post</button>
+                    <button id="edit-mode-btn" class="admin-btn">Edit Mode</button>
+                    <button id="logout-btn" class="admin-btn">Logout</button>
+                </li>
+                
                 <li class="theme-toggle-container">
                     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
                         <span class="theme-icon">🌙</span>
@@ -32,27 +49,6 @@
             <div class="blog-header">
                 <h1>My Blog</h1>
                 <p>Thoughts, updates, and insights from my development journey</p>
-                
-                <!-- Admin Panel (Hidden by default) -->
-                <div id="admin-panel" class="blog-admin-panel" style="display: none;">
-                    <button id="new-post-btn" class="admin-btn">+ New Blog Post</button>
-                    <button id="edit-mode-btn" class="admin-btn">Edit Mode</button>
-                    <button id="logout-btn" class="admin-btn">Logout</button>
-                </div>
-                
-                <!-- Login Form (Visible by default) -->
-                <div id="login-form" class="login-form">
-                    <h3>Admin Access</h3>
-                    <form id="admin-login-form">
-                        <div class="form-group">
-                            <input type="text" id="username" name="username" placeholder="Username" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" id="password" name="password" placeholder="Password" required>
-                        </div>
-                        <button type="submit" class="login-btn">Login</button>
-                    </form>
-                </div>
             </div>
             
             <!-- Archive Navigation -->
@@ -271,13 +267,13 @@
         }
         
         function showAdminPanel() {
-            document.getElementById('admin-panel').style.display = 'flex';
-            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('admin-panel-nav').style.display = 'flex';
+            document.getElementById('admin-login-nav').style.display = 'none';
         }
         
         function hideAdminPanel() {
-            document.getElementById('admin-panel').style.display = 'none';
-            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('admin-panel-nav').style.display = 'none';
+            document.getElementById('admin-login-nav').style.display = 'block';
         }
         
         // Blog post functions

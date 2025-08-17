@@ -1151,14 +1151,9 @@ footer div {
     margin-right: auto;
 }
 
-/* Blog Admin Panel */
-.blog-admin-panel {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 2rem;
-}
 
+
+/* Admin buttons for forms and other areas */
 .admin-btn {
     background: var(--overlay-bg);
     color: var(--text-primary);
@@ -1415,12 +1410,10 @@ footer div {
         font-size: 1.1rem;
     }
     
-    .blog-admin-panel {
-        flex-direction: column;
-        align-items: center;
-    }
+
     
-    .admin-btn {
+    /* Admin buttons in forms */
+    .new-post-form .admin-btn {
         width: 100%;
         max-width: 250px;
     }
@@ -1460,69 +1453,7 @@ footer div {
     }
 }
 
-/* Login Form Styling */
-.login-form {
-    background: var(--card-bg);
-    border: 1px solid var(--border-primary);
-    border-radius: 16px;
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 400px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px var(--shadow-secondary);
-    text-align: center;
-}
 
-.login-form h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-}
-
-.login-form .form-group {
-    margin-bottom: 1rem;
-}
-
-.login-form input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid var(--border-primary);
-    border-radius: 8px;
-    background: var(--overlay-bg);
-    color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-}
-
-.login-form input:focus {
-    outline: none;
-    border-color: var(--bg-secondary);
-    background: var(--overlay-bg-secondary);
-}
-
-.login-btn {
-    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    padding: 12px 30px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    margin-top: 1rem;
-}
-
-.login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px var(--shadow-primary);
-}
 
 /* No Posts Message */
 .no-posts {
@@ -1671,5 +1602,139 @@ footer div {
     
     .month-btn {
         min-width: 80px;
+    }
+}
+
+/* Admin Navigation Styling */
+.admin-login-nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.admin-login-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-login-form input {
+    padding: 8px 12px;
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    background: var(--overlay-bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    width: 120px;
+}
+
+.admin-login-form input:focus {
+    outline: none;
+    border-color: var(--bg-secondary);
+    background: var(--overlay-bg-secondary);
+    box-shadow: 0 0 0 2px var(--shadow-primary);
+}
+
+.admin-login-btn {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.admin-login-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow-primary);
+}
+
+.admin-panel-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.admin-btn {
+    background: var(--overlay-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.admin-btn:hover {
+    background: var(--overlay-bg-secondary);
+    border-color: var(--border-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow-primary);
+}
+
+/* Mobile responsiveness for admin navigation */
+@media (max-width: 768px) {
+    .admin-login-form {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .admin-login-form input {
+        width: 100px;
+        font-size: 0.8rem;
+        padding: 6px 8px;
+    }
+    
+    .admin-login-btn {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+    
+    .admin-panel-nav {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .admin-btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-login-nav,
+    .admin-panel-nav {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    .admin-login-form input {
+        width: 80px;
+        font-size: 0.75rem;
+        padding: 4px 6px;
+    }
+    
+    .admin-login-btn {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+    
+    .admin-btn {
+        font-size: 0.75rem;
+        padding: 4px 8px;
     }
 }
