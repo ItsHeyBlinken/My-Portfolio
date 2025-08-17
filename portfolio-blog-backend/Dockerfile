@@ -20,9 +20,9 @@ USER nodejs
 # Expose port
 EXPOSE 3000
 
-# Health check
+# Health check - Fixed to use localhost instead of IPv6
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
+  CMD node -e "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"
 
 # Start command
 CMD ["npm", "start"]
