@@ -1,34 +1,40 @@
 version: '3.8'
 
 services:
-  portfolio-blog-backend:
-    build: .
-    container_name: portfolio-blog-backend
+  # Backend API Service
+  backend:
+    build: ./backend
+    container_name: portfolio-backend
     restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
+      - DATABASE_URL=postgres://ocs-beta-db:6SETisZYFCYmpmQT9tcfStVqw3iU1Rk2m5jNLSYsEwDwTcw2I878ERYH8u5WX8wL@168.231.66.214:5432/Portfolio_Blog
       - DB_HOST=168.231.66.214
       - DB_PORT=5432
       - DB_NAME=Portfolio_Blog
       - DB_USER=ocs-beta-db
       - DB_PASSWORD=6SETisZYFCYmpmQT9tcfStVqw3iU1Rk2m5jNLSYsEwDwTcw2I878ERYH8u5WX8wL
+      - DB_SSL_MODE=disable
       - JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD_HASH=$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
       - CORS_ORIGIN=https://bytesbyblinken.com
     volumes:
-      - ./logs:/app/logs
+      - ./backend/logs:/app/logs
     networks:
       - portfolio-network
     healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+
+  # Frontend (Static files served by nginx or similar)
+  # You can add a frontend service here if needed
 
 networks:
   portfolio-network:
