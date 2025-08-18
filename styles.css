@@ -1216,6 +1216,12 @@ footer div {
 .blog-header {
     text-align: center;
     margin-bottom: 3rem;
+    background: var(--card-bg);
+    border: 2px solid var(--border-primary);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px var(--shadow-secondary);
+    backdrop-filter: blur(10px);
 }
 
 .blog-header h1 {

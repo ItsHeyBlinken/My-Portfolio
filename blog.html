@@ -439,11 +439,14 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             // Format content with line breaks
             const formattedContent = post.content.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
             
+            // Handle both date formats (API uses published_date, static uses date)
+            const displayDate = post.published_date || post.date;
+            
             article.innerHTML = `
                 <h2>${post.title}</h2>
                 <div class="post-meta">
                     <p class="post-author">By: ${post.author}</p>
-                    <p class="post-date">Published on: ${post.date}</p>
+                    <p class="post-date">Published on: ${displayDate}</p>
                 </div>
                 <div class="post-content">
                     <p>${formattedContent}</p>
