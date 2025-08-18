@@ -7,10 +7,10 @@ const { authenticateToken } = require('../middleware/auth');
 router.get('/', async (req, res) => {
   try {
     const query = `
-      SELECT p.*, COUNT(c.id) as comment_count 
+      SELECT p.id, p.title, p.content, p.tags, p.published_date, p.created_at, p.updated_at, COUNT(c.id) as comment_count 
       FROM blog_posts p 
-      LEFT JOIN comments c ON p.id = c.post_id AND c.is_approved = true 
-      GROUP BY p.id 
+      LEFT JOIN comments c ON p.id = c.post_id AND c.is_approved = true
+      GROUP BY p.id, p.title, p.content, p.tags, p.published_date, p.created_at, p.updated_at
       ORDER BY p.published_date DESC, p.created_at DESC
     `;
     const result = await db.query(query);
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const query = 'SELECT * FROM blog_posts WHERE id = $1';
+    const query = 'SELECT id, title, content, tags, published_date, created_at, updated_at FROM blog_posts WHERE id = $1';
     const result = await db.query(query, [id]);
     
     if (result.rows.length === 0) {
@@ -44,9 +44,9 @@ router.post('/', authenticateToken, async (req, res) => {
   try {
     const { title, content, tags, published_date } = req.body;
     const query = `
-      INSERT INTO blog_posts (title, content, tags, published_date) 
-      VALUES ($1, $2, $3, $4) 
-      RETURNING *
+      INSERT INTO blog_posts (title, content, tags, published_date, author) 
+      VALUES ($1, $2, $3, $4, 'Chris (BytesByBlinken)') 
+      RETURNING id, title, content, tags, published_date, created_at, updated_at
     `;
     const values = [title, content, tags, published_date || new Date()];
     const result = await db.query(query, values);
@@ -66,7 +66,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
       UPDATE blog_posts 
       SET title = $1, content = $2, tags = $3, published_date = $4, updated_at = NOW() 
       WHERE id = $5 
-      RETURNING *
+      RETURNING id, title, content, tags, published_date, created_at, updated_at
     `;
     const values = [title, content, tags, published_date, id];
     const result = await db.query(query, values);
