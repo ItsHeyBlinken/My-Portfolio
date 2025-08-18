@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Backend API Service
   backend:
-    build: ./backend
+    build: .
     container_name: portfolio-backend
     restart: unless-stopped
     ports:
@@ -22,10 +22,6 @@ services:
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD_HASH=$2b$10$nPx9xOnQ7TE0lmiFj0e1YuIatkzHUL0W1ZZPVdWPK3TLJ8FbhDeci
       - CORS_ORIGIN=https://bytesbyblinken.com
-    volumes:
-      - ./backend/logs:/app/logs
-    networks:
-      - portfolio-network
     healthcheck:
       test: ["CMD", "pgrep", "-f", "node src/server.js"]
       interval: 30s
