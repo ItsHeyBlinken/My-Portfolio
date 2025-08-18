@@ -335,6 +335,15 @@
         }
         
         async function loadAllComments() {
+            // Verify token first
+            if (!await verifyToken()) {
+                alert('Your session has expired. Please log in again.');
+                // Hide admin panel and show login form
+                document.getElementById('admin-panel-nav').style.display = 'none';
+                document.getElementById('admin-login-form').style.display = 'block';
+                return;
+            }
+            
             try {
                 const token = localStorage.getItem('blog-admin-token');
                 const response = await fetch(`${API_BASE_URL}/comments`, {
@@ -346,11 +355,18 @@
                 if (response.ok) {
                     const comments = await response.json();
                     displayAllComments(comments);
+                } else if (response.status === 403) {
+                    alert('Access denied. Your session may have expired. Please log in again.');
+                    // Hide admin panel and show login form
+                    document.getElementById('admin-panel-nav').style.display = 'none';
+                    document.getElementById('admin-login-form').style.display = 'block';
                 } else {
-                    console.error('Failed to load comments');
+                    const error = await response.json();
+                    alert('Failed to load comments: ' + (error.error || 'Unknown error'));
                 }
             } catch (error) {
                 console.error('Error loading comments:', error);
+                alert('Failed to load comments. Please try again.');
             }
         }
         
@@ -395,6 +411,15 @@
         }
         
         async function approveComment(commentId) {
+            // Verify token first
+            if (!await verifyToken()) {
+                alert('Your session has expired. Please log in again.');
+                // Hide admin panel and show login form
+                document.getElementById('admin-panel-nav').style.display = 'none';
+                document.getElementById('admin-login-form').style.display = 'block';
+                return;
+            }
+            
             try {
                 const token = localStorage.getItem('blog-admin-token');
                 const response = await fetch(`${API_BASE_URL}/comments/${commentId}/approve`, {
@@ -409,9 +434,14 @@
                 if (response.ok) {
                     alert('Comment approved successfully!');
                     loadAllComments(); // Refresh the list
+                } else if (response.status === 403) {
+                    alert('Access denied. Your session may have expired. Please log in again.');
+                    // Hide admin panel and show login form
+                    document.getElementById('admin-panel-nav').style.display = 'none';
+                    document.getElementById('admin-login-form').style.display = 'block';
                 } else {
                     const error = await response.json();
-                    alert('Failed to approve comment: ' + error.error);
+                    alert('Failed to approve comment: ' + (error.error || 'Unknown error'));
                 }
             } catch (error) {
                 console.error('Error approving comment:', error);
@@ -420,6 +450,15 @@
         }
         
         async function rejectComment(commentId) {
+            // Verify token first
+            if (!await verifyToken()) {
+                alert('Your session has expired. Please log in again.');
+                // Hide admin panel and show login form
+                document.getElementById('admin-panel-nav').style.display = 'none';
+                document.getElementById('admin-login-form').style.display = 'block';
+                return;
+            }
+            
             try {
                 const token = localStorage.getItem('blog-admin-token');
                 const response = await fetch(`${API_BASE_URL}/comments/${commentId}/approve`, {
@@ -434,9 +473,14 @@
                 if (response.ok) {
                     alert('Comment rejected successfully!');
                     loadAllComments(); // Refresh the list
+                } else if (response.status === 403) {
+                    alert('Access denied. Your session may have expired. Please log in again.');
+                    // Hide admin panel and show login form
+                    document.getElementById('admin-panel-nav').style.display = 'none';
+                    document.getElementById('admin-login-form').style.display = 'block';
                 } else {
                     const error = await response.json();
-                    alert('Failed to reject comment: ' + error.error);
+                    alert('Failed to reject comment: ' + (error.error || 'Unknown error'));
                 }
             } catch (error) {
                 console.error('Error rejecting comment:', error);
@@ -700,7 +744,52 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
         }
         
         function isAdmin() {
-            return localStorage.getItem('blog-admin-token') !== null;
+            const token = localStorage.getItem('blog-admin-token');
+            if (!token) return false;
+            
+            // Check if token is expired
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                const currentTime = Date.now() / 1000;
+                if (payload.exp && payload.exp < currentTime) {
+                    // Token is expired, remove it
+                    localStorage.removeItem('blog-admin-token');
+                    return false;
+                }
+                return true;
+            } catch (error) {
+                // Invalid token format, remove it
+                localStorage.removeItem('blog-admin-token');
+                return false;
+            }
+        }
+
+        // Function to verify token and redirect to login if invalid
+        async function verifyToken() {
+            const token = localStorage.getItem('blog-admin-token');
+            if (!token) {
+                return false;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    return true;
+                } else {
+                    // Token is invalid, remove it
+                    localStorage.removeItem('blog-admin-token');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error verifying token:', error);
+                localStorage.removeItem('blog-admin-token');
+                return false;
+            }
         }
         
         // Comment Management Functions
@@ -792,6 +881,15 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
         async function deleteComment(commentId) {
             if (!confirm('Are you sure you want to delete this comment?')) return;
             
+            // Verify token first
+            if (!await verifyToken()) {
+                alert('Your session has expired. Please log in again.');
+                // Hide admin panel and show login form
+                document.getElementById('admin-panel-nav').style.display = 'none';
+                document.getElementById('admin-login-form').style.display = 'block';
+                return;
+            }
+            
             try {
                 const token = localStorage.getItem('blog-admin-token');
                 const response = await fetch(`${API_BASE_URL}/comments/${commentId}`, {
@@ -803,11 +901,17 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                 
                 if (response.ok) {
                     alert('Comment deleted successfully!');
-                    // Reload all blog posts to refresh comments
-                    loadBlogPosts();
+                    // Reload comments to refresh the display
+                    const postId = document.querySelector(`[data-comment-id="${commentId}"]`).closest('.blog-tile').getAttribute('data-post-id');
+                    loadComments(postId);
+                } else if (response.status === 403) {
+                    alert('Access denied. Your session may have expired. Please log in again.');
+                    // Hide admin panel and show login form
+                    document.getElementById('admin-panel-nav').style.display = 'none';
+                    document.getElementById('admin-login-form').style.display = 'block';
                 } else {
                     const error = await response.json();
-                    alert('Failed to delete comment: ' + error.error);
+                    alert('Failed to delete comment: ' + (error.error || 'Unknown error'));
                 }
             } catch (error) {
                 console.error('Error deleting comment:', error);
@@ -838,6 +942,16 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
         
         async function handleEditPost(e) {
             e.preventDefault();
+            
+            // Verify token first
+            if (!await verifyToken()) {
+                alert('Your session has expired. Please log in again.');
+                // Hide admin panel and show login form
+                document.getElementById('admin-panel-nav').style.display = 'none';
+                document.getElementById('admin-login-form').style.display = 'block';
+                return;
+            }
+            
             const formData = new FormData(e.target);
             const postId = formData.get('post_id');
             
@@ -863,9 +977,14 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                     alert('Post updated successfully!');
                     hideEditForm();
                     loadBlogPosts(); // Reload posts to show changes
+                } else if (response.status === 403) {
+                    alert('Access denied. Your session may have expired. Please log in again.');
+                    // Hide admin panel and show login form
+                    document.getElementById('admin-panel-nav').style.display = 'none';
+                    document.getElementById('admin-login-form').style.display = 'block';
                 } else {
                     const error = await response.json();
-                    alert('Failed to update post: ' + error.error);
+                    alert('Failed to update post: ' + (error.error || 'Unknown error'));
                 }
             } catch (error) {
                 console.error('Error updating post:', error);
@@ -875,6 +994,15 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
         
         async function deletePost(postId) {
             if (!confirm('Are you sure you want to delete this post? This will also delete all associated comments.')) return;
+            
+            // Verify token first
+            if (!await verifyToken()) {
+                alert('Your session has expired. Please log in again.');
+                // Hide admin panel and show login form
+                document.getElementById('admin-panel-nav').style.display = 'none';
+                document.getElementById('admin-login-form').style.display = 'block';
+                return;
+            }
             
             try {
                 const token = localStorage.getItem('blog-admin-token');
@@ -888,9 +1016,14 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                 if (response.ok) {
                     alert('Post deleted successfully!');
                     loadBlogPosts(); // Reload posts to show changes
+                } else if (response.status === 403) {
+                    alert('Access denied. Your session may have expired. Please log in again.');
+                    // Hide admin panel and show login form
+                    document.getElementById('admin-panel-nav').style.display = 'none';
+                    document.getElementById('admin-login-form').style.display = 'block';
                 } else {
                     const error = await response.json();
-                    alert('Failed to delete post: ' + error.error);
+                    alert('Failed to delete post: ' + (error.error || 'Unknown error'));
                 }
             } catch (error) {
                 console.error('Error deleting post:', error);
