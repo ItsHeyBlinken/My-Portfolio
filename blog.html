@@ -28,12 +28,13 @@
                     </form>
                 </li>
                 
-                <!-- Admin Panel (Hidden when not logged in) -->
-                <li id="admin-panel-nav" class="admin-panel-nav" style="display: none;">
-                    <button id="new-post-btn" class="admin-btn">+ New Post</button>
-                    <button id="edit-mode-btn" class="admin-btn">Edit Mode</button>
-                    <button id="logout-btn" class="admin-btn">Logout</button>
-                </li>
+                                 <!-- Admin Panel (Hidden when not logged in) -->
+                 <li id="admin-panel-nav" class="admin-panel-nav" style="display: none;">
+                     <button id="new-post-btn" class="admin-btn">+ New Post</button>
+                     <button id="edit-mode-btn" class="admin-btn">Edit Mode</button>
+                     <button id="manage-comments-btn" class="admin-btn">Manage Comments</button>
+                     <button id="logout-btn" class="admin-btn">Logout</button>
+                 </li>
                 
                 <li class="theme-toggle-container">
                     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
@@ -68,8 +69,22 @@
             
 
             
-            <!-- New Post Form (Hidden by default) -->
-            <div id="new-post-form" class="new-post-form" style="display: none;">
+                         <!-- Comment Management Panel (Hidden by default) -->
+             <div id="comment-management-panel" class="comment-management-panel" style="display: none;">
+                 <h2>Comment Management</h2>
+                 <div class="comment-filters">
+                     <button class="filter-btn active" data-filter="pending">Pending Approval</button>
+                     <button class="filter-btn" data-filter="approved">Approved</button>
+                     <button class="filter-btn" data-filter="all">All Comments</button>
+                 </div>
+                 <div id="comments-list" class="comments-list">
+                     <!-- Comments will be loaded here -->
+                 </div>
+                 <button id="close-comment-panel" class="close-btn">Close</button>
+             </div>
+             
+             <!-- New Post Form (Hidden by default) -->
+             <div id="new-post-form" class="new-post-form" style="display: none;">
                 <h2>Create New Blog Post</h2>
                 <form id="blog-form">
                     <div class="form-group">
@@ -90,6 +105,33 @@
                     <div class="form-actions">
                         <button type="submit" class="submit-btn">Publish Post</button>
                         <button type="button" id="cancel-post" class="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Edit Post Form (Hidden by default) -->
+            <div id="edit-post-form" class="edit-post-form" style="display: none;">
+                <h2>Edit Blog Post</h2>
+                <form id="edit-blog-form">
+                    <input type="hidden" id="edit-post-id" name="post_id">
+                    <div class="form-group">
+                        <label for="edit-post-title">Title:</label>
+                        <input type="text" id="edit-post-title" name="title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-post-content">Content:</label>
+                        <textarea id="edit-post-content" name="content" rows="15" required placeholder="Write your blog post content here..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-post-tags">Tags (comma-separated):</label>
+                        <input type="text" id="edit-post-tags" name="tags" placeholder="web development, portfolio, updates">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Update Post</button>
+                        <button type="button" id="cancel-edit-post" class="cancel-btn">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -120,6 +162,9 @@
         // Global variables
         let blogForm;
         let newPostForm;
+        let commentManagementPanel;
+        let editPostForm;
+        let editBlogForm;
         
         // Theme Management System
         function initThemeSystem() {
@@ -161,6 +206,9 @@
             newPostForm = document.getElementById('new-post-form');
             blogForm = document.getElementById('blog-form');
             const cancelPostBtn = document.getElementById('cancel-post');
+            commentManagementPanel = document.getElementById('comment-management-panel');
+            editPostForm = document.getElementById('edit-post-form');
+            editBlogForm = document.getElementById('edit-blog-form');
             
             // Month navigation dropdown
             const monthFilter = document.getElementById('month-filter');
@@ -183,10 +231,27 @@
                 blogForm.reset();
             });
             
+            // Edit form event listeners
+            editBlogForm.addEventListener('submit', handleEditPost);
+            document.getElementById('cancel-edit-post').addEventListener('click', hideEditForm);
+            
             logoutBtn.addEventListener('click', handleLogout);
             
             // Blog form submission
             blogForm.addEventListener('submit', handleNewPost);
+            
+            // Comment management
+            document.getElementById('manage-comments-btn').addEventListener('click', showCommentManagement);
+            document.getElementById('close-comment-panel').addEventListener('click', hideCommentManagement);
+            
+            // Comment filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    loadAllComments(); // Reload with new filter
+                });
+            });
             
             // Month navigation dropdown
             monthFilter.addEventListener('change', () => {
@@ -257,6 +322,126 @@
         function hideAdminPanel() {
             document.getElementById('admin-panel-nav').style.display = 'none';
             document.getElementById('admin-login-nav').style.display = 'block';
+        }
+        
+        // Comment Management Functions
+        function showCommentManagement() {
+            commentManagementPanel.style.display = 'block';
+            loadAllComments();
+        }
+        
+        function hideCommentManagement() {
+            commentManagementPanel.style.display = 'none';
+        }
+        
+        async function loadAllComments() {
+            try {
+                const token = localStorage.getItem('blog-admin-token');
+                const response = await fetch(`${API_BASE_URL}/comments`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const comments = await response.json();
+                    displayAllComments(comments);
+                } else {
+                    console.error('Failed to load comments');
+                }
+            } catch (error) {
+                console.error('Error loading comments:', error);
+            }
+        }
+        
+        function displayAllComments(comments) {
+            const container = document.getElementById('comments-list');
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            
+            let filteredComments = comments;
+            if (activeFilter === 'pending') {
+                filteredComments = comments.filter(comment => !comment.is_approved);
+            } else if (activeFilter === 'approved') {
+                filteredComments = comments.filter(comment => comment.is_approved);
+            }
+            
+            if (filteredComments.length === 0) {
+                container.innerHTML = '<p class="no-comments">No comments found for this filter.</p>';
+                return;
+            }
+            
+                        container.innerHTML = filteredComments.map(comment => `
+                <div class="comment-item ${comment.is_approved ? 'approved' : 'pending'}" data-comment-id="${comment.id}">
+                    <div class="comment-header">
+                        <span class="comment-author">${comment.author_name}</span>
+                        <span class="comment-date">${new Date(comment.created_at).toLocaleDateString()}</span>
+                        ${comment.author_email ? `<span class="comment-email">${comment.author_email}</span>` : ''}
+                        <span class="comment-status ${comment.is_approved ? 'approved' : 'pending'}">
+                            ${comment.is_approved ? '✓ Approved' : '⏳ Pending'}
+                        </span>
+                    </div>
+                    <div class="comment-content">
+                        <p>${comment.content}</p>
+                    </div>
+                    <div class="comment-actions">
+                        ${!comment.is_approved ?
+                            `<button class="approve-btn" onclick="approveComment(${comment.id})">Approve</button>` :
+                            `<button class="reject-btn" onclick="rejectComment(${comment.id})">Reject</button>`
+                        }
+                        <button class="delete-comment-btn" onclick="deleteComment(${comment.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        async function approveComment(commentId) {
+            try {
+                const token = localStorage.getItem('blog-admin-token');
+                const response = await fetch(`${API_BASE_URL}/comments/${commentId}/approve`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ is_approved: true })
+                });
+                
+                if (response.ok) {
+                    alert('Comment approved successfully!');
+                    loadAllComments(); // Refresh the list
+                } else {
+                    const error = await response.json();
+                    alert('Failed to approve comment: ' + error.error);
+                }
+            } catch (error) {
+                console.error('Error approving comment:', error);
+                alert('Failed to approve comment. Please try again.');
+            }
+        }
+        
+        async function rejectComment(commentId) {
+            try {
+                const token = localStorage.getItem('blog-admin-token');
+                const response = await fetch(`${API_BASE_URL}/comments/${commentId}/approve`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ is_approved: false })
+                });
+                
+                if (response.ok) {
+                    alert('Comment rejected successfully!');
+                    loadAllComments(); // Refresh the list
+                } else {
+                    const error = await response.json();
+                    alert('Failed to reject comment: ' + error.error);
+                }
+            } catch (error) {
+                console.error('Error rejecting comment:', error);
+                alert('Failed to reject comment. Please try again.');
+            }
         }
         
         // Blog post functions
@@ -481,6 +666,9 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                                 <input type="text" name="author_name" placeholder="Your Name" required>
                             </div>
                             <div class="form-group">
+                                <input type="email" name="author_email" placeholder="Your Email (optional)" class="optional-field">
+                            </div>
+                            <div class="form-group">
                                 <textarea name="content" placeholder="Your Comment" rows="3" required></textarea>
                             </div>
                             <button type="submit" class="submit-comment-btn">Post Comment</button>
@@ -495,6 +683,18 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             // Add event listener for comment form
             const commentForm = article.querySelector('.comment-submit-form');
             commentForm.addEventListener('submit', handleCommentSubmit);
+            
+            // Add event listeners for edit and delete buttons
+            const editBtn = article.querySelector('.edit-post-btn');
+            const deleteBtn = article.querySelector('.delete-post-btn');
+            
+            if (editBtn) {
+                editBtn.addEventListener('click', () => showEditForm(post));
+            }
+            
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', () => deletePost(post.id));
+            }
             
             return article;
         }
@@ -538,6 +738,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                     <div class="comment-header">
                         <span class="comment-author">${comment.author_name}</span>
                         <span class="comment-date">${new Date(comment.created_at).toLocaleDateString()}</span>
+                        ${comment.author_email && isAdmin() ? `<span class="comment-email">${comment.author_email}</span>` : ''}
                     </div>
                     <div class="comment-content">
                         <p>${comment.content}</p>
@@ -560,6 +761,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             const commentData = {
                 post_id: parseInt(postId),
                 author_name: formData.get('author_name'),
+                author_email: formData.get('author_email') || null,
                 content: formData.get('content')
             };
             
@@ -610,6 +812,89 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             } catch (error) {
                 console.error('Error deleting comment:', error);
                 alert('Failed to delete comment. Please try again.');
+            }
+        }
+        
+        // Edit Post Functions
+        function showEditForm(post) {
+            // Populate the edit form with post data
+            document.getElementById('edit-post-id').value = post.id;
+            document.getElementById('edit-post-title').value = post.title;
+            document.getElementById('edit-post-content').value = post.content;
+            document.getElementById('edit-post-tags').value = post.tags ? post.tags.join(', ') : '';
+            
+            // Show the edit form
+            editPostForm.style.display = 'block';
+            
+            // Hide the new post form if it's open
+            newPostForm.style.display = 'none';
+            document.getElementById('new-post-btn').style.display = 'block';
+        }
+        
+        function hideEditForm() {
+            editPostForm.style.display = 'none';
+            editBlogForm.reset();
+        }
+        
+        async function handleEditPost(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const postId = formData.get('post_id');
+            
+            const postData = {
+                title: formData.get('title'),
+                content: formData.get('content'),
+                tags: formData.get('tags').split(',').map(tag => tag.trim()).filter(tag => tag.length > 0),
+                published_date: new Date().toISOString()
+            };
+            
+            try {
+                const token = localStorage.getItem('blog-admin-token');
+                const response = await fetch(`${API_BASE_URL}/posts/${postId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(postData)
+                });
+                
+                if (response.ok) {
+                    alert('Post updated successfully!');
+                    hideEditForm();
+                    loadBlogPosts(); // Reload posts to show changes
+                } else {
+                    const error = await response.json();
+                    alert('Failed to update post: ' + error.error);
+                }
+            } catch (error) {
+                console.error('Error updating post:', error);
+                alert('Failed to update post. Please try again.');
+            }
+        }
+        
+        async function deletePost(postId) {
+            if (!confirm('Are you sure you want to delete this post? This will also delete all associated comments.')) return;
+            
+            try {
+                const token = localStorage.getItem('blog-admin-token');
+                const response = await fetch(`${API_BASE_URL}/posts/${postId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    alert('Post deleted successfully!');
+                    loadBlogPosts(); // Reload posts to show changes
+                } else {
+                    const error = await response.json();
+                    alert('Failed to delete post: ' + error.error);
+                }
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                alert('Failed to delete post. Please try again.');
             }
         }
         
