@@ -2,7 +2,7 @@
 :root {
     /* Dark Theme (Default) */
     --bg-primary: #313a49;
-    --bg-secondary: #667eea;
+    --bg-secondary: #555f8f;
     --bg-tertiary: #764ba2;
     --text-primary: #ffffff;
     --text-secondary: #d8e1d2;
@@ -24,8 +24,8 @@
 
 [data-theme="light"] {
     /* Light Theme */
-    --bg-primary: #f8f9fa;
-    --bg-secondary: #667eea;
+    --bg-primary: #f0f4f5;
+    --bg-secondary: #696b72;
     --bg-tertiary: #764ba2;
     --text-primary: #2c3e50;
     --text-secondary: #34495e;
@@ -343,7 +343,7 @@ main {
     flex-direction: column;
     padding: 2em;
     color: var(--text-primary);
-    background: linear-gradient(to bottom, #e5ebea, var(--bg-primary));
+    background: linear-gradient(var(--bg-primary), var(--bg-secondary));
     background-size: cover;
     background-position: center;
 }
