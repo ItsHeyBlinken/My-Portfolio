@@ -7,9 +7,23 @@ const jwt = require('jsonwebtoken');
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
 
+// Debug logging to see what's actually loaded
+console.log('=== AUTH DEBUG INFO ===');
+console.log('ADMIN_USERNAME:', ADMIN_USERNAME);
+console.log('ADMIN_PASSWORD_HASH:', ADMIN_PASSWORD_HASH ? 'SET' : 'NOT SET');
+console.log('ADMIN_PASSWORD_HASH length:', ADMIN_PASSWORD_HASH ? ADMIN_PASSWORD_HASH.length : 0);
+console.log('Environment variables loaded:', Object.keys(process.env).filter(key => key.includes('ADMIN')));
+console.log('========================');
+
 // Simple test route to verify loading
 router.get('/test', (req, res) => {
-  res.json({ message: 'Auth route is working!' });
+  res.json({ 
+    message: 'Auth route is working!',
+    adminUsername: ADMIN_USERNAME,
+    passwordHashSet: !!ADMIN_PASSWORD_HASH,
+    passwordHashLength: ADMIN_PASSWORD_HASH ? ADMIN_PASSWORD_HASH.length : 0,
+    envVars: Object.keys(process.env).filter(key => key.includes('ADMIN'))
+  });
 });
 
 // GET login test route
