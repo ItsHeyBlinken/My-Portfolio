@@ -81,6 +81,11 @@ router.put('/:id/approve', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const { is_approved } = req.body;
+    
+    console.log(`Attempting to approve comment ${id} with is_approved: ${is_approved}`);
+    console.log('Request body:', req.body);
+    console.log('User authenticated:', req.user);
+    
     const query = `
       UPDATE comments 
       SET is_approved = $1, updated_at = NOW() 
@@ -88,16 +93,31 @@ router.put('/:id/approve', authenticateToken, async (req, res) => {
       RETURNING *
     `;
     const values = [is_approved, id];
+    
+    console.log('Executing query:', query);
+    console.log('Query values:', values);
+    
     const result = await db.query(query, values);
     
+    console.log('Query result:', result);
+    
     if (result.rows.length === 0) {
+      console.log('Comment not found');
       return res.status(404).json({ error: 'Comment not found' });
     }
     
+    console.log('Comment updated successfully:', result.rows[0]);
     res.json(result.rows[0]);
   } catch (error) {
     console.error('Error updating comment approval:', error);
-    res.status(500).json({ error: 'Error updating comment' });
+    console.error('Error stack:', error.stack);
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      detail: error.detail,
+      hint: error.hint
+    });
+    res.status(500).json({ error: 'Error updating comment', details: error.message });
   }
 });
 
@@ -106,6 +126,10 @@ router.put('/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const { content, is_approved } = req.body;
+    
+    console.log(`Attempting to update comment ${id}`);
+    console.log('Request body:', req.body);
+    
     const query = `
       UPDATE comments 
       SET content = $1, is_approved = $2, updated_at = NOW() 
@@ -113,16 +137,29 @@ router.put('/:id', authenticateToken, async (req, res) => {
       RETURNING *
     `;
     const values = [content, is_approved, id];
+    
+    console.log('Executing query:', query);
+    console.log('Query values:', values);
+    
     const result = await db.query(query, values);
     
     if (result.rows.length === 0) {
+      console.log('Comment not found');
       return res.status(404).json({ error: 'Comment not found' });
     }
     
+    console.log('Comment updated successfully:', result.rows[0]);
     res.json(result.rows[0]);
   } catch (error) {
     console.error('Error updating comment:', error);
-    res.status(500).json({ error: 'Error updating comment' });
+    console.error('Error stack:', error.stack);
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      detail: error.detail,
+      hint: error.hint
+    });
+    res.status(500).json({ error: 'Error updating comment', details: error.message });
   }
 });
 
