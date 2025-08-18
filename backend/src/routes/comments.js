@@ -3,7 +3,24 @@ const router = express.Router();
 const db = require('../config/database');
 const { authenticateToken } = require('../middleware/auth');
 
-// GET comments by post ID (public)
+// GET comments by post ID (public) - for frontend compatibility
+router.get('/:postId', async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const query = `
+      SELECT * FROM comments 
+      WHERE post_id = $1 AND is_approved = true 
+      ORDER BY created_at ASC
+    `;
+    const result = await db.query(query, [postId]);
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    res.status(500).json({ error: 'Error fetching comments' });
+  }
+});
+
+// GET comments by post ID (public) - original route
 router.get('/post/:postId', async (req, res) => {
   try {
     const { postId } = req.params;

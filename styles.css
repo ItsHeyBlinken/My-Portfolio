@@ -2410,3 +2410,46 @@ footer div {
         margin-bottom: 0.5rem;
     }
 }
+
+/* Month Navigation Dropdown */
+.month-navigation {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.month-dropdown {
+    background: var(--card-bg);
+    border: 2px solid var(--border-primary);
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.month-dropdown:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px var(--shadow-primary);
+}
+
+.month-dropdown:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.month-dropdown option {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* Blog Header Styling */

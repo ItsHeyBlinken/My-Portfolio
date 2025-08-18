@@ -49,6 +49,21 @@
             <div class="blog-header">
                 <h1>My Blog</h1>
                 <p>Thoughts, updates, and insights from my development journey</p>
+                
+                <!-- Month Navigation -->
+                <div class="month-navigation">
+                    <select id="month-filter" class="month-dropdown">
+                        <option value="all">All Posts</option>
+                        <option value="2025-07">July 2025</option>
+                        <option value="2025-06">June 2025</option>
+                        <option value="2025-05">May 2025</option>
+                        <option value="2025-04">April 2025</option>
+                        <option value="2025-03">March 2025</option>
+                        <option value="2025-02">February 2025</option>
+                        <option value="2025-01">January 2025</option>
+                        <option value="2024-12">December 2024</option>
+                    </select>
+                </div>
             </div>
             
 
@@ -143,9 +158,8 @@
             const blogForm = document.getElementById('blog-form');
             const cancelPostBtn = document.getElementById('cancel-post');
             
-            // Archive navigation
-            const monthButtons = document.querySelectorAll('.month-btn');
-            const showAllBtn = document.getElementById('show-all-posts');
+            // Month navigation dropdown
+            const monthFilter = document.getElementById('month-filter');
             
             // Load blog posts on page load
             loadBlogPosts();
@@ -170,21 +184,10 @@
             // Blog form submission
             blogForm.addEventListener('submit', handleNewPost);
             
-            // Archive navigation
-            monthButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const month = btn.getAttribute('data-month');
-                    filterPostsByMonth(month);
-                    
-                    // Update active state
-                    monthButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                });
-            });
-            
-            showAllBtn.addEventListener('click', () => {
-                filterPostsByMonth('all');
-                monthButtons.forEach(b => b.classList.remove('active'));
+            // Month navigation dropdown
+            monthFilter.addEventListener('change', () => {
+                const selectedMonth = monthFilter.value;
+                filterPostsByMonth(selectedMonth);
             });
             
             // Check if user is already logged in
@@ -471,7 +474,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                         <h4>Leave a Comment</h4>
                         <form class="comment-submit-form" data-post-id="${post.id}">
                             <div class="form-group">
-                                <input type="text" name="author" placeholder="Your Name" required>
+                                <input type="text" name="author_name" placeholder="Your Name" required>
                             </div>
                             <div class="form-group">
                                 <textarea name="content" placeholder="Your Comment" rows="3" required></textarea>
@@ -529,7 +532,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             container.innerHTML = approvedComments.map(comment => `
                 <div class="comment" data-comment-id="${comment.id}">
                     <div class="comment-header">
-                        <span class="comment-author">${comment.author}</span>
+                        <span class="comment-author">${comment.author_name}</span>
                         <span class="comment-date">${new Date(comment.created_at).toLocaleDateString()}</span>
                     </div>
                     <div class="comment-content">
@@ -552,7 +555,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             
             const commentData = {
                 post_id: parseInt(postId),
-                author: formData.get('author'),
+                author_name: formData.get('author_name'),
                 content: formData.get('content')
             };
             
