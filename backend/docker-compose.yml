@@ -11,16 +11,16 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
-      - DATABASE_URL=postgres://ocs-beta-db:6SETisZYFCYmpmQT9tcfStVqw3iU1Rk2m5jNLSYsEwDwTcw2I878ERYH8u5WX8wL@168.231.66.214:5432/PortFolio_Blog
+      - DATABASE_URL=postgres://ocs-beta-db:6SETisZYFCYmpmQT9tcfStVqw3iU1Rk2m5jNLSYsEwDwTcw2I878ERYH8u5WX8wL@168.231.66.214:5432/Portfolio_Blog
       - DB_HOST=168.231.66.214
       - DB_PORT=5432
-      - DB_NAME=PortFolio_Blog
+      - DB_NAME=Portfolio_Blog
       - DB_USER=ocs-beta-db
       - DB_PASSWORD=6SETisZYFCYmpmQT9tcfStVqw3iU1Rk2m5jNLSYsEwDwTcw2I878ERYH8u5WX8wL
       - DB_SSL_MODE=disable
-      - JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+      - JWT_SECRET=31e8b46f924f5bbe46485a11df559dff976957d22cc5e348e85ac0c9ef776d1d36b18c55f8c633cde6c3ceafa30729e52ed30779d705a7e3cc43d67d186dd82b
       - ADMIN_USERNAME=admin
-      - ADMIN_PASSWORD_HASH=$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
+      - ADMIN_PASSWORD_HASH=$2b$10$nPx9xOnQ7TE0lmiFj0e1YuIatkzHUL0W1ZZPVdWPK3TLJ8FbhDeci
       - CORS_ORIGIN=https://bytesbyblinken.com
     volumes:
       - ./backend/logs:/app/logs
