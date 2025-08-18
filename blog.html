@@ -514,19 +514,27 @@
             
             let visibleCount = 0;
             allPosts.forEach(post => {
-                const postDate = post.querySelector('.post-date').textContent;
-                const postMonth = postDate.match(/(\w+)\s+\d{1,2},\s+\d{4}/);
+                const postDateElement = post.querySelector('.post-date');
+                if (!postDateElement) return;
                 
-                if (postMonth) {
-                    const postMonthYear = postMonth[1] + ' ' + postMonth[3];
-                    const filterMonthYear = month.substring(0, 4) + '-' + month.substring(5);
+                const postDateText = postDateElement.textContent;
+                // Extract the date from "Published on: YYYY-MM-DD" format
+                const dateMatch = postDateText.match(/Published on: (\d{4}-\d{2}-\d{2})/);
+                
+                if (dateMatch) {
+                    const postDate = new Date(dateMatch[1]);
+                    const postMonth = postDate.getFullYear() + '-' + String(postDate.getMonth() + 1).padStart(2, '0');
                     
-                    if (month === 'all' || postMonthYear.toLowerCase().includes(filterMonthYear.toLowerCase())) {
+                    if (month === 'all' || postMonth === month) {
                         post.style.display = 'block';
                         visibleCount++;
                     } else {
                         post.style.display = 'none';
                     }
+                } else {
+                    // If we can't parse the date, show the post
+                    post.style.display = 'block';
+                    visibleCount++;
                 }
             });
             
@@ -534,6 +542,12 @@
             const noPostsMessage = document.querySelector('.no-posts');
             if (noPostsMessage) {
                 noPostsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+            
+            // Update the dropdown to show the selected month
+            const monthFilter = document.getElementById('month-filter');
+            if (monthFilter) {
+                monthFilter.value = month;
             }
         }
         
