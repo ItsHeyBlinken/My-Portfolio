@@ -117,6 +117,10 @@
         // Configuration
         const API_BASE_URL = 'https://api.bytesbyblinken.com/api';
         
+        // Global variables
+        let blogForm;
+        let newPostForm;
+        
         // Theme Management System
         function initThemeSystem() {
             const themeToggle = document.getElementById('theme-toggle');
@@ -154,8 +158,8 @@
             const newPostBtn = document.getElementById('new-post-btn');
             const editModeBtn = document.getElementById('edit-mode-btn');
             const logoutBtn = document.getElementById('logout-btn');
-            const newPostForm = document.getElementById('new-post-form');
-            const blogForm = document.getElementById('blog-form');
+            newPostForm = document.getElementById('new-post-form');
+            blogForm = document.getElementById('blog-form');
             const cancelPostBtn = document.getElementById('cancel-post');
             
             // Month navigation dropdown
