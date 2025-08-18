@@ -35,6 +35,23 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 const db = require('./config/database');
 
 // Routes
+app.use('/api', (req, res, next) => {
+  if (req.path === '/') {
+    res.json({
+      message: 'Portfolio Blog Backend API',
+      version: '1.0.0',
+      endpoints: {
+        posts: '/api/posts',
+        comments: '/api/comments',
+        auth: '/api/auth',
+        health: '/health'
+      }
+    });
+  } else {
+    next();
+  }
+});
+
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/comments', require('./routes/comments'));
 app.use('/api/auth', require('./routes/auth'));
