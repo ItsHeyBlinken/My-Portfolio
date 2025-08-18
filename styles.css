@@ -1571,6 +1571,197 @@ footer div {
     color: var(--text-primary);
 }
 
+/* Comments Section Styling */
+.comments-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-primary);
+}
+
+.comments-section h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.comments-container {
+    margin-bottom: 2rem;
+}
+
+.comment {
+    background: var(--overlay-bg);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.comment:hover {
+    border-color: var(--border-secondary);
+    box-shadow: 0 4px 16px var(--shadow-secondary);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.comment-author {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.comment-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.comment-content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.comment-actions {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-primary);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.delete-comment-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-comment-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.no-comments {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    background: var(--overlay-bg);
+    border-radius: 12px;
+    border: 1px dashed var(--border-primary);
+}
+
+/* Comment Form Styling */
+.comment-form {
+    background: var(--card-bg);
+    border: 1px solid var(--border-primary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px var(--shadow-secondary);
+}
+
+.comment-form h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.comment-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-primary);
+    border-radius: 8px;
+    background: var(--overlay-bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--bg-secondary);
+    background: var(--overlay-bg-secondary);
+}
+
+.comment-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.submit-comment-btn {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.submit-comment-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--shadow-primary);
+}
+
+/* Mobile Responsiveness for Comments */
+@media (max-width: 768px) {
+    .comment {
+        padding: 1rem;
+    }
+    
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .comment-form {
+        padding: 1rem;
+    }
+    
+    .comment-form h4 {
+        font-size: 1.2rem;
+    }
+}
+
 /* Archive Navigation System */
 .archive-navigation {
     background: var(--card-bg);
