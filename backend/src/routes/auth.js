@@ -3,9 +3,9 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// Admin credentials (should be in environment variables)
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
-const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+// Admin credentials (hardcoded for now)
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD_HASH = '$2y$10$y6vfKFJ6Za8n.qoZsz/j2e/eKZpG0KJt8B8FMerteM10iMJBDlFPi';
 
 // Simple test route to verify loading
 router.get('/test', (req, res) => {
