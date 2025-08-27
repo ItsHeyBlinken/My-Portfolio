@@ -178,17 +178,11 @@
                 <h2>My Projects</h2>
                 <p class="projects-intro">Explore my work across different domains and technologies</p>
                 
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All Projects</button>
-                    <button class="filter-btn" data-filter="web">Web Development</button>
-                    <button class="filter-btn" data-filter="game">Game Development</button>
-                    <button class="filter-btn" data-filter="unity">Unity Projects</button>
-                    <button class="filter-btn" data-filter="javascript">JavaScript</button>
-                </div>
+
             </div>
             
             <div class="projects-grid">
-                <div class="project-tile" data-category="web javascript" style="--animation-order: 1;">
+                <div class="project-tile" style="--animation-order: 1;">
                     <div class="project-badge web">Web Dev</div>
                     <img src="./screenshots/Sizing App.png" alt="Dress Sizing App">
                     <h3>Dress Sizing App</h3>
@@ -202,7 +196,7 @@
                     <button><a href="./projects/Sizing App/Wedding-Gown-Sizing v3.html" target="_blank">View Project</a></button>
                 </div>
                 
-                <div class="project-tile" data-category="web" style="--animation-order: 2;">
+                <div class="project-tile" style="--animation-order: 2;">
                     <div class="project-badge web">Web Dev</div>
                     <img src="./projects/StressFree Site/Stress-Free.png" alt="Stress Free Screenshot">
                     <h3>Website Re-Design</h3>
@@ -216,7 +210,7 @@
                     <button><a href="./projects/StressFree Site/index.html" target="_blank">View Project</a></button>
                 </div>
                 
-                <div class="project-tile" data-category="game javascript" style="--animation-order: 3;">
+                <div class="project-tile" style="--animation-order: 3;">
                     <div class="project-badge game">Game Dev</div>
                     <img src="./projects/Brick Breaker Game/Bricks.png" alt="Brickbreaker game screenshot">
                     <h3>Brickbreaker</h3>
@@ -230,7 +224,7 @@
                     <button><a href="./projects/Brick Breaker Game/index.html" target="_blank">View Project</a></button>
                 </div>
                 
-                <div class="project-tile" data-category="unity game" style="--animation-order: 4;">
+                <div class="project-tile" style="--animation-order: 4;">
                     <div class="project-badge unity">Unity</div>
                     <img src="./projects/Roll-A-Ball/Roll-a-ball.png" alt="Roll-a-ball game screenshot">
                     <h3>3D Roll-a-Ball Game</h3>
@@ -250,7 +244,7 @@
                     <button><a href="./projects/Roll-A-Ball/index.html" target="_blank">View Project</a></button>
                 </div>
                 
-                <div class="project-tile" data-category="javascript" style="--animation-order: 5;">
+                <div class="project-tile" style="--animation-order: 5;">
                     <div class="project-badge javascript">JavaScript</div>
                     <img src="./projects/Message Generator/msg gen.png" alt="Message Generator screenshot">
                     <h3>Message Generator</h3>
@@ -262,6 +256,28 @@
                     <p>This is a simple message generator that creates a random message each time the user clicks the button. The project demonstrates basic JavaScript concepts such as arrays, objects, and functions.</p>
                     <div class="project-status production">Production Ready</div>
                     <button><a href="./projects/Message Generator/index.html" target="_blank">View Project</a></button>
+                </div>
+                
+                <div class="project-tile" style="--animation-order: 6;">
+                    <div class="project-badge web">Web Dev</div>
+                    <img src="./screenshots/To Do List.png" alt="Todo List App Screenshot">
+                    <h3>Todo List Application</h3>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Local Storage</span>
+                    </div>
+                    <p>A comprehensive todo list application with priority levels, due dates, inline editing, and import/export functionality. Features modern responsive design with gradient styling and smooth animations.</p>
+                    <div class="project-status production">Production Ready</div>
+                    <h4>What I Learned</h4>
+                    <ul>
+                        <li>Advanced JavaScript DOM manipulation and event handling.</li>
+                        <li>Local storage implementation for data persistence.</li>
+                        <li>Responsive design with CSS Grid and Flexbox.</li>
+                        <li>Priority-based task management and sorting.</li>
+                    </ul>
+                    <button><a href="./projects/Todo-List/index.html" target="_blank">View Project</a></button>
                 </div>
             </div>
             
@@ -350,56 +366,11 @@
             observer.observe(skillsSection);
         }
         
-        // Project Filtering System
-        function initProjectFiltering() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const projectTiles = document.querySelectorAll('.project-tile');
-            const noProjectsMessage = document.querySelector('.no-projects-message');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const filter = button.getAttribute('data-filter');
-                    
-                    // Update active button state
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    
-                    // Filter projects
-                    let visibleCount = 0;
-                    projectTiles.forEach(tile => {
-                        const categories = tile.getAttribute('data-category');
-                        
-                        if (filter === 'all' || categories.includes(filter)) {
-                            tile.classList.remove('hidden');
-                            visibleCount++;
-                        } else {
-                            tile.classList.add('hidden');
-                        }
-                    });
-                    
-                    // Show/hide no projects message
-                    if (visibleCount === 0) {
-                        noProjectsMessage.style.display = 'block';
-                    } else {
-                        noProjectsMessage.style.display = 'none';
-                    }
-                    
-                    // Animate visible projects
-                    setTimeout(() => {
-                        const visibleTiles = document.querySelectorAll('.project-tile:not(.hidden)');
-                        visibleTiles.forEach((tile, index) => {
-                            tile.style.animationDelay = `${index * 0.1}s`;
-                            tile.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                        });
-                    }, 100);
-                });
-            });
-        }
+
         
         // Initialize all systems when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             initThemeSystem();
-            initProjectFiltering();
         });
         
         // Smooth scrolling for navigation links
