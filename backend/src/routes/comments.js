@@ -3,6 +3,26 @@ const router = express.Router();
 const db = require('../config/database');
 const { authenticateToken } = require('../middleware/auth');
 
+// GET check comments table schema (admin only) - for debugging
+router.get('/schema', authenticateToken, async (req, res) => {
+  try {
+    const query = `
+      SELECT column_name, data_type, column_default, is_nullable
+      FROM information_schema.columns
+      WHERE table_name = 'comments'
+      ORDER BY ordinal_position
+    `;
+    const result = await db.query(query);
+    res.json({
+      table: 'comments',
+      columns: result.rows
+    });
+  } catch (error) {
+    console.error('Error fetching schema:', error);
+    res.status(500).json({ error: 'Error fetching schema' });
+  }
+});
+
 // GET comments by post ID (public) - for frontend compatibility
 router.get('/:postId', async (req, res) => {
   try {
@@ -81,31 +101,31 @@ router.put('/:id/approve', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const { is_approved } = req.body;
-    
+
     console.log(`Attempting to approve comment ${id} with is_approved: ${is_approved}`);
     console.log('Request body:', req.body);
     console.log('User authenticated:', req.user);
-    
+
     const query = `
-      UPDATE comments 
-      SET is_approved = $1, updated_at = NOW() 
-      WHERE id = $2 
+      UPDATE comments
+      SET is_approved = $1, updated_at = NOW()
+      WHERE id = $2
       RETURNING *
     `;
     const values = [is_approved, id];
-    
+
     console.log('Executing query:', query);
     console.log('Query values:', values);
-    
+
     const result = await db.query(query, values);
-    
+
     console.log('Query result:', result);
-    
+
     if (result.rows.length === 0) {
       console.log('Comment not found');
       return res.status(404).json({ error: 'Comment not found' });
     }
-    
+
     console.log('Comment updated successfully:', result.rows[0]);
     res.json(result.rows[0]);
   } catch (error) {
@@ -126,28 +146,28 @@ router.put('/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
     const { content, is_approved } = req.body;
-    
+
     console.log(`Attempting to update comment ${id}`);
     console.log('Request body:', req.body);
-    
+
     const query = `
-      UPDATE comments 
-      SET content = $1, is_approved = $2, updated_at = NOW() 
-      WHERE id = $3 
+      UPDATE comments
+      SET content = $1, is_approved = $2, updated_at = NOW()
+      WHERE id = $3
       RETURNING *
     `;
     const values = [content, is_approved, id];
-    
+
     console.log('Executing query:', query);
     console.log('Query values:', values);
-    
+
     const result = await db.query(query, values);
-    
+
     if (result.rows.length === 0) {
       console.log('Comment not found');
       return res.status(404).json({ error: 'Comment not found' });
     }
-    
+
     console.log('Comment updated successfully:', result.rows[0]);
     res.json(result.rows[0]);
   } catch (error) {
