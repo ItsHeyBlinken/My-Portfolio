@@ -55,13 +55,7 @@
                 <div class="month-navigation">
                     <select id="month-filter" class="month-dropdown">
                         <option value="all">All Posts</option>
-                        <option value="2025-07">July 2025</option>
-                        <option value="2025-06">May/June 2025</option>
-                        <option value="2025-04">April 2025</option>
-                        <option value="2025-03">March 2025</option>
-                        <option value="2025-02">February 2025</option>
-                        <option value="2025-01">January 2025</option>
-                        <option value="2024-12">December 2024</option>
+                        <!-- Options will be dynamically populated based on actual posts -->
                     </select>
                 </div>
             </div>
@@ -592,17 +586,57 @@
         function displayBlogPosts(posts) {
             const container = document.getElementById('blog-posts-container');
             container.innerHTML = '';
-            
+
             if (posts.length === 0) {
                 container.innerHTML = '<div class="no-posts"><h3>No blog posts found</h3><p>Check back soon for new content!</p></div>';
                 return;
             }
-            
+
+            // Update the month dropdown with actual post dates
+            updateMonthDropdown(posts);
+
             posts.forEach((post, index) => {
                 const postElement = createBlogPostElement(post);
                 postElement.style.animationDelay = `${index * 0.1}s`;
                 container.appendChild(postElement);
             });
+        }
+
+        function updateMonthDropdown(posts) {
+            const monthFilter = document.getElementById('month-filter');
+            if (!monthFilter) return;
+
+            // Get current selection
+            const currentSelection = monthFilter.value;
+
+            // Extract unique months from posts
+            const monthsSet = new Set();
+            posts.forEach(post => {
+                const date = new Date(post.published_date);
+                const yearMonth = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                monthsSet.add(yearMonth);
+            });
+
+            // Convert to array and sort (newest first)
+            const months = Array.from(monthsSet).sort((a, b) => b.localeCompare(a));
+
+            // Build dropdown options
+            let options = '<option value="all">All Posts</option>';
+            months.forEach(yearMonth => {
+                const [year, month] = yearMonth.split('-');
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                                   'July', 'August', 'September', 'October', 'November', 'December'];
+                const monthName = monthNames[parseInt(month) - 1];
+                options += `<option value="${yearMonth}">${monthName} ${year}</option>`;
+            });
+
+            // Update dropdown
+            monthFilter.innerHTML = options;
+
+            // Restore previous selection if it still exists
+            if (currentSelection && Array.from(monthFilter.options).some(opt => opt.value === currentSelection)) {
+                monthFilter.value = currentSelection;
+            }
         }
         
         function displayStaticPosts() {
