@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 // Admin credentials (hardcoded for now)
 const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD_HASH = '$2y$10$y6vfKFJ6Za8n.qoZsz/j2e/eKZpG0KJt8B8FMerteM10iMJBDlFPi';
+const ADMIN_PASSWORD_HASH = '$2a$12$tERK9BWe7VioTGLry.uIFucvB0Jw1emYwhiG36Xep5eGKuZQi55xm';
 
 // Simple test route to verify loading
 router.get('/test', (req, res) => {
