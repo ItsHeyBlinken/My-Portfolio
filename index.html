@@ -3,392 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chris Hall - Software Engineer & Game Developer Portfolio. View my projects in web development, Unity game development, and software engineering.">
+    <meta name="description" content="Chris Hall - Software Engineer & Game Developer Portfolio. Web apps, Unity games, and writing about a self-taught developer's journey.">
     <meta name="keywords" content="software engineer, web developer, game developer, Unity, C#, JavaScript, HTML, CSS, portfolio">
     <meta name="author" content="Chris Hall (BytesByBlinken)">
     <meta name="robots" content="index, follow">
-    
+    <meta name="theme-color" content="#0f1216" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8f5ee" media="(prefers-color-scheme: light)">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bytesbyblinken.com/">
     <meta property="og:title" content="Chris Hall - Software Engineer Portfolio">
-    <meta property="og:description" content="Software Engineer & Game Developer Portfolio showcasing web development, Unity projects, and software engineering skills.">
+    <meta property="og:description" content="Software Engineer & Game Developer portfolio - web apps, Unity projects, and writing about the journey.">
     <meta property="og:image" content="https://bytesbyblinken.com/images/Profile.jpg">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bytesbyblinken.com/">
     <meta property="twitter:title" content="Chris Hall - Software Engineer Portfolio">
-    <meta property="twitter:description" content="Software Engineer & Game Developer Portfolio showcasing web development, Unity projects, and software engineering skills.">
+    <meta property="twitter:description" content="Software Engineer & Game Developer portfolio - web apps, Unity projects, and writing about the journey.">
     <meta property="twitter:image" content="https://bytesbyblinken.com/images/Profile.jpg">
-    
+
     <title>Chris Hall - Software Engineer Portfolio | BytesByBlinken</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="./images/Logo.png">
 </head>
 <body>
     <header>
-        <nav id="navbar">
-            <ul>
-                <li><a href="#welcome-section">Welcome</a></li>
-                <li><a href="#skills-section">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a id="profile-link" href="https://github.com/ItsHeyBlinken" target="_blank">GitHub</a></li>
-                <li><a id="profile-link" href="https://www.linkedin.com/in/christopher-hall-65907b291/" target="_blank">LinkedIn</a></li>
-                <li><a id="project-link" href="./blog.html">Blog</a></li>
-                <li class="theme-toggle-container">
-                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
-                        <span class="theme-icon">🌙</span>
+        <nav id="navbar" aria-label="Primary">
+            <div class="nav-shell">
+                <a class="nav-brand" href="#welcome-section">BytesByBlinken</a>
+                <ul class="nav-menu" role="list">
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills-section">Capabilities</a></li>
+                    <li><a href="#writing">Writing</a></li>
+                    <li><a href="./blog.html">Blog</a></li>
+                    <li><a href="https://github.com/ItsHeyBlinken" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/christopher-hall-65907b291/" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+                <div class="nav-end">
+                    <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark/light mode">
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
                     </button>
-                </li>
-            </ul>
+                </div>
+            </div>
         </nav>
     </header>
+
     <main>
         <section id="welcome-section">
-            <div class="welcome">
-                <img id="logo" src="./images/Profile.jpg" alt="profile pic">
-                <h1>Welcome to my Portfolio!</h1>
-                <p>Hi, I'm Chris — a passionate technologist making the transition from gaming enthusiast to software 
-                    engineer. As a lifelong gamer, I discovered that the same strategic thinking and creative problem-solving 
-                    that drew me to gaming translates perfectly to coding. With strong foundations in HTML, CSS, and 
-                    JavaScript, complemented by growing expertise in Python, C#, and ASP.NET, I'm dedicated to leveraging my 
-                    diverse technical toolkit to make a meaningful impact in the tech industry.</p>
-            </div>
-        </section>
-        
-        <section id="skills-section">
-            <div class="skills-container">
-                <h2>Technical Skills</h2>
-                <p class="skills-intro">My technical toolkit spans multiple domains, from web development to game creation</p>
-                
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Frontend Development</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">HTML5</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="95"></div>
-                            </div>
-                            <span class="skill-level">95%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">CSS3</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="90"></div>
-                            </div>
-                            <span class="skill-level">90%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="85"></div>
-                            </div>
-                            <span class="skill-level">85%</span>
-                        </div>
+            <div class="container">
+                <div class="hero-text">
+                    <p class="eyebrow">Software Engineer · Web &amp; Game Developer</p>
+                    <h1>I build clean web apps and small games &mdash; <em>and write about the journey.</em></h1>
+                    <p class="hero-lead">Hi, I'm Chris. A self-taught developer working across HTML, CSS, JavaScript, Python, C#, and Unity. I ship real projects&mdash;client websites, sizing tools, browser games, and a 3D Unity build&mdash;and document the work in a monthly blog.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#projects">View projects</a>
+                        <a class="btn btn-ghost" href="./blog.html">Read the blog</a>
                     </div>
-                    
-                    <div class="skill-category">
-                        <h3>Backend & Languages</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="75"></div>
-                            </div>
-                            <span class="skill-level">75%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">C#</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="70"></div>
-                            </div>
-                            <span class="skill-level">70%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">ASP.NET</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="65"></div>
-                            </div>
-                            <span class="skill-level">65%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>Game Development</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">Unity</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="80"></div>
-                            </div>
-                            <span class="skill-level">80%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Game Design</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="75"></div>
-                            </div>
-                            <span class="skill-level">75%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Physics Systems</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="70"></div>
-                            </div>
-                            <span class="skill-level">70%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>Tools & Technologies</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">Git/GitHub</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="85"></div>
-                            </div>
-                            <span class="skill-level">85%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">VS Code</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="90"></div>
-                            </div>
-                            <span class="skill-level">90%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Responsive Design</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-level="85"></div>
-                            </div>
-                            <span class="skill-level">85%</span>
-                        </div>
-                    </div>
+                    <p class="hero-meta">
+                        <strong>Available for</strong> full-time roles &amp; small-business website work.
+                    </p>
                 </div>
-                
-                <div class="skills-footer">
-                    <p>Always learning and expanding my skill set with new technologies and frameworks!</p>
+                <div class="hero-portrait">
+                    <img id="logo" src="./images/Profile.jpg" alt="Portrait of Chris Hall">
                 </div>
             </div>
         </section>
-        
-        <section id="projects">
-            <div class="projects-header">
-                <h2>My Projects</h2>
-                <p class="projects-intro">Explore my work across different domains and technologies</p>
-                
 
-            </div>
-            
-            <div class="projects-grid">
-                <div class="project-tile" style="--animation-order: 1;">
-                    <div class="project-badge web">Web Dev</div>
-                    <img src="./screenshots/Sizing App.png" alt="Dress Sizing App">
-                    <h3>Dress Sizing App</h3>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <p>Wedding dress sizing app for a local Bridal Boutique. I used HTML/CSS for the front side and JavaScript for the back end.</p>
-                    <div class="project-status alpha">Alpha Version</div>
-                    <button><a href="./projects/Sizing App/Wedding-Gown-Sizing v3.html" target="_blank">View Project</a></button>
+        <section class="proof-strip" aria-label="Focus areas and current work">
+            <div class="container proof-grid">
+                <div class="proof-item">
+                    <span class="proof-label">Currently</span>
+                    <span class="proof-value">Polishing the portfolio &amp; blog system</span>
                 </div>
-                
-                <div class="project-tile" style="--animation-order: 2;">
-                    <div class="project-badge web">Web Dev</div>
-                    <img src="./projects/StressFree Site/Stress-Free.png" alt="Stress Free Screenshot">
-                    <h3>Website Re-Design</h3>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">Responsive</span>
-                    </div>
-                    <p>Local Event Planning company approached me about helping with re-designing their website. I used HTML/CSS to create a more modern design to their specifications with links for booking consultations.</p>
-                    <div class="project-status production">Production Ready</div>
-                    <button><a href="./projects/StressFree Site/index.html" target="_blank">View Project</a></button>
+                <div class="proof-item">
+                    <span class="proof-label">Focus</span>
+                    <span class="proof-value">Web apps, small games, full-stack experiments</span>
                 </div>
-                
-                <div class="project-tile" style="--animation-order: 3;">
-                    <div class="project-badge game">Game Dev</div>
-                    <img src="./projects/Brick Breaker Game/Bricks.png" alt="Brickbreaker game screenshot">
-                    <h3>Brickbreaker</h3>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5 Canvas</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <p>Alpha version of Brickbreaker game. Plays best on a laptop or desktop. I am working on the bugs, but it is playable. Made with HTML Canvas/CSS for the front side, with Javascript on the back side.</p>
-                    <div class="project-status alpha">Alpha Version</div>
-                    <button><a href="./projects/Brick Breaker Game/index.html" target="_blank">View Project</a></button>
-                </div>
-                
-                <div class="project-tile" style="--animation-order: 4;">
-                    <div class="project-badge unity">Unity</div>
-                    <img src="./projects/Roll-A-Ball/Roll-a-ball.png" alt="Roll-a-ball game screenshot">
-                    <h3>3D Roll-a-Ball Game</h3>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Unity</span>
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">3D Physics</span>
-                    </div>
-                    <p>This is a simple 3D game built with Unity where the player controls a rolling ball to collect objects. The project demonstrates key game development concepts such as player movement, physics, collisions, and object interactions.</p>
-                    <div class="project-status beta">Beta Version</div>
-                    <h4>What I Learned</h4>
-                    <ul>
-                        <li>Implementing basic player controls.</li>
-                        <li>Using Unity's physics system for movement.</li>
-                        <li>Creating game mechanics like object collection and win conditions.</li>
-                    </ul>
-                    <button><a href="./projects/Roll-A-Ball/index.html" target="_blank">View Project</a></button>
-                </div>
-                
-                <div class="project-tile" style="--animation-order: 5;">
-                    <div class="project-badge javascript">JavaScript</div>
-                    <img src="./projects/Message Generator/msg gen.png" alt="Message Generator screenshot">
-                    <h3>Message Generator</h3>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <p>This is a simple message generator that creates a random message each time the user clicks the button. The project demonstrates basic JavaScript concepts such as arrays, objects, and functions.</p>
-                    <div class="project-status production">Production Ready</div>
-                    <button><a href="./projects/Message Generator/index.html" target="_blank">View Project</a></button>
-                </div>
-                
-                <div class="project-tile" style="--animation-order: 6;">
-                    <div class="project-badge web">Web Dev</div>
-                    <img src="./screenshots/To-Do-List.png" alt="Todo List App Screenshot">
-                    <h3>Todo List Application</h3>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Local Storage</span>
-                    </div>
-                    <p>A comprehensive todo list application with priority levels, due dates, inline editing, and import/export functionality. Features modern responsive design with gradient styling and smooth animations.</p>
-                    <div class="project-status production">Production Ready</div>
-                    <h4>What I Learned</h4>
-                    <ul>
-                        <li>Advanced JavaScript DOM manipulation and event handling.</li>
-                        <li>Local storage implementation for data persistence.</li>
-                        <li>Responsive design with CSS Grid and Flexbox.</li>
-                        <li>Priority-based task management and sorting.</li>
-                    </ul>
-                                         <div class="project-buttons">
-                         <button><a href="./projects/ToDo-List/index.html" target="_blank">View Project</a></button>
-                         <!-- <button class="download-btn"><a href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank">Download Desktop App</a></button> -->
-                     </div>
+                <div class="proof-item">
+                    <span class="proof-label">Stack</span>
+                    <span class="proof-value">JavaScript · Python · C# · Unity · Node</span>
                 </div>
             </div>
-            
-            <div class="no-projects-message" style="display: none;">
-                <h3>No projects found in this category</h3>
-                <p>Check back soon for new projects!</p>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <header class="projects-header">
+                    <p class="eyebrow">Selected work</p>
+                    <h2>Projects that shipped</h2>
+                    <p class="projects-intro">A mix of client work, small games, and JavaScript apps&mdash;each one shaped by what I needed to learn next.</p>
+                </header>
+
+                <div class="projects-grid">
+                    <article class="project-card project-tile" style="--animation-order: 1;">
+                        <div class="project-media">
+                            <span class="project-badge web">Web</span>
+                            <img src="./screenshots/Sizing App.png" alt="Wedding-dress sizing app interface">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>Dress Sizing App</h3>
+                                <span class="project-status alpha">Alpha</span>
+                            </div>
+                            <p class="project-role">Solo build · client work for a local bridal boutique</p>
+                            <p>A wedding-dress sizing tool that streamlines fittings for staff and customers. Built with HTML/CSS for the UI and JavaScript for the sizing logic.</p>
+                            <ul class="tech-stack">
+                                <li class="tech-tag">HTML5</li>
+                                <li class="tech-tag">CSS3</li>
+                                <li class="tech-tag">JavaScript</li>
+                            </ul>
+                            <a class="project-link" href="./projects/Sizing App/Wedding-Gown-Sizing v3.html" target="_blank" rel="noopener">View project &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card project-tile" style="--animation-order: 2;">
+                        <div class="project-media">
+                            <span class="project-badge web">Web</span>
+                            <img src="./projects/StressFree Site/Stress-Free.png" alt="StressFree event-planning website redesign">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>StressFree Website Redesign</h3>
+                                <span class="project-status production">Live</span>
+                            </div>
+                            <p class="project-role">Solo build · client work for a local event-planning company</p>
+                            <p>A modern multi-page redesign for a local event planner&mdash;new layout, gallery system, and a clear path to booking consultations.</p>
+                            <ul class="tech-stack">
+                                <li class="tech-tag">HTML5</li>
+                                <li class="tech-tag">CSS3</li>
+                                <li class="tech-tag">Responsive</li>
+                            </ul>
+                            <a class="project-link" href="./projects/StressFree Site/index.html" target="_blank" rel="noopener">View project &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card project-tile" style="--animation-order: 3;">
+                        <div class="project-media">
+                            <span class="project-badge unity">Unity</span>
+                            <img src="./projects/Roll-A-Ball/Roll-a-ball.png" alt="3D Roll-a-Ball Unity game screenshot">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>3D Roll-a-Ball</h3>
+                                <span class="project-status beta">Beta</span>
+                            </div>
+                            <p class="project-role">Solo build · Unity learning project</p>
+                            <p>A 3D Unity game where the player rolls a ball through a level to collect objects&mdash;a hands-on intro to player input, physics, collisions, and win conditions.</p>
+                            <ul class="tech-stack">
+                                <li class="tech-tag">Unity</li>
+                                <li class="tech-tag">C#</li>
+                                <li class="tech-tag">3D Physics</li>
+                            </ul>
+                            <a class="project-link" href="./projects/Roll-A-Ball/index.html" target="_blank" rel="noopener">Play it &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card project-tile" style="--animation-order: 4;">
+                        <div class="project-media">
+                            <span class="project-badge game">Game</span>
+                            <img src="./projects/Brick Breaker Game/Bricks.png" alt="Brick Breaker browser game">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>Brick Breaker</h3>
+                                <span class="project-status alpha">Alpha</span>
+                            </div>
+                            <p class="project-role">Solo build · canvas game experiment</p>
+                            <p>A canvas-based take on the classic brick-breaker arcade game. Plays best on desktop while I work through the remaining bugs.</p>
+                            <ul class="tech-stack">
+                                <li class="tech-tag">HTML5 Canvas</li>
+                                <li class="tech-tag">CSS3</li>
+                                <li class="tech-tag">JavaScript</li>
+                            </ul>
+                            <a class="project-link" href="./projects/Brick Breaker Game/index.html" target="_blank" rel="noopener">Play it &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card project-tile" style="--animation-order: 5;">
+                        <div class="project-media">
+                            <span class="project-badge web">Web</span>
+                            <img src="./screenshots/To-Do-List.png" alt="Todo list application interface">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>Todo List App</h3>
+                                <span class="project-status production">Live</span>
+                            </div>
+                            <p class="project-role">Solo build · responsive productivity app</p>
+                            <p>A responsive todo app with priorities, due dates, inline editing, and import/export&mdash;all backed by browser local storage so nothing is lost between sessions.</p>
+                            <ul class="tech-stack">
+                                <li class="tech-tag">HTML5</li>
+                                <li class="tech-tag">CSS3</li>
+                                <li class="tech-tag">JavaScript</li>
+                                <li class="tech-tag">Local Storage</li>
+                            </ul>
+                            <a class="project-link" href="./projects/ToDo-List/index.html" target="_blank" rel="noopener">View project &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card project-tile" style="--animation-order: 6;">
+                        <div class="project-media">
+                            <span class="project-badge javascript">JavaScript</span>
+                            <img src="./projects/Message Generator/msg gen.png" alt="Message generator app screenshot">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>Message Generator</h3>
+                                <span class="project-status production">Live</span>
+                            </div>
+                            <p class="project-role">Solo build · JavaScript fundamentals warm-up</p>
+                            <p>A small generator that produces a random message on click. A quick way to keep my JavaScript fundamentals&mdash;arrays, objects, and functions&mdash;sharp.</p>
+                            <ul class="tech-stack">
+                                <li class="tech-tag">HTML5</li>
+                                <li class="tech-tag">CSS3</li>
+                                <li class="tech-tag">JavaScript</li>
+                            </ul>
+                            <a class="project-link" href="./projects/Message Generator/index.html" target="_blank" rel="noopener">View project &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="no-projects-message" style="display: none;">
+                    <h3>No projects found in this category</h3>
+                    <p>Check back soon for new projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills-section">
+            <div class="container skills-container">
+                <header class="section-header">
+                    <p class="eyebrow">Capabilities</p>
+                    <h2>What I bring to a team</h2>
+                    <p class="skills-intro">A working toolkit across frontend, full-stack, and game development&mdash;always growing as I take on new projects.</p>
+                </header>
+
+                <div class="capabilities">
+                    <article class="capability">
+                        <h3>Frontend</h3>
+                        <p class="capability-summary">Build responsive, accessible interfaces with modern HTML, CSS, and JavaScript&mdash;mobile-first, semantic, and themed.</p>
+                        <ul class="capability-tags">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>JavaScript</li>
+                            <li>Responsive design</li>
+                        </ul>
+                    </article>
+
+                    <article class="capability">
+                        <h3>Full-Stack &amp; Languages</h3>
+                        <p class="capability-summary">Comfortable wiring small applications end-to-end with Python or .NET, and growing into larger Node/Express services.</p>
+                        <ul class="capability-tags">
+                            <li>Python</li>
+                            <li>C#</li>
+                            <li>ASP.NET</li>
+                            <li>Node / Express</li>
+                        </ul>
+                    </article>
+
+                    <article class="capability">
+                        <h3>Game Development</h3>
+                        <p class="capability-summary">Design and ship small Unity games&mdash;player input, physics, collisions, and win conditions&mdash;plus canvas-based browser games.</p>
+                        <ul class="capability-tags">
+                            <li>Unity</li>
+                            <li>Game design</li>
+                            <li>Physics systems</li>
+                        </ul>
+                    </article>
+
+                    <article class="capability">
+                        <h3>Tools &amp; Workflow</h3>
+                        <p class="capability-summary">Day-to-day workflow built around Git, VS Code, and modern editors&mdash;with an eye toward keeping projects deployable and reviewable.</p>
+                        <ul class="capability-tags">
+                            <li>Git / GitHub</li>
+                            <li>VS Code</li>
+                            <li>Docker (basics)</li>
+                            <li>Coolify deploys</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <p class="skills-footer">Always learning&mdash;each project picks up something new from the toolkit and adds something to it.</p>
+            </div>
+        </section>
+
+        <section id="writing">
+            <div class="container">
+                <header class="section-header">
+                    <p class="eyebrow">From the blog</p>
+                    <h2>Notes from the journey</h2>
+                    <p class="section-lead">Monthly write-ups about what I'm building, what I'm learning, and what's next. The full archive lives on the blog.</p>
+                </header>
+
+                <ul class="writing-list">
+                    <li class="writing-item">
+                        <span class="writing-date">July 2025</span>
+                        <div>
+                            <h3 class="writing-title"><a href="./blog.html">July Update: Crunch Time Before Launch</a></h3>
+                            <p class="writing-summary">Less than a month from soft-launching Online Card Show&mdash;production prep, a new role at the day job, and what comes next.</p>
+                        </div>
+                    </li>
+                    <li class="writing-item">
+                        <span class="writing-date">April 2025</span>
+                        <div>
+                            <h3 class="writing-title"><a href="./blog.html">April Progress Update &mdash; Gearing Up for Beta</a></h3>
+                            <p class="writing-summary">Polishing core flows, sharpening the data model, and getting a first beta into trusted hands.</p>
+                        </div>
+                    </li>
+                    <li class="writing-item">
+                        <span class="writing-date">December 2024</span>
+                        <div>
+                            <h3 class="writing-title"><a href="./blog.html">My First Blog Post: A New Adventure Begins</a></h3>
+                            <p class="writing-summary">Why I'm writing in public&mdash;and what to expect from the BytesByBlinken blog over the year ahead.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <a class="btn btn-ghost" href="./blog.html">Read all posts &rarr;</a>
             </div>
         </section>
     </main>
-    <footer>
-        <div>
-            <p>*All Source Code can be found on my GitHub*</p>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-brand">
+                <img id="footer-logo" src="./images/Logo.png" alt="BytesByBlinken logo">
+                <p class="footer-tagline">Building, learning, and writing in public&mdash;one project at a time.</p>
+            </div>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="#projects">Projects</a>
+                <a href="#skills-section">Capabilities</a>
+                <a href="./blog.html">Blog</a>
+                <a href="https://github.com/ItsHeyBlinken" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/christopher-hall-65907b291/" target="_blank" rel="noopener">LinkedIn</a>
+            </nav>
+            <div class="footer-contact">
+                <p class="footer-eyebrow">Get in touch</p>
+                <a class="footer-email" href="mailto:BytesByBlinken@gmail.com">BytesByBlinken@gmail.com</a>
+                <p class="footer-tagline">Open to full-time roles and small-business websites.</p>
+            </div>
         </div>
-        <div>
-            <p><strong>Copyright &copy; 2025 - <strong>BytesByBlinken</strong></p>
-        </div>
-        <div>
-            <img id="footer-logo" src="./images/Logo.png" alt="Logo">
-        </div>
-        <div>
-            <p>Contact Me @ BytesByBlinken@gmail.com</p>
+        <div class="footer-bar container">
+            <p>&copy; 2026 BytesByBlinken &middot; All source code on GitHub</p>
         </div>
     </footer>
-    
+
     <script>
-        // Theme Management System
+        // Theme management
         function initThemeSystem() {
             const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = document.querySelector('.theme-icon');
-            
-            // Check for saved theme preference or default to dark
             const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
             updateThemeIcon(savedTheme);
-            
-            // Theme toggle functionality
+
             themeToggle.addEventListener('click', () => {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                // Apply new theme
                 document.documentElement.setAttribute('data-theme', newTheme);
                 localStorage.setItem('portfolio-theme', newTheme);
                 updateThemeIcon(newTheme);
-                
-                // Add smooth transition effect
-                document.body.style.transition = 'background-color 0.3s ease';
-                setTimeout(() => {
-                    document.body.style.transition = '';
-                }, 300);
             });
         }
-        
+
         function updateThemeIcon(theme) {
             const themeIcon = document.querySelector('.theme-icon');
-            if (theme === 'light') {
-                themeIcon.textContent = '☀️';
-            } else {
-                themeIcon.textContent = '🌙';
-            }
+            themeIcon.textContent = theme === 'light' ? '☀️' : '🌙';
         }
-        
-        // Animate skill bars when they come into view
-        function animateSkillBars() {
-            const skillBars = document.querySelectorAll('.skill-progress');
-            
-            skillBars.forEach(bar => {
-                const level = bar.getAttribute('data-level');
-                bar.style.width = level + '%';
-            });
-        }
-        
-        // Intersection Observer to trigger animations when skills section is visible
-        const skillsSection = document.querySelector('#skills-section');
-        if (skillsSection) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Small delay to ensure smooth animation
-                        setTimeout(animateSkillBars, 300);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.3 });
-            
-            observer.observe(skillsSection);
-        }
-        
 
-        
-        // Initialize all systems when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initThemeSystem();
-        });
-        
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for in-page anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                if (targetId.length <= 1) return;
+                const target = document.querySelector(targetId);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', initThemeSystem);
     </script>
 </body>
 </html>
