@@ -1,8 +1,8 @@
 # Active Context
 
 ## Current focus
-Implementing the approved Portfolio Design Refresh Plan
-(`.cursor/plans/portfolio-refresh_a6078be9.plan.md`).
+Projects archive page shipped — `projects.html` with live hosted, in-development,
+and demo sections. Homepage `#projects` reduced to a 3-card featured teaser.
 
 ## Approved direction
 - Tone: professional and editorial.
@@ -41,3 +41,5 @@ an afterthought.
   maintainability.
 - Consider adding real Open Graph images and a favicon refresh.
 - Consider an "About" section/page if Chris wants more space for narrative.
+- Add screenshots for live hosted projects (currently using placeholder initials).
+- Optionally link live projects to their GitHub repos in addition to live URLs.

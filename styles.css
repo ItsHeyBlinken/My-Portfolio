@@ -854,6 +854,8 @@ body > header {
 .project-status.alpha::before { background: var(--warning); }
 .project-status.beta::before { background: var(--accent); }
 .project-status.production::before { background: var(--success); }
+.project-status.prelaunch::before { background: var(--warning); }
+.project-status.dev::before { background: var(--text-muted); }
 
 /* Project link */
 .project-link {
@@ -921,6 +923,77 @@ body > header {
     border-radius: var(--radius-lg);
     color: var(--text-secondary);
     background: var(--overlay-bg);
+}
+
+/* Projects archive page */
+.projects-page {
+    padding: var(--space-10) 0 var(--space-12);
+    background: var(--bg-page);
+}
+
+.projects-page-header {
+    max-width: 720px;
+    margin-bottom: var(--space-8);
+}
+
+.projects-page-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, var(--fs-4xl));
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+}
+
+.projects-page-header p {
+    color: var(--text-secondary);
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
+    margin: 0;
+    max-width: 60ch;
+}
+
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-8);
+}
+
+.projects-subsection {
+    margin-bottom: var(--space-10);
+}
+
+.projects-subsection:last-of-type {
+    margin-bottom: 0;
+}
+
+.projects-page .project-tile.hidden {
+    display: none;
+}
+
+.project-media--placeholder {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--bg-surface-2), var(--bg-surface));
+}
+
+.project-placeholder-label {
+    font-family: var(--font-display);
+    font-size: var(--fs-3xl);
+    font-weight: 600;
+    color: var(--text-muted);
+    opacity: 0.35;
+    letter-spacing: 0.08em;
+    user-select: none;
+}
+
+.project-link--github {
+    color: var(--text-secondary);
+}
+
+.project-link--github:hover {
+    color: var(--accent-strong);
+    border-bottom-color: var(--accent-strong);
 }
 
 

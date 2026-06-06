@@ -51,3 +51,15 @@ Append-only running log of completed tasks and significant decisions.
   so section intros stacked above the following content.
 - Fix: scope sticky + z-index to primary nav only via `body > header` in
   `styles.css`.
+
+## 2026-06-06 -- Projects archive page
+- Created `projects.html` with three sections: Live & Hosted (8), In Development
+  (7), and Demos & Experiments (6).
+- Content sourced from `LIVE-HOSTED-PROJECTS.md` and `LOCAL-DEV-Projects.md`.
+- In-development cards link to GitHub profile (`ItsHeyBlinken`) for source code.
+- Added category filter bar (All / Live / In Development / Demos) with JS.
+- Added CSS for projects page layout, placeholder media, dev/prelaunch status
+  badges, and GitHub link styling.
+- Reduced homepage `#projects` to 3 featured cards (Online Card Show, Planner
+  CRM, Dress Sizing App) with "View all projects" CTA.
+- Updated nav links in `index.html` and `blog.html` to point to `projects.html`.
