@@ -63,3 +63,18 @@ Append-only running log of completed tasks and significant decisions.
 - Reduced homepage `#projects` to 3 featured cards (Online Card Show, Planner
   CRM, Dress Sizing App) with "View all projects" CTA.
 - Updated nav links in `index.html` and `blog.html` to point to `projects.html`.
+
+## 2026-08-29 -- Homepage redesign (approved mock)
+- Restructured `index.html` to match approved visual mock:
+  - Nav: Projects, Blog, Contact (+ theme toggle); removed Capabilities,
+    Writing, GitHub, LinkedIn, BytesByBlinken Media from primary nav.
+  - Hero: new copy, CTAs to #work and #contact.
+  - Selected work (#work): flagship Online Card Show card + SmoothGig CRM and
+    Chat App supporting cards; link to projects.html.
+  - Contact (#contact): email, GitHub, LinkedIn.
+  - Minimal footer: © 2026 BytesByBlinken.
+- Removed from homepage DOM: proof strip, capabilities section, blog teaser.
+- Added CSS for flagship horizontal card, two-up supporting grid, contact
+  section, and minimal footer in `styles.css`.
+- Aligned primary nav on `projects.html` and `blog.html` (Contact →
+  index.html#contact).
