@@ -1,8 +1,8 @@
 # Active Context
 
 ## Current focus
-Projects archive page shipped — `projects.html` with live hosted, in-development,
-and demo sections. Homepage `#projects` reduced to a 3-card featured teaser.
+Homepage redesign shipped — new IA: hero, selected work (#work), contact (#contact),
+minimal footer. Nav simplified to Projects / Blog / Contact across primary pages.
 
 ## Approved direction
 - Tone: professional and editorial.
@@ -21,17 +21,14 @@ restrained accents, and subtle developer cues. Dark mode remains a peer, not
 an afterthought.
 
 ## Section sequence (homepage)
-1. Hero -- identity, role, calls to action.
-2. Proof strip -- focus areas (web, game, full-stack journey) and external
-   links (GitHub, LinkedIn).
-3. Featured projects -- impact-led cards (outcome, role, tech, status, link).
-4. Skills -- grouped capabilities (replacing percent bars with capability
-   clusters and tools).
-5. Recent writing -- short blog preview that links into `blog.html`.
-6. Contact / footer -- email, copyright, and footer marks.
+1. Sticky nav — wordmark, Projects / Blog / Contact, theme toggle.
+2. Hero — identity, role, CTAs to #work and #contact.
+3. Selected work (#work) — flagship Online Card Show + two supporting cards.
+4. Contact (#contact) — email, GitHub, LinkedIn.
+5. Minimal footer — copyright only.
 
 ## Active constraints
-- Do not commit or push to GitHub.
+- Do not commit or push to GitHub (user handles commits unless cloud agent).
 - Do not run database migrations or deployment-changing actions.
 - Backend (`backend/`) is untouched.
 - Embedded project demos under `projects/` are not redesigned in this pass.

@@ -508,6 +508,14 @@ body > header {
 
 .hero-text .eyebrow {
     margin-bottom: var(--space-4);
+    text-transform: none;
+    letter-spacing: 0.08em;
+}
+
+#work .eyebrow,
+#contact .eyebrow {
+    text-transform: none;
+    letter-spacing: 0.08em;
 }
 
 #welcome-section h1 {
@@ -607,12 +615,69 @@ body > header {
 
 
 /* -----------------------------------------------------------------
-   8. Featured projects
+   8. Featured / selected work (homepage)
    ----------------------------------------------------------------- */
 
+#work,
 #projects {
     padding: var(--space-10) 0;
     background: var(--bg-page);
+}
+
+#work .projects-header {
+    margin-bottom: var(--space-8);
+}
+
+/* Flagship: screenshot left, copy right */
+.project-card--flagship {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 0;
+    margin-bottom: var(--space-6);
+    flex-direction: unset;
+}
+
+.project-card--flagship .project-media {
+    aspect-ratio: auto;
+    min-height: 280px;
+}
+
+.project-card--flagship .project-body {
+    justify-content: center;
+    padding: var(--space-7) var(--space-8);
+}
+
+.project-card--flagship .project-status {
+    align-self: flex-start;
+    margin-bottom: var(--space-2);
+}
+
+.project-card--flagship h3 {
+    font-size: var(--fs-2xl);
+}
+
+/* Supporting cards: two-up row */
+.work-grid-supporting {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-7);
+}
+
+.work-archive-link {
+    display: inline-block;
+    font-family: var(--font-text);
+    font-size: var(--fs-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid transparent;
+    transition: color var(--dur-fast) var(--ease),
+                border-color var(--dur-fast) var(--ease);
+}
+
+.work-archive-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 
 .projects-header {
@@ -1206,6 +1271,55 @@ body > header {
 
 
 /* -----------------------------------------------------------------
+   10b. Contact (homepage)
+   ----------------------------------------------------------------- */
+
+#contact {
+    padding: var(--space-10) 0 var(--space-12);
+    background: var(--bg-page);
+    border-top: 1px solid var(--border-subtle);
+}
+
+#contact .section-header {
+    margin-bottom: var(--space-6);
+}
+
+.contact-email {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, var(--fs-3xl));
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-5);
+    border-bottom: 1px solid transparent;
+    transition: color var(--dur-fast) var(--ease),
+                border-color var(--dur-fast) var(--ease);
+}
+
+.contact-email:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.contact-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.contact-social a {
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color var(--dur-fast) var(--ease);
+}
+
+.contact-social a:hover {
+    color: var(--accent);
+}
+
+
+/* -----------------------------------------------------------------
    11. Footer
    ----------------------------------------------------------------- */
 
@@ -1296,6 +1410,21 @@ footer {
     color: var(--text-muted);
     font-size: var(--fs-xs);
     letter-spacing: 0.04em;
+}
+
+.site-footer--minimal {
+    padding: var(--space-6) 0;
+    text-align: center;
+}
+
+.site-footer--minimal .container {
+    display: block;
+}
+
+.site-footer--minimal p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--fs-sm);
 }
 
 /* Legacy footer used on blog.html (simpler layout) */
@@ -2076,6 +2205,19 @@ footer:not(.site-footer) #footer-logo {
     #logo {
         max-width: 220px;
         border-radius: var(--radius-lg);
+    }
+
+    .project-card--flagship {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card--flagship .project-media {
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+    }
+
+    .work-grid-supporting {
+        grid-template-columns: 1fr;
     }
 
     .proof-grid {
