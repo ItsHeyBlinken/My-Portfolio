@@ -6,10 +6,10 @@ const pool = new Pool(
     connectionString: process.env.DATABASE_URL,
     ssl: process.env.DB_SSL_MODE === 'require' ? { rejectUnauthorized: false } : false
   } : {
-    user: process.env.DB_USER || 'ocs-beta-db',
-    host: process.env.DB_HOST || '168.231.66.214',
-    database: process.env.DB_NAME || 'Portfolio_Blog',
-    password: process.env.DB_PASSWORD || '6SETisZYFCYmpmQT9tcfStVqw3iU1Rk2m5jNLSYsEwDwTcw2I878ERYH8u5WX8wL',
+    user: process.env.DB_USER || 'postgres',
+    host: process.env.DB_HOST || 'localhost',
+    database: process.env.DB_NAME || 'portfolio_blog',
+    password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT || 5432,
     ssl: process.env.DB_SSL_MODE === 'require' ? { rejectUnauthorized: false } : false
   }

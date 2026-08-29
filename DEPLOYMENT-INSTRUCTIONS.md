@@ -20,11 +20,22 @@ This guide will walk you through setting up a complete blog system for your port
 
 ---
 
+## **🔐 Secrets and environment variables**
+
+**Never commit real credentials to Git.** Store production values in:
+
+- **Coolify / hosting dashboard** — environment variables for deployed services
+- **Local untracked `.env`** — copy `backend/.env.example` to `backend/.env` and fill in values for local Docker runs
+
+The tables and examples below use obvious placeholders (`CHANGE_ME`, `your-vps-host`, etc.). Replace every placeholder with your own values before deploying.
+
+---
+
 ## **🔧 Step 1: Database Setup**
 
 ### **1.1 Run Database Script**
 1. **Open PgAdmin** on your VPS
-2. **Connect to your database** `portfolio_blog`
+2. **Connect to your database** (e.g. `portfolio_blog`)
 3. **Open Query Tool** and paste the contents of `database-setup.sql`
 4. **Execute the script** to create tables and **complete blog archive**
 
@@ -86,26 +97,27 @@ git push -u origin main
 4. **Health Check Path**: `/health`
 
 ### **3.4 Environment Variables**
-Add these variables in Coolify:
+Add these variables in Coolify (use your real values — placeholders shown for documentation only):
 
-| Variable | Value | Description |
-|----------|-------|-------------|
+| Variable | Example placeholder | Description |
+|----------|---------------------|-------------|
 | `NODE_ENV` | `production` | Environment mode |
 | `PORT` | `3000` | Server port |
-| `DB_HOST` | `168.231.66.214` | Database host |
+| `DB_HOST` | `your-vps-host` | Database host (hostname or IP of your VPS) |
 | `DB_PORT` | `5432` | Database port |
 | `DB_NAME` | `portfolio_blog` | Database name |
-| `DB_USER` | `ocs-beta-db` | Database username |
-| `DB_PASSWORD` | `6SETisZYFCYmpmQT9tcfStVqw3iU1Rk2m5jNLSYsEwDwTcw2I878ERYH8u5WX8wL` | Database password |
-| `JWT_SECRET` | `your-super-secret-jwt-key-change-this-in-production` | JWT signing secret |
+| `DB_USER` | `your-db-user` | Database username |
+| `DB_PASSWORD` | `CHANGE_ME` | Database password |
+| `DB_SSL_MODE` | `require` | Use `require` in production; `disable` only for local dev |
+| `JWT_SECRET` | `changeme-jwt-secret-min-32-chars-long-here` | JWT signing secret (generate a unique random value) |
 | `ADMIN_USERNAME` | `admin` | Admin username |
-| `ADMIN_PASSWORD_HASH` | `$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi` | Admin password hash |
+| `ADMIN_PASSWORD_HASH` | `CHANGE_ME_bcrypt_hash` | bcrypt hash of your admin password |
 
 ### **3.5 Deploy**
 1. **Click "Deploy"**
 2. **Monitor build logs** for any errors
 3. **Wait for deployment** to complete
-4. **Verify health check** passes: `http://168.231.66.214:3000/health`
+4. **Verify health check** passes: `http://your-vps-host:3000/health`
 
 ---
 
@@ -123,34 +135,34 @@ Your `blog.html` is already updated with:
 1. **Open your blog page**
 2. **Verify all 8 monthly posts load** from the API
 3. **Test archive navigation** by clicking different months
-4. **Test admin login** (username: `admin`, password: `password`)
+4. **Test admin login** with the username and password you configured (not defaults from this repo)
 5. **Create a test post** to verify functionality
 
 ---
 
 ## **🔐 Step 5: Security Setup**
 
-### **5.1 Change Default Credentials**
-1. **Generate new password hash**:
+### **5.1 Set Admin Credentials**
+1. **Generate a password hash**:
    ```bash
    # Install bcryptjs globally
    npm install -g bcryptjs
    
-   # Generate hash for new password
+   # Generate hash for your password
    node -e "const bcrypt = require('bcryptjs'); console.log(bcrypt.hashSync('YOUR_NEW_PASSWORD', 10));"
    ```
 
 2. **Update Coolify environment variable**:
-   - `ADMIN_PASSWORD_HASH`: [new hash from above]
+   - `ADMIN_PASSWORD_HASH`: paste the hash from above (keep the value secret)
 
-### **5.2 Update JWT Secret**
+### **5.2 Set JWT Secret**
 1. **Generate random JWT secret**:
    ```bash
    node -e "console.log(require('crypto').randomBytes(64).toString('hex'));"
    ```
 
 2. **Update Coolify environment variable**:
-   - `JWT_SECRET`: [new secret from above]
+   - `JWT_SECRET`: paste the secret from above
 
 ### **5.3 Redeploy**
 1. **Go back to Coolify**
@@ -161,15 +173,17 @@ Your `blog.html` is already updated with:
 ## **📱 Step 6: Testing & Verification**
 
 ### **6.1 API Endpoints Test**
+Replace `your-vps-host` with your actual host when running these locally:
+
 ```bash
 # Health check
-curl http://168.231.66.214:3000/health
+curl http://your-vps-host:3000/health
 
 # Get all posts (should return 8 posts)
-curl http://168.231.66.214:3000/api/posts
+curl http://your-vps-host:3000/api/posts
 
 # Get specific post
-curl http://168.231.66.214:3000/api/posts/1
+curl http://your-vps-host:3000/api/posts/1
 ```
 
 ### **6.2 Frontend Testing**
@@ -222,7 +236,7 @@ git push origin main
 ## **📊 Step 9: Monitoring & Health**
 
 ### **9.1 Health Check**
-- **Endpoint**: `http://168.231.66.214:3000/health`
+- **Endpoint**: `http://your-vps-host:3000/health`
 - **Coolify monitors** this automatically
 - **Alerts** if service goes down
 
@@ -242,9 +256,9 @@ git push origin main
 # Check if PostgreSQL is running
 sudo systemctl status postgresql
 
-# Verify credentials in Coolify
-# Test connection manually
-psql -h 168.231.66.214 -U ocs-beta-db -d portfolio_blog
+# Verify credentials in Coolify (or your local .env)
+# Test connection manually — use your real host, user, and database name
+psql -h your-vps-host -U your-db-user -d portfolio_blog
 ```
 
 #### **2. Port Already in Use**
@@ -294,7 +308,7 @@ sudo netstat -tulpn | grep :3000
 
 ### **Immediate**
 1. **Test everything** thoroughly
-2. **Change default passwords**
+2. **Use strong, unique passwords and secrets** (never the repo placeholders)
 3. **Add your own blog posts**
 4. **Test archive navigation**
 

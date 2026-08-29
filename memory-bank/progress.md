@@ -52,6 +52,12 @@ Append-only running log of completed tasks and significant decisions.
 - Fix: scope sticky + z-index to primary nav only via `body > header` in
   `styles.css`.
 
+## 2026-08-29 -- Security: strip exposed credentials from HEAD
+- Rewrote `DEPLOYMENT-INSTRUCTIONS.md` to use placeholders only; operators set real values in Coolify or untracked `.env`.
+- Switched `backend/docker-compose.yml` to `env_file: .env` with `${VAR}` substitution; added `backend/.env.example` with placeholders.
+- Extended `.gitignore` for `.env`, `*.pem`, keys, and `secrets/`.
+- Removed production credential fallbacks from `backend/src/config/database.js`; updated `backend/README.md` default example user.
+
 ## 2026-06-06 -- Projects archive page
 - Created `projects.html` with three sections: Live & Hosted (8), In Development
   (7), and Demos & Experiments (6).

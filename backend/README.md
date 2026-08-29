@@ -110,7 +110,7 @@ A Node.js/Express backend API for managing a portfolio blog system with PostgreS
 | `DB_HOST` | Database host | `localhost` |
 | `DB_PORT` | Database port | `5432` |
 | `DB_NAME` | Database name | `portfolio_blog` |
-| `DB_USER` | Database username | `ocs-beta-db` |
+| `DB_USER` | Database username | `your-db-user` |
 | `DB_PASSWORD` | Database password | Required |
 | `JWT_SECRET` | JWT signing secret | Required |
 | `ADMIN_USERNAME` | Admin username | `admin` |
