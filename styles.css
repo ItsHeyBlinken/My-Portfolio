@@ -618,7 +618,11 @@ body > header {
    8. Featured / selected work (homepage)
    ----------------------------------------------------------------- */
 
-#work,
+#work {
+    padding: var(--space-10) 0 var(--space-12);
+    background: var(--bg-page);
+}
+
 #projects {
     padding: var(--space-10) 0;
     background: var(--bg-page);
@@ -661,11 +665,12 @@ body > header {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-6);
-    margin-bottom: var(--space-7);
+    margin-bottom: var(--space-8);
 }
 
 .work-archive-link {
     display: inline-block;
+    margin-top: var(--space-3);
     font-family: var(--font-text);
     font-size: var(--fs-base);
     font-weight: 600;
@@ -1275,13 +1280,25 @@ body > header {
    ----------------------------------------------------------------- */
 
 #contact {
-    padding: var(--space-10) 0 var(--space-12);
+    padding: var(--space-12) 0 var(--space-10);
     background: var(--bg-page);
     border-top: 1px solid var(--border-subtle);
 }
 
 #contact .section-header {
-    margin-bottom: var(--space-6);
+    margin-bottom: 0;
+}
+
+#contact .eyebrow {
+    margin-bottom: var(--space-4);
+}
+
+#contact h2 {
+    margin-bottom: var(--space-5);
+}
+
+#contact .section-lead {
+    margin-bottom: var(--space-8);
 }
 
 .contact-email {
@@ -1290,7 +1307,7 @@ body > header {
     font-size: clamp(1.5rem, 4vw, var(--fs-3xl));
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-7);
     border-bottom: 1px solid transparent;
     transition: color var(--dur-fast) var(--ease),
                 border-color var(--dur-fast) var(--ease);
@@ -1304,7 +1321,9 @@ body > header {
 .contact-social {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-4);
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+    padding-bottom: var(--space-4);
 }
 
 .contact-social a {
@@ -1413,7 +1432,7 @@ footer {
 }
 
 .site-footer--minimal {
-    padding: var(--space-6) 0;
+    padding: var(--space-8) 0 var(--space-7);
     text-align: center;
 }
 

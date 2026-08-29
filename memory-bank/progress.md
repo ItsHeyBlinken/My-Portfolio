@@ -84,3 +84,8 @@ Append-only running log of completed tasks and significant decisions.
   section, and minimal footer in `styles.css`.
 - Aligned primary nav on `projects.html` and `blog.html` (Contact →
   index.html#contact).
+
+## 2026-08-29 -- Homepage contact/footer spacing
+- Increased vertical rhythm below `#work` and inside `#contact` so the
+  archive link, contact block, and minimal footer no longer feel bunched.
+- Scoped to homepage selectors (`#work`, `#contact`, `.site-footer--minimal`).
