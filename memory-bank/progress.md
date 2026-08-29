@@ -84,3 +84,12 @@ Append-only running log of completed tasks and significant decisions.
   section, and minimal footer in `styles.css`.
 - Aligned primary nav on `projects.html` and `blog.html` (Contact →
   index.html#contact).
+
+## 2026-08-29 -- Homepage contact/footer spacing + flagship card hierarchy
+- Increased vertical rhythm below `#work` and inside `#contact` so the
+  archive link, contact block, and minimal footer no longer feel bunched.
+- Fixed flagship layout: base `.project-card { display: flex }` was
+  overriding `.project-card--flagship { display: grid }` due to source
+  order. Moved homepage work rules under `#work` after base card styles.
+- Flagship Online Card Show spans full width (horizontal media + copy);
+  SmoothGig CRM and Chat App remain in a two-up supporting row.
