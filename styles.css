@@ -632,42 +632,6 @@ body > header {
     margin-bottom: var(--space-8);
 }
 
-/* Flagship: screenshot left, copy right */
-.project-card--flagship {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: 0;
-    margin-bottom: var(--space-6);
-    flex-direction: unset;
-}
-
-.project-card--flagship .project-media {
-    aspect-ratio: auto;
-    min-height: 280px;
-}
-
-.project-card--flagship .project-body {
-    justify-content: center;
-    padding: var(--space-7) var(--space-8);
-}
-
-.project-card--flagship .project-status {
-    align-self: flex-start;
-    margin-bottom: var(--space-2);
-}
-
-.project-card--flagship h3 {
-    font-size: var(--fs-2xl);
-}
-
-/* Supporting cards: two-up row */
-.work-grid-supporting {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-6);
-    margin-bottom: var(--space-8);
-}
-
 .work-archive-link {
     display: inline-block;
     margin-top: var(--space-3);
@@ -729,6 +693,49 @@ body > header {
     opacity: 0;
     transform: scale(0.96);
     pointer-events: none;
+}
+
+/* Homepage work layout — placed after base .project-card so flagship grid wins */
+#work .project-card--flagship {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 0;
+    width: 100%;
+    margin-bottom: var(--space-8);
+    flex-direction: unset;
+}
+
+#work .project-card--flagship .project-media {
+    aspect-ratio: auto;
+    min-height: 320px;
+    height: 100%;
+}
+
+#work .project-card--flagship .project-body {
+    justify-content: center;
+    padding: var(--space-7) var(--space-8);
+}
+
+#work .project-card--flagship .project-status {
+    align-self: flex-start;
+    margin-bottom: var(--space-2);
+}
+
+#work .project-card--flagship h3 {
+    font-size: var(--fs-2xl);
+}
+
+#work .work-grid-supporting {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+    align-items: stretch;
+}
+
+#work .work-grid-supporting .project-card,
+#work .work-grid-supporting .project-tile {
+    height: 100%;
 }
 
 .project-media {
@@ -2226,16 +2233,17 @@ footer:not(.site-footer) #footer-logo {
         border-radius: var(--radius-lg);
     }
 
-    .project-card--flagship {
+    #work .project-card--flagship {
         grid-template-columns: 1fr;
     }
 
-    .project-card--flagship .project-media {
+    #work .project-card--flagship .project-media {
         min-height: 0;
+        height: auto;
         aspect-ratio: 16 / 9;
     }
 
-    .work-grid-supporting {
+    #work .work-grid-supporting {
         grid-template-columns: 1fr;
     }
 
