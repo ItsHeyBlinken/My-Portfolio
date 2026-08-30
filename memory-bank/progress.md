@@ -93,3 +93,10 @@ Append-only running log of completed tasks and significant decisions.
   order. Moved homepage work rules under `#work` after base card styles.
 - Flagship Online Card Show spans full width (horizontal media + copy);
   SmoothGig CRM and Chat App remain in a two-up supporting row.
+
+## 2026-08-30 -- Inner pages chrome + archive cleanup
+- Aligned `projects.html` and `blog.html` footers with homepage minimal footer.
+- Projects archive: removed filter pills and Demos section; hid placeholder
+  in-dev cards (QuizMaster, Boilerplate Library, Personal Finance Tracker).
+- Blog: hid public admin login (available via `?admin=1`); human-readable
+  dates; basic `**bold**` markdown rendering in post bodies.

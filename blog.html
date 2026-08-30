@@ -31,8 +31,8 @@
                     </button>
                 </div>
 
-                <!-- Admin Login Form (Hidden when logged in) -->
-                <div id="admin-login-nav" class="admin-login-nav">
+                <!-- Admin Login Form (hidden from public; use ?admin=1 to sign in) -->
+                <div id="admin-login-nav" class="admin-login-nav" hidden>
                     <form id="admin-login-form" class="admin-login-form" aria-label="Admin login">
                         <input type="text" id="username" name="username" placeholder="Username" autocomplete="username" required>
                         <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password" required>
@@ -144,17 +144,9 @@
         </section>
     </main>
     
-    <footer>
-        <div>
+    <footer class="site-footer site-footer--minimal">
+        <div class="container">
             <p>&copy; 2026 BytesByBlinken</p>
-        </div>
-        <div>
-            <a href="./index.html" aria-label="BytesByBlinken home">
-                <img id="footer-logo" src="./images/Logo.png" alt="BytesByBlinken logo">
-            </a>
-        </div>
-        <div>
-            <p><a href="mailto:BytesByBlinken@gmail.com">BytesByBlinken@gmail.com</a></p>
         </div>
     </footer>
     
@@ -199,6 +191,59 @@
                 themeIcon.textContent = '🌙';
             }
         }
+
+        function isAdminAccessRequested() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('admin') === '1' || window.location.hash === '#admin';
+        }
+
+        function showAdminLoginNav() {
+            const loginNav = document.getElementById('admin-login-nav');
+            loginNav.hidden = false;
+            loginNav.style.display = 'flex';
+        }
+
+        function hideAdminLoginNav() {
+            const loginNav = document.getElementById('admin-login-nav');
+            loginNav.hidden = true;
+            loginNav.style.display = 'none';
+        }
+
+        function getPostMonthKey(dateValue) {
+            if (!dateValue) return '';
+            const date = new Date(dateValue);
+            if (Number.isNaN(date.getTime())) return '';
+            return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        }
+
+        function formatPostDate(dateValue) {
+            if (!dateValue) return '';
+            const date = new Date(dateValue);
+            if (Number.isNaN(date.getTime())) return String(dateValue);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function escapeHtml(text) {
+            return String(text)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function formatPostContent(content) {
+            const escaped = escapeHtml(content);
+            const withBold = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            return withBold
+                .split(/\n\n+/)
+                .map(paragraph => `<p>${paragraph.replace(/\n/g, '<br>')}</p>`)
+                .join('');
+        }
         
         // Blog Management System
         function initBlogSystem() {
@@ -218,6 +263,12 @@
             
             // Load blog posts on page load
             loadBlogPosts();
+
+            if (isAdminAccessRequested()) {
+                showAdminLoginNav();
+            } else {
+                hideAdminLoginNav();
+            }
             
             // Login form submission
             loginForm.addEventListener('submit', handleLogin);
@@ -319,12 +370,21 @@
         
         function showAdminPanel() {
             document.getElementById('admin-panel-nav').style.display = 'flex';
-            document.getElementById('admin-login-nav').style.display = 'none';
+            hideAdminLoginNav();
         }
         
         function hideAdminPanel() {
             document.getElementById('admin-panel-nav').style.display = 'none';
-            document.getElementById('admin-login-nav').style.display = 'flex';
+            hideAdminLoginNav();
+        }
+
+        function handleAdminSessionExpired(message) {
+            alert(message || 'Your session has expired. Please log in again.');
+            localStorage.removeItem('blog-admin-token');
+            hideAdminPanel();
+            if (isAdminAccessRequested()) {
+                showAdminLoginNav();
+            }
         }
         
         // Comment Management Functions
@@ -340,10 +400,7 @@
         async function loadAllComments() {
             // Verify token first
             if (!await verifyToken()) {
-                alert('Your session has expired. Please log in again.');
-                // Hide admin panel and show login form
-                document.getElementById('admin-panel-nav').style.display = 'none';
-                document.getElementById('admin-login-form').style.display = 'block';
+                handleAdminSessionExpired();
                 return;
             }
             
@@ -359,10 +416,7 @@
                     const comments = await response.json();
                     displayAllComments(comments);
                 } else if (response.status === 403) {
-                    alert('Access denied. Your session may have expired. Please log in again.');
-                    // Hide admin panel and show login form
-                    document.getElementById('admin-panel-nav').style.display = 'none';
-                    document.getElementById('admin-login-form').style.display = 'block';
+                    handleAdminSessionExpired('Access denied. Your session may have expired. Please log in again.');
                 } else {
                     const error = await response.json();
                     alert('Failed to load comments: ' + (error.error || 'Unknown error'));
@@ -416,10 +470,7 @@
         async function approveComment(commentId) {
             // Verify token first
             if (!await verifyToken()) {
-                alert('Your session has expired. Please log in again.');
-                // Hide admin panel and show login form
-                document.getElementById('admin-panel-nav').style.display = 'none';
-                document.getElementById('admin-login-form').style.display = 'block';
+                handleAdminSessionExpired();
                 return;
             }
             
@@ -438,10 +489,7 @@
                     alert('Comment approved successfully!');
                     loadAllComments(); // Refresh the list
                 } else if (response.status === 403) {
-                    alert('Access denied. Your session may have expired. Please log in again.');
-                    // Hide admin panel and show login form
-                    document.getElementById('admin-panel-nav').style.display = 'none';
-                    document.getElementById('admin-login-form').style.display = 'block';
+                    handleAdminSessionExpired('Access denied. Your session may have expired. Please log in again.');
                 } else {
                     const error = await response.json();
                     alert('Failed to approve comment: ' + (error.error || 'Unknown error'));
@@ -455,10 +503,7 @@
         async function rejectComment(commentId) {
             // Verify token first
             if (!await verifyToken()) {
-                alert('Your session has expired. Please log in again.');
-                // Hide admin panel and show login form
-                document.getElementById('admin-panel-nav').style.display = 'none';
-                document.getElementById('admin-login-form').style.display = 'block';
+                handleAdminSessionExpired();
                 return;
             }
             
@@ -477,10 +522,7 @@
                     alert('Comment rejected successfully!');
                     loadAllComments(); // Refresh the list
                 } else if (response.status === 403) {
-                    alert('Access denied. Your session may have expired. Please log in again.');
-                    // Hide admin panel and show login form
-                    document.getElementById('admin-panel-nav').style.display = 'none';
-                    document.getElementById('admin-login-form').style.display = 'block';
+                    handleAdminSessionExpired('Access denied. Your session may have expired. Please log in again.');
                 } else {
                     const error = await response.json();
                     alert('Failed to reject comment: ' + (error.error || 'Unknown error'));
@@ -517,27 +559,18 @@
             
             let visibleCount = 0;
             allPosts.forEach(post => {
-                const postDateElement = post.querySelector('.post-date');
-                if (!postDateElement) return;
-                
-                const postDateText = postDateElement.textContent;
-                // Extract the date from "Published on: YYYY-MM-DD" format
-                const dateMatch = postDateText.match(/Published on: (\d{4}-\d{2}-\d{2})/);
-                
-                if (dateMatch) {
-                    const postDate = new Date(dateMatch[1]);
-                    const postMonth = postDate.getFullYear() + '-' + String(postDate.getMonth() + 1).padStart(2, '0');
-                    
-                    if (month === 'all' || postMonth === month) {
-                        post.style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        post.style.display = 'none';
-                    }
-                } else {
-                    // If we can't parse the date, show the post
+                const postMonth = post.dataset.publishedMonth;
+                if (!postMonth) {
                     post.style.display = 'block';
                     visibleCount++;
+                    return;
+                }
+
+                if (month === 'all' || postMonth === month) {
+                    post.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    post.style.display = 'none';
                 }
             });
             
@@ -728,21 +761,19 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
         function createBlogPostElement(post) {
             const article = document.createElement('article');
             article.className = 'blog-tile';
+            article.dataset.publishedMonth = getPostMonthKey(post.published_date || post.date);
             
-            // Format content with line breaks
-            const formattedContent = post.content.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
-            
-            // Handle both date formats (API uses published_date, static uses date)
-            const displayDate = post.published_date || post.date;
+            const formattedContent = formatPostContent(post.content);
+            const displayDate = formatPostDate(post.published_date || post.date);
             
             article.innerHTML = `
-                <h2>${post.title}</h2>
+                <h2>${escapeHtml(post.title)}</h2>
                 <div class="post-meta">
-                    <p class="post-author">By: ${post.author}</p>
-                    <p class="post-date">Published on: ${displayDate}</p>
+                    <p class="post-author">By: ${escapeHtml(post.author)}</p>
+                    <p class="post-date">Published on: ${escapeHtml(displayDate)}</p>
                 </div>
                 <div class="post-content">
-                    <p>${formattedContent}</p>
+                    ${formattedContent}
                 </div>
                 <div class="post-tags">
                     ${post.tags ? post.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
@@ -940,10 +971,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             
             // Verify token first
             if (!await verifyToken()) {
-                alert('Your session has expired. Please log in again.');
-                // Hide admin panel and show login form
-                document.getElementById('admin-panel-nav').style.display = 'none';
-                document.getElementById('admin-login-form').style.display = 'block';
+                handleAdminSessionExpired();
                 return;
             }
             
@@ -962,10 +990,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                     const postId = document.querySelector(`[data-comment-id="${commentId}"]`).closest('.blog-tile').getAttribute('data-post-id');
                     loadComments(postId);
                 } else if (response.status === 403) {
-                    alert('Access denied. Your session may have expired. Please log in again.');
-                    // Hide admin panel and show login form
-                    document.getElementById('admin-panel-nav').style.display = 'none';
-                    document.getElementById('admin-login-form').style.display = 'block';
+                    handleAdminSessionExpired('Access denied. Your session may have expired. Please log in again.');
                 } else {
                     const error = await response.json();
                     alert('Failed to delete comment: ' + (error.error || 'Unknown error'));
@@ -1002,10 +1027,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             
             // Verify token first
             if (!await verifyToken()) {
-                alert('Your session has expired. Please log in again.');
-                // Hide admin panel and show login form
-                document.getElementById('admin-panel-nav').style.display = 'none';
-                document.getElementById('admin-login-form').style.display = 'block';
+                handleAdminSessionExpired();
                 return;
             }
             
@@ -1035,10 +1057,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                     hideEditForm();
                     loadBlogPosts(); // Reload posts to show changes
                 } else if (response.status === 403) {
-                    alert('Access denied. Your session may have expired. Please log in again.');
-                    // Hide admin panel and show login form
-                    document.getElementById('admin-panel-nav').style.display = 'none';
-                    document.getElementById('admin-login-form').style.display = 'block';
+                    handleAdminSessionExpired('Access denied. Your session may have expired. Please log in again.');
                 } else {
                     const error = await response.json();
                     alert('Failed to update post: ' + (error.error || 'Unknown error'));
@@ -1054,10 +1073,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
             
             // Verify token first
             if (!await verifyToken()) {
-                alert('Your session has expired. Please log in again.');
-                // Hide admin panel and show login form
-                document.getElementById('admin-panel-nav').style.display = 'none';
-                document.getElementById('admin-login-form').style.display = 'block';
+                handleAdminSessionExpired();
                 return;
             }
             
@@ -1074,10 +1090,7 @@ I'm excited to keep building and to see where this journey takes me. Thanks for 
                     alert('Post deleted successfully!');
                     loadBlogPosts(); // Reload posts to show changes
                 } else if (response.status === 403) {
-                    alert('Access denied. Your session may have expired. Please log in again.');
-                    // Hide admin panel and show login form
-                    document.getElementById('admin-panel-nav').style.display = 'none';
-                    document.getElementById('admin-login-form').style.display = 'block';
+                    handleAdminSessionExpired('Access denied. Your session may have expired. Please log in again.');
                 } else {
                     const error = await response.json();
                     alert('Failed to delete post: ' + (error.error || 'Unknown error'));

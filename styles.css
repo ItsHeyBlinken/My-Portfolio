@@ -415,6 +415,10 @@ body > header {
     z-index: 1;
 }
 
+#admin-login-nav[hidden] {
+    display: none !important;
+}
+
 #admin-login-nav,
 #admin-panel-nav {
     grid-column: 1 / -1;
@@ -423,6 +427,16 @@ body > header {
     background: var(--bg-page);
     position: relative;
     z-index: 1;
+}
+
+.projects-page-header .eyebrow {
+    text-transform: none;
+    letter-spacing: 0.08em;
+}
+
+.blog-header .eyebrow {
+    text-transform: none;
+    letter-spacing: 0.08em;
 }
 
 /* Blog: admin controls on their own row so they never overlap links or the theme toggle */
